@@ -1,0 +1,14 @@
+name: c4c-connector
+version: 0.1.0
+description: "Enables the integration of SAP Cloud for Customer"
+id: faebbe18-0a84-11e5-ab14-d663bd873d94
+displayName: "SAP Cloud For Customer - Connector"
+tags: c4c,connector
+labels: 
+  preview: "true"
+providerDisplayName: SAP
+longDescription: "Integrates an SAP Cloud for Customer instance by registering its ODATA services and event catalog in an existing Application and activates Event sending"
+documentationURL: https://storage.googleapis.com/faros-stage-base-xf-bundles/installation/c4c.html
+bindable: false
+provisionOnlyOnce: true
+imageUrl: https://storage.googleapis.com/faros-stage-base-xf-bundles/icons/c4c-connector.svg

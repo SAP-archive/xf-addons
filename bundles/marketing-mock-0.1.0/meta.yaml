@@ -1,0 +1,14 @@
+name: marketing-mock
+version: 0.1.0
+description: "Lightweight substitute of SAP Marketing Cloud based on APIs only"
+id: faebbe18-0a84-11e9-ab14-d663bd873d95
+displayName: "SAP Marketing Cloud - Mock"
+tags: marketing,mock
+labels: 
+  preview: "true"
+providerDisplayName: SAP
+longDescription:  "Lightweight substitute of SAP Marketing Cloud based on APIs only"
+documentationURL: https://github.com/SAP/xf-application-mocks/tree/master/marketing-mock
+imageURL: https://storage.googleapis.com/faros-stage-base-xf-bundles/icons/marketing-mock.svg
+bindable: false
+provisionOnlyOnce: true

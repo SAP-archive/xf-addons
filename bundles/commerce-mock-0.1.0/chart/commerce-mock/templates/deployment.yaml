@@ -1,0 +1,48 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "bundle.fullname" . }}
+  labels:
+    app: {{ template "bundle.fullname" . }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ template "bundle.fullname" . }}
+    spec:
+      containers:
+      - image: eu.gcr.io/kyma-project/xf-application-mocks/commerce-mock:latest
+        imagePullPolicy: Always
+        name: {{ template "bundle.fullname" . }}
+        ports:
+        - name: http
+          containerPort: 10000
+        env:
+        - name: DEBUG
+          value: "false"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "bundle.fullname" . }}
+  labels:
+    app: {{ template "bundle.fullname" . }}
+spec:
+  ports:
+  - name: http
+    port: 10000
+  selector:
+    app: {{ template "bundle.fullname" . }}
+---
+apiVersion: gateway.kyma-project.io/v1alpha2
+kind: Api
+metadata:
+  labels:
+    app: {{ template "bundle.fullname" . }}
+  name: {{ template "bundle.fullname" . }}
+spec:
+  hostname: commerce
+  service:
+    name: {{ template "bundle.fullname" . }}
+    port: 10000

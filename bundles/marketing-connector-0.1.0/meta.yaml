@@ -1,0 +1,14 @@
+name: marketing-connector
+version: 0.1.0
+description: "Enables the integration of SAP Marketing Cloud"
+id: faebbe18-0a84-11e9-ab14-d663bd873d92
+displayName: "SAP Marketing Cloud - Connector"
+tags: marketing,connector
+labels: 
+  preview: "true"
+providerDisplayName: SAP
+longDescription:  "Integrates an SAP Marketing Cloud instance by registering its ODATA services and event catalog in an existing Application and activates Event sending based on MQTT"
+documentationURL: https://storage.googleapis.com/faros-stage-base-xf-bundles/installation/marketing.html
+imageURL: https://storage.googleapis.com/faros-stage-base-xf-bundles/icons/marketing-connector.svg
+bindable: false
+provisionOnlyOnce: true

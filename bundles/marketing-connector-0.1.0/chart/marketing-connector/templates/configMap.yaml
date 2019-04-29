@@ -1,0 +1,438 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
+data:
+  SYSTEM_URL	: {{ .Values.system_url | quote }}
+  BASIC_USER: {{ .Values.basic_user | quote }}
+  BASIC_PASSWORD: {{ .Values.basic_password | quote }}
+  APPLICATION_NAME: {{ .Values.application_name | quote }}
+  PROVIDER_NAME: SAP
+  PRODUCT_NAME: SAP Marketing Cloud
+  EVENT_API_NAME: SAP Marketing Cloud - Business Events
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "bundle.fullname" . }}-{{ .Values.oauthServerName }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.oauthServerName }}
+data:
+  OAUTH_CLIENT_ID: {{ .Values.oauth_client_id | quote }}
+  OAUTH_CLIENT_SECRET: {{ .Values.oauth_client_secret | quote }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "bundle.fullname" . }}-{{ .Values.mqttEventBridgeName }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.mqttEventBridgeName }}
+data:
+  APPLICATION_NAME: {{ .Values.application_name | quote }}
+  OAUTH_URL: http://{{ template "bundle.fullname" . }}-{{ .Values.oauthServerName }}:8080
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}-api
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
+data:
+  events.json: |-
+    {
+      "name": "SAP Marketing Cloud - Business Events",
+      "provider": "SAP",
+      "description": "SAP Marketing Cloud Business Events",
+      "events": {
+          "spec": {
+              "asyncapi": "1.0.0",
+              "info": {
+                  "title": "SAP Marketing Cloud Business Events",
+                  "version": "1.0.0",
+                  "description": "SAP Marketing Cloud Business Events"
+              },
+              "topics": {
+                  "bo.marketingcoupon.changed.v1": {
+                      "subscribe": {
+                          "summary": "Marketing Coupon Changed",
+                          "payload": {
+                              "type": "object",
+                              "properties": {
+                                  "BO.MarketingCoupon.Changed.v1": {
+                                      "type": "object",
+                                      "required": [
+                                          "KEY"
+                                      ],
+                                      "example": {
+                                          "KEY": [
+                                              {
+                                                  "COUPON": "4caad296-e0c5-491e-98ac-0ed118f9474e"
+                                              }
+                                          ],
+                                          "COUPONCODEUUID": "4caad296-e0c5-491e-98ac-0ed118f9474e"
+                                      },
+                                      "properties": {
+                                          "KEY": {
+                                              "title": "Key Attributes",
+                                              "description": "Key Attributes",
+                                              "type": "array"
+                                          },
+                                          "COUPONCODEUUID": {
+                                              "title": "COUPONCODEUUID",
+                                              "description": "Coupon Code UUID",
+                                              "type": "string"
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "bo.marketingpermission.changed.v1": {
+                      "subscribe": {
+                          "summary": "Marketing Permission Changed",
+                          "payload": {
+                              "type": "object",
+                              "properties": {
+                                  "BO.MarketingPermission.Changed.v1": {
+                                      "type": "object",
+                                      "required": [
+                                          "KEY"
+                                      ],
+                                      "example": {
+                                          "KEY": [
+                                              {
+                                                  "MARKETINGPERMISSIONUUID": "4caad296-e0c5-491e-98ac-0ed118f9474e"
+                                              }
+                                          ],
+                                          "CONTACTPERMISSION": "Y"
+                                      },
+                                      "properties": {
+                                          "KEY": {
+                                              "title": "Key Attributes",
+                                              "description": "Key Attributes",
+                                              "type": "array"
+                                          },
+                                          "CONTACTPERMISSION": {
+                                              "title": "CONTACTPERMISSION",
+                                              "description": "Contact Permission",
+                                              "type": "string"
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "bo.marketingpermission.created.v1": {
+                      "subscribe": {
+                          "summary": "Marketing Permission Created",
+                          "payload": {
+                              "type": "object",
+                              "properties": {
+                                  "BO.MarketingPermission.Created.v1": {
+                                      "type": "object",
+                                      "required": [
+                                          "KEY"
+                                      ],
+                                      "example": {
+                                          "KEY": [
+                                              {
+                                                  "MARKETINGPERMISSIONUUID": "4caad296-e0c5-491e-98ac-0ed118f9474e"
+                                              }
+                                          ],
+                                          "CONTACTPERMISSION": "Y"
+                                      },
+                                      "properties": {
+                                          "KEY": {
+                                              "title": "Key Attributes",
+                                              "description": "Key Attributes",
+                                              "type": "array"
+                                          },
+                                          "CONTACTPERMISSION": {
+                                              "title": "CONTACTPERMISSION",
+                                              "description": "Contact Permission",
+                                              "type": "string"
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "bo.interaction.created.v1": {
+                      "subscribe": {
+                          "summary": "Interaction Created",
+                          "payload": {
+                              "type": "object",
+                              "properties": {
+                                  "BO.Interaction.Created.v1": {
+                                      "type": "object",
+                                      "required": [
+                                          "KEY"
+                                      ],
+                                      "example": {
+                                          "KEY": [
+                                              {
+                                                  "INTERACTION": "4caad296-e0c5-491e-98ac-0ed118f9474e"
+                                              }
+                                          ],
+                                          "INTERACTIIONTYPE": "EMAIL_COMPAINT"
+                                      },
+                                      "properties": {
+                                          "KEY": {
+                                              "title": "Key Attributes",
+                                              "description": "Key Attributes",
+                                              "type": "array"
+                                          },
+                                          "INTERNATIONTYPE": {
+                                              "title": "INTERNATIONTYPE",
+                                              "description": "Interaction Type",
+                                              "type": "string"
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "bo.marketingobjectattachment.created.v1": {
+                      "subscribe": {
+                          "summary": "Marketing Object Attachement Created",
+                          "payload": {
+                              "type": "object",
+                              "properties": {
+                                  "BO.MarketingObjectAttachment.Created.v1": {
+                                      "type": "object",
+                                      "required": [
+                                          "KEY"
+                                      ],
+                                      "example": {
+                                          "KEY": [
+                                              {
+                                                  "MARKETINGOBJECTUUID": "4caad296-e0c5-491e-98ac-0ed118f9474e"
+                                              }
+                                          ],
+                                          "MARKETINGOBJECT": "00000400002",
+                                          "MARKETINGOBJECTTYPE": "CUAN_INITIATIVE",
+                                          "MKTGOBJECTATTACHMENTFILENAME": "CC2352CPG-0000040002-1-1-foo-20181212202020"
+                                      },
+                                      "properties": {
+                                          "KEY": {
+                                              "title": "Key Attributes",
+                                              "description": "Key Attributes",
+                                              "type": "array"
+                                          },
+                                          "MARKETINGOBJECT": {
+                                              "title": "MARKETINGOBJECT",
+                                              "description": "ID of the Marketing Object",
+                                              "type": "string"
+                                          },
+                                          "MARKETINGOBJECTTYPE": {
+                                              "title": "MARKETINGOBJECTTYPE",
+                                              "description": "Type of the Marketing Object",
+                                              "type": "string"
+                                          },
+                                          "MKTGOBJECTATTACHMENTFILENAME": {
+                                              "title": "MKTGOBJECTATTACHMENTFILENAME",
+                                              "description": "Filename of the Object Attachment",
+                                              "type": "string"
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "bo.marketingcampaign.completed.v1": {
+                      "subscribe": {
+                          "summary": "Marketing Campaign Completed",
+                          "payload": {
+                              "type": "object",
+                              "properties": {
+                                  "BO.MarketingCampaign.Completed.v1": {
+                                      "type": "object",
+                                      "required": [
+                                          "KEY"
+                                      ],
+                                      "example": {
+                                          "KEY": [
+                                              {
+                                                  "CAMPAIGN": "4caad296-e0c5-491e-98ac-0ed118f9474e"
+                                              }
+                                          ]
+                                      },
+                                      "properties": {
+                                          "KEY": {
+                                              "title": "Key Attributes",
+                                              "description": "Key Attributes",
+                                              "type": "array"
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      }
+    }
+  apis.json: |-
+    [
+      {
+        "path": "sap/opu/odata/sap/API_MKT_EXPORT_DEFINITION_SRV",
+        "name": "Campaign Export Files",
+        "description": "This service can be consumed by external applications to read the file name and content of an export file created during campaign execution."
+      },
+      {
+        "path": "sap/opu/odata/sap/API_MKT_CONTACT_SRV;v=0002",
+        "name": "Contacts",
+        "description": "This API service should be used for reading and writing master data about natural persons only."
+      },
+      {
+        "path": "sap/opu/odata/sap/API_MKT_CAMPAIGN_TEMPLATE_SRV",
+        "name": "Campaign Templates",
+        "description": "API to read the available Campaign Templates, inclusive of SAP delivered templates and custom templates. These can be used further to Create Campaigns referencing the template."
+      },
+      {
+        "path": "sap/opu/odata/sap/API_MKT_TARGET_GROUP_SRV",
+        "name": "Target Groups",
+        "description": "The API can be consumed by external applications to get a list of Static, Dynamic, and Live target groups."
+      },
+      {
+        "path": "sap/opu/odata/sap/CUAN_BUSINESS_DOCUMENT_IMP_SRV",
+        "name": "Busuness Documents Import",
+        "description": "Imports business documents such as sales orders, leads, opportunities and so on."
+      },
+      {
+        "path": "sap/opu/odata/sap/CUAN_OFFER_DISCOVERY_SRV",
+        "name": "Offer Discovery",
+        "description": "This service enables external applications to find suitable offers for a consumer."
+      },
+      {
+        "path": "sap/opu/odata/sap/API_MKT_CAMPAIGN_SRV;v=0002",
+        "name": "Campaigns",
+        "description": "This service enables external applications to access Campaign information from SAP Marketing Cloud."
+      },
+      {
+        "path": "sap/opu/odata/sap/API_MKT_AGREEMENT_SRV",
+        "name": "Agreements",
+        "description": "This service can be used to replicate customer agreements from different source systems."
+      },
+      {
+        "path": "sap/opu/odata/sap/API_MKT_INTERACTION_CONTACT_SRV;v=0002",
+        "name": "Interaction Contacts",
+        "description": "API to read and write Cookie IDs or reading ‘unknowns’, these are entities which can’t be classified as natural or legal person."
+      },
+      {
+        "path": "sap/opu/odata/sap/API_MKT_PRODUCT_SRV;v=0002",
+        "name": "Products",
+        "description": "This service can be used to create SAP Marketing Cloud products from any source system. In contrast to OData service CUAN_IMPORT, OData service API_MKT_PRODUCT_SRV supports the change of products. Each product is identified by the key of the product in the external system."
+      },
+      {
+        "path": "sap/opu/odata/sap/API_MKT_INTEREST_SRV",
+        "name": "Interest",
+        "description": "This API service can be used for reading interest data. The service can be consumed by external applications for read operation (GET)."
+      },
+      {
+        "path": "sap/opu/odata/sap/API_MKT_PROGRAM_SRV",
+        "name": "Programs",
+        "description": "This service enables external applications to access marketing program information from SAP Marketing Cloud."
+      },
+      {
+        "path": "sap/opu/odata/sap/API_MKT_SCORE_SRV",
+        "name": "Scores",
+        "description": "API to read computed Scores and import Scores from External sources into Marketing Cloud"
+      },
+      {
+        "path": "sap/opu/odata/sap/CUAN_BUSINESS_PARTNER_IMPORT_SRV",
+        "name": "Business Partner Import",
+        "description": "You use this generic interface to import business partners from various source systems (such as ERP, C4C, etc.)."
+      },
+      {
+        "path": "sap/opu/odata/sap/API_MKT_PRODCAT_HIERARCHY_SRV",
+        "name": "Product Categories Import",
+        "description": "The service can be consumed by external applications to: Handle $batch requests for import product hierarchies and it's descriptions in multiple languages via http operation POST. Handle $batch requests for import product categories via http operation PATCH/MERGE. Handle $batch requests for import descriptions of the product categories via http operation POST."
+      },
+      {
+        "path": "sap/opu/odata/sap/API_MKT_LANDING_PAGE_VALUEHELP_SRV",
+        "name": "Landing Page Value Help",
+        "description": "This service provides value helps for various entities relevant for landing pages."
+      },
+      {
+        "path": "sap/opu/odata/sap/API_MKT_CORPORATE_ACCOUNT_SRV;v=0002",
+        "name": "Corporate Account",
+        "description": "This API service should be used for reading and writing master data about corporate accounts only."
+      },
+      {
+        "path": "sap/opu/odata/sap/API_MKT_LOYALTY_SRV_01",
+        "name": "Loyalty",
+        "description": "This service provides loyalty data such as loyalty program, tier, and member data for further processing in SAP Marketing Cloud. The member data enriches the consumer profile and the loyalty attributes (program, tier, member, and balance points) are available for segmentat"
+      },
+      {
+        "path": "sap/opu/odata/sap/API_MKT_COUPON_SRV",
+        "name": "Coupons",
+        "description": "This service enables external applications to access Coupon information from SAP Marketing Cloud."
+      },
+      {
+        "path": "sap/opu/odata/sap/CUAN_OFFER_IMPORT_SRV",
+        "name": "Offer Import",
+        "description": "This service enables external applications to import offers into SAP Marketing Cloud."
+      },
+      {
+        "path": "sap/opu/odata/sap/CUAN_IMPORT_SRV",
+        "name": "Master Data Import",
+        "description": "Imports contacts, interactions, products, product categories, and items of interest into SAP Marketing Cloud."
+      },
+      {
+        "path": "sap/opu/odata/sap/API_MKT_CAMPAIGN_MESSAGE_SRV",
+        "name": "Campaign Messages",
+        "description": "API to read Existing Campaign Content, it’s building blocks and create the Campaign Content"
+      },
+      {
+        "path": "sap/opu/odata/sap/API_MKT_LANDING_PAGE_SRV",
+        "name": "Landing Pages",
+        "description": "This service can be used to read and write external Landing Page data from and to the SAP Marketing Cloud system"
+      },
+      {
+        "path": "sap/opu/odata/sap/API_MKT_CMPGN_SUCCESS_IMPORT_SRV",
+        "name": "Campaign Success Import",
+        "description": "This integration service allows you to aggregated success data from external systems and write the data to campaigns in SAP Marketing Cloud."
+      },
+      {
+        "path": "sap/opu/odata/sap/API_MKT_LOCATION_SRV",
+        "name": "Marketing Locations",
+        "description": "A marketing location is defined as any physical or virtual location where a marketing activity can be conducted. It can be a brick and mortar store, a mall, a kiosk, a Web store, or even a beach area where marketers can distribute their coupons."
+      },
+      {
+        "path": "sap/opu/odata/sap/API_MKT_INTERACTION_SRV",
+        "name": "Interactions",
+        "description": "This API service can be used for reading and writing interaction data. The service can be consumed by external applications for read and write operations (POST, PATCH, DELETE and DEEP INSERT)."
+      },
+      {
+        "path": "sap/opu/odata/sap/API_MKT_OFFER_SRV",
+        "name": "Offers",
+        "description": "API to read Offers and dependent objects from SAP Marketing Cloud."
+      },
+      {
+        "path": "sap/opu/odata/sap/API_MKT_EXTERNAL_RECMDN_SRV",
+        "name": "External Recommendation",
+        "description": "This service enables external applications to create, read and update Recommendations in the SAP Marketing Cloud."
+      },
+      {
+        "path": "sap/opu/odata/sap/CUAN_SURVEY_IMPORT_SRV",
+        "name": "Surveys",
+        "description": "The API can be consumed by external applications to: Get a list of surveys. Get a specific survey. Create a survey. Get list of questions of a survey. Get a specific question of a survey. Create a survey question. Get list of responses of all surveys. Get a response of a specific survey. Create a survey response."
+      }
+    ]
