@@ -2,7 +2,7 @@
 Addon bundles for the SAP Cloud Platform Extension Factory (XF) installable via the Service Catalog.
 
 ## Description
-The SAP CP Extension Factory (XF) is designed to easily extend and mash up different SAP applications and third-party APIs. The [Kyma Helm Broker](https://kyma-project.io/docs/components/helm-broker/) provides a mechanism to easily deploy integration and extension functionality for SAP applications (addons) to a running XF cluster. The `XF Addons` are the default set of addons for any XF cluster by mainly providing connector and mock bundles for SAP Marketing CLoud, SAP Cloud for Customer and SAP Commerce Clous.
+The SAP CP Extension Factory (XF) is designed to easily extend and mash up different SAP applications and third-party APIs. The [Kyma Helm Broker](https://kyma-project.io/docs/components/helm-broker/) provides a mechanism to easily deploy integration and extension functionality for SAP applications (addons) to a running XF cluster. The `XF Addons` are the default set of addons for any XF cluster by mainly providing connector and mock bundles for SAP Marketing Cloud, SAP Cloud for Customer, and SAP Commerce Cloud.
 
 ## Installation
 This addons repository as defined by [index.yaml](bundles/index.yaml) is installed to XF by default.
