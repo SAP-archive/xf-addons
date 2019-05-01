@@ -12,7 +12,7 @@ Establishing the connection between SAP Cloud for Customer solution and the SAP 
 
 ## Scenario 
 
-To establish the connection and allow data exchange between SAP Cloud for Customer and SAP Cloud Platform Extension Factory you must peform certain steps using both systems. 
+To establish the connection and allow data exchange between SAP Cloud for Customer and SAP Cloud Platform Extension Factory, perform the following steps using both systems. 
 
 1. Create an Application using SAP Cloud Platform Extension Factory.
 2. Configure trust settings in SAP Cloud for Customer.
