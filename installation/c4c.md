@@ -2,29 +2,26 @@
 
 ## Overview
 
-Establishing the connection between SAP Cloud for Customer solution and the SAP Cloud Platform Extension Factory allows you to develop Side-by-Side extensions. The SAP Cloud for Customer Connector facilitates a simple and secure way of pairing this solution with the Extension Factory which in turn leverages registering APIs and Events. 
+
+The SAP Cloud for Customer Connector allows you to integrate an SAP Cloud for Customer instance by registering its ODATA services and Event catalog in an existing Application and activating Event sending. The integration uses the [extensibility features](https://help.sap.com/viewer/dbce7cc5e9e3469c84849d35e777fe0b/2019-05-07/en-US/363cf54bad2c47aeb44a87c215ad91ea.html) available in the SAP C/4HANA cockpit based on concepts and solutions from the open-source project "Kyma", so that you can easily develop Side-by-Side extensions. 
+
+> **NOTE**: The integration is possible in the **preview** mode only. Do not use it in production scenarios.
 
 ## Prerequisites
 * SAP Cloud for Customer version 1902 
-* SAP Cloud Platform Extension Factory version 0.8 or higher
+* "Kyma" version 1.0 or higher
 * [DST Root Certificate](https://www.identrust.com/dst-root-ca-x3)
 
 
 ## Scenario 
 
-To establish the connection and allow data exchange between SAP Cloud for Customer and SAP Cloud Platform Extension Factory, perform the following steps using both systems. 
-
-1. Create an Application using SAP Cloud Platform Extension Factory.
-2. Configure trust settings in SAP Cloud for Customer.
-3. Configure Event notification in SAP Cloud for Customer.
-4. Expose APIs in SAP Cloud for Customer and create credentials.
-5. Set up the SAP Cloud for Customer Connector to register APIs in the SAP Cloud Platform Extension Factory.
+To establish the connection and allow data exchange between SAP Cloud for Customer and "Kyma", perform the following steps using SAP Cloud for Customer, SAP C/4HANA cockpit and Kyma Console.
 
 
-### Create an Application
-
-1. Log in to the SAP Cloud Platform Extension Factory.
-2. Go to **Integration** > **Applications** and create a new Application (if it does not exist yet).
+1. Configure trust settings in SAP Cloud for Customer.
+2. Configure Event notification in SAP Cloud for Customer.
+3. Expose APIs in SAP Cloud for Customer and create credentials.
+4. Set up the SAP Cloud for Customer Connector to register APIs in "Kyma".
 
 
 ### Configure trust settings
@@ -37,13 +34,13 @@ To establish the connection and allow data exchange between SAP Cloud for Custom
 
 ### Configure event notification
 
-1. In the SAP Cloud for Customer frontend, go to **Administrator** > **General Settings** > **System Administration** > Event Notification.
+1. In the SAP Cloud for Customer frontend, go to **Administrator** > **General Settings** > **System Administration** > **Event Notification**.
 2. Click **Add**.
 3. Select consumer type, and then enter a Name and an Endpoint.
 
 ![Add Customer](assets/add-consumer.png)
 
-4. **Edit** the consumer and click Edit Credentials to enter authentication details.
+4. **Edit** the consumer and click **Edit Credentials to enter authentication details.
 5. Go to **Subscriptions** > **Add**.
 6. Select a Business Object and Node and then select at least one of Create, Update, or Delete.
 
@@ -54,17 +51,16 @@ To establish the connection and allow data exchange between SAP Cloud for Custom
 ### Expose APIs
 
 
-
 ### Set up the SAP Cloud for Customer Connector 
 
-1. Log in to the SAP Cloud Platform Extension Factory.
-2. Go to **Integration** > **Applications** and create a new Application (if it does not exist yet).
-3. Go to **Service Catalog** > **Marketing Connector**.
-4. Use the wizard to install and configure the SAP Marketing Connector:
+1. Navigate to the **Runtimes** view under **Extensibility** in SAP C/4HANA cockpit. If you need to provision the runtime, follow [these instructions](https://help.sap.com/viewer/dbce7cc5e9e3469c84849d35e777fe0b/2019-05-07/en-US/0bb50b27d76d4113ac32655f31777662.html).
+3. Click **Kyma Console**.
+4. In the Console, choose the Namespace, go to **Service Catalog** and select the SAP Cloud for Customer Connector.
+5. Install and configure the SAP Cloud for Customer Connector:
 
     Parameter | Description |
     |---|---|
     |**System URL**|The base URL of the SAP Cloud for Customer instance. For example, `https://c4c.instance.sap.com` |
-    |**Basic Auth Username** |The username for the Communication User in SAP Marketing Cloud. This is the Communication User that you have created in the [first step](#create-communication-user). It must already exist in SAP Cloud for Customer and be used for all of the Communication Arrangements (used to expose APIs) you want to register in the Extension Factory|
-    |**Basic Auth Password** |The password of the Communication User in SAP Cloud for Customer|
+    |**Basic Auth Username** ||
+    |**Basic Auth Password** ||
     |**Application Name**   |The name of the Application CR where the ODATA services and the event catalog should be registered for consumption|

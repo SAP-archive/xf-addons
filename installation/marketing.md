@@ -2,22 +2,23 @@
 
 ## Overview
 
-Establishing the connection between SAP Marketing Cloud and the SAP Cloud Platform Extension Factory allows you to develop Side-by-Side extensions. The SAP Marketing Connector facilitates a simple and secure way of pairing the marketing solution with the Extension Factory which in turn leverages registering APIs and Events. 
+The SAP Marketing Connector allows you to integrate an SAP Marketing Cloud instance by registering its ODATA services and Event catalog in an existing Application and activating Event sending. The integration uses the [extensibility features](https://help.sap.com/viewer/dbce7cc5e9e3469c84849d35e777fe0b/2019-05-07/en-US/363cf54bad2c47aeb44a87c215ad91ea.html) available in the SAP C/4HANA cockpit based on concepts and solutions from the open-source project "Kyma", so that you can easily develop Side-by-Side extensions. 
 
+> **NOTE**: The integration is possible in the **preview** mode only. Do not use it in production scenarios.
 
 ## Prerequisites
 * SAP Marketing Cloud version 1905 or higher
-* SAP Cloud Platform Extension Factory version 0.8 or higher
+* "Kyma" version 1.0 or higher
 
 
 ## Scenario 
 
-To establish the connection and allow data exchange between SAP Marketing Cloud and SAP Cloud Platform Extension Factory, perform the following steps using both systems. 
+To establish the connection and allow data exchange between SAP Marketing Cloud and "Kyma", perform the following steps using SAP Marketing Cloud solution, SAP C/4HANA cockpit and Kyma Console.
 
 1. [Create and configure a Communication User](#create-a-communication-user).
-2. [Create a Communication System](#create-a-communication-system) which is the external system to be integrated with the marketing solution. With the Communication System in place, SAP Marketing Cloud is able to send Events to SAP Cloud Platform Extension Factory. 
-3. [Create Communication Arrangements](#create-communication-arrangements) which help you to organize the data exchange between the external system and the marketing system. You need to set them up for all APIs you want to register in the SAP Cloud Platform Extension Factory.
-4. Use the SAP Cloud Extension Factory to [set up the SAP Marketing Connector](#set-up-the-sap-cloud-marketing-connector).
+2. [Create a Communication System](#create-a-communication-system) which is the external system you want to integrate with the marketing solution. With the Communication System in place, SAP Marketing Cloud is able to send Events to "Kyma". 
+3. [Create Communication Arrangements](#create-communication-arrangements) which help you to organize the data exchange between the external system and the marketing system. You need to set them up for all APIs you want to register in "Kyma".
+4. Use the Kyma Console to [set up the SAP Marketing Connector](#set-up-the-sap-cloud-marketing-connector).
 5. [Configure Business Events handling](#configure-business-events-handling) using the SAP_COM_0092 communication scenario for Enterprise Messaging Integration.
 
 
@@ -82,19 +83,19 @@ Follow these steps to create Communication Arrangements:
 
 5. Save the configuration.
 
-Establishing this Communication Arrangement allows registering the services listed under **Inbound Services** in the SAP Cloud Platform Extension Factory. 
+Establishing this Communication Arrangement allows registering the services listed under **Inbound Services** in the "Kyma". 
 
 ### Set up the SAP Marketing Connector
 
-1. Log in to the SAP Cloud Platform Extension Factory.
-2. Go to **Integration** > **Applications** and create a new Application (if it does not exist yet).
-3. Go to **Service Catalog** > **Marketing Connector**.
-4. Install and configure the SAP Marketing Connector:
+1. Navigate to the **Runtimes** view under **Extensibility** in SAP C/4HANA cockpit. If you need to provision the runtime, follow [these instructions](https://help.sap.com/viewer/dbce7cc5e9e3469c84849d35e777fe0b/2019-05-07/en-US/0bb50b27d76d4113ac32655f31777662.html).
+3. Click **Kyma Console**.
+4. In the Console, choose the Namespace, go to **Service Catalog** and select the SAP Marketing Connector.
+5. Install and configure the SAP Marketing Connector:
 
-    Parameter | Description |
+    |Parameter | Description |
     |---|---|
     |**System URL**|The base URL of the SAP Marketing Cloud instance you want to register. For example, `https://marketing.instance.sap.com` |
-    |**Basic Auth Username** |The username for the Communication User in SAP Marketing Cloud. This is the Communication User that you have created in the [first step](#create-communication-user). It must already exist in SAP Marketing Cloud and be used for all of the Communication Arrangements (used to expose APIs) you want to register in the Extension Factory|
+    |**Basic Auth Username** |The username for the Communication User in SAP Marketing Cloud. This is the Communication User that you have created in the [first step](#create-communication-user). It must already exist in SAP Marketing Cloud and be used for all of the Communication Arrangements (used to expose APIs) you want to register in "Kyma"|
     |**Basic Auth Password** |The password for the Communication User in SAP Marketing Cloud|
     |**OAuth2 client_id**    |The OAuth 2.0 Client ID for sending the MQTT events. The OAuth 2.0 credentials are required to configure the Communication Scenario|
     |**OAuth2 client_secret**| The OAuth 2.0 Client Secret for sending the MTTQ events |
@@ -102,7 +103,7 @@ Establishing this Communication Arrangement allows registering the services list
     |**Cluster Domain** |The domain of the cluster. For example, `demo.kyma.cx`|
 
 
-4. Go to SAP Cloud Platform Extension Factory to view Events and APIs that have been registered for the Application.
+6. Use the **Catalog** to view the newly registered Events and APIs.
 
 
 ### Configure Business Events handling
@@ -131,4 +132,4 @@ Establishing this Communication Arrangement allows registering the services list
 11. Activate all Events.
 ![Enterprise messaging](assets/enterprise-messaging-subs.png)
 
-The connection is set up. Business Events triggered in SAP Marketing Cloud will be sent to the SAP Cloud Platform Extension Factory.
+The connection is set up. Business Events triggered in SAP Marketing Cloud will be sent to "Kyma".
