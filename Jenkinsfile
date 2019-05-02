@@ -39,8 +39,8 @@ pipeline {
             steps{
                 script{
                     if(env.BRANCH_NAME=="master"){
-                         //upload('int')
-                         //upload('stage')
+                         upload('int')
+                         upload('stage')
                          upload('prod')
                     }
                 }
