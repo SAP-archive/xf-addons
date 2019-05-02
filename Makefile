@@ -12,4 +12,4 @@ prepare:
 
 .PHONY: upload
 upload:
-	docker run -v ${PWD}:/project google/cloud-sdk:242.0.0-alpine /bin/sh -c "cd /project && ./scripts/upload-assets.sh $(UPLOAD)"
+	docker run -v ${PWD}:/project google/cloud-sdk:242.0.0-alpine /bin/sh -c "cd /project && ./scripts/upload-assets.sh $(UPLOAD_URL)"

@@ -39,20 +39,27 @@ pipeline {
             steps{
                 script{
                     if(env.BRANCH_NAME=="master"){
-                         withCredentials([string(credentialsId: 'xf-addons-upload-bucket', variable: 'UPLOAD')]) {
-                            withCredentials([usernamePassword(credentialsId: 'gcp-storage-faros-pre-prod', usernameVariable: 'USER', passwordVariable: 'KEYS')]) {
-                                dir = pwd()
-                                sh "echo '$KEYS' > key.json"
-                                try{
-                                    sh "make upload UPLOAD=$UPLOAD"
-                                }finally{
-                                    sh "rm key.json"
-                                }
-                            }
-                         }
+                         //upload('int')
+                         //upload('stage')
+                         upload('prod')
                     }
                 }
             }
        }
+    }
+}
+
+void upload(String env){
+    echo "Uploading to ${env} bucket"
+    withCredentials([string(credentialsId: "xf-addons-${env}-bucket-url", variable: 'UPLOAD_URL')]) {
+        withCredentials([string(credentialsId: "xf-addons-${env}-bucket-key", variable: 'KEYS')]) {
+            dir = pwd()
+            sh "echo '$KEYS' > key.json"
+            try{
+                sh "make upload UPLOAD_URL=$UPLOAD_URL"
+            }finally{
+                sh "rm key.json"
+            }
+        }
     }
 }

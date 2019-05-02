@@ -8,3 +8,15 @@ entries:
     - name: SAP Cloud for Customer - Connector
       description: Enables the integration of SAP Cloud for Customer
       version: 0.1.0
+  marketing-mock:
+    - name: SAP Marketing Cloud - Mock
+      description: Lightweight substitute of SAP Marketing Cloud based on APIs only
+      version: 0.1.0
+  c4c-mock:
+    - name: SAP Cloud for Customer - Mock
+      description: Lightweight substitute of SAP Cloud for Customer based on APIs only
+      version: 0.1.0
+  commerce-mock:
+    - name: SAP Commerce Cloud - Mock
+      description: Lightweight substitute of SAP Commerce Cloud based on APIs only
+      version: 0.1.0
