@@ -7,7 +7,7 @@ tags: commerce,mock
 labels: 
   preview: "true"
 providerDisplayName: SAP
-longDescription:  "Lightweight substitute of SAP Commerce Cloud based on APIs only. It is not recommended for production scenarios."
+longDescription:  "Lightweight substitute of SAP Commerce Cloud based on APIs only. It is recommended for production scenarios."
 documentationURL: https://github.com/SAP/xf-application-mocks/tree/master/commerce-mock
 imageURL: https://storage.googleapis.com/faros-stage-base-xf-bundles/icons/commerce-mock.svg
 bindable: false

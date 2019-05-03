@@ -56,11 +56,11 @@ To establish the connection and allow data exchange between SAP Cloud for Custom
 1. Navigate to the **Runtimes** view under **Extensibility** in SAP C/4HANA cockpit. If you need to provision the runtime, follow [these instructions](https://help.sap.com/viewer/dbce7cc5e9e3469c84849d35e777fe0b/2019-05-07/en-US/0bb50b27d76d4113ac32655f31777662.html).
 3. Click **Kyma Console**.
 4. In the Console, choose the Namespace, go to **Service Catalog** and select the SAP Cloud for Customer Connector.
-5. Install and configure the SAP Cloud for Customer Connector:
+5. Click **Add once** to install and configure the SAP Cloud for Customer Connector:
 
     Parameter | Description |
     |---|---|
     |**System URL**|The base URL of the SAP Cloud for Customer instance. For example, `https://c4c.instance.sap.com` |
-    |**Basic Auth Username** ||
-    |**Basic Auth Password** ||
-    |**Application Name**   |The name of the Application CR where the ODATA services and the event catalog should be registered for consumption|
+    |**Basic Auth Username** |The user name set for the Business User in SAP Cloud for Customer.|
+    |**Basic Auth Password** |The password set for the Business User in SAP Cloud for Customer.|
+    |**Application Name**   |The name of the Application CR where the ODATA services and the Event catalog should be registered for consumption|
