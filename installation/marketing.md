@@ -75,10 +75,11 @@ Follow these steps to create Communication Arrangements:
 3. Enter the **Scenario** code. The **Arrangement Name** is filled in automatically, but you can change it at any time. Confirm with **Create**.
 3. Enter the parameters:
     |Parameter | Value|
-    |---|---|
+    |--- | ---|
     |**Communication System**|`EXTFACTORY` |
     |**User Name** |`EXTFACTORY`|
-![Communication Arrangements](assets/communication-arrangements.png)
+
+    ![Communication Arrangements](assets/communication-arrangements.png)        
 
 
 5. Save the configuration.
@@ -90,7 +91,7 @@ Establishing this Communication Arrangement allows registering the services list
 1. Navigate to the **Runtimes** view under **Extensibility** in SAP C/4HANA cockpit. If you need to provision the runtime, follow [these instructions](https://help.sap.com/viewer/dbce7cc5e9e3469c84849d35e777fe0b/2019-05-07/en-US/0bb50b27d76d4113ac32655f31777662.html).
 3. Click **Kyma Console**.
 4. In the Console, choose the Namespace, go to **Service Catalog** and select the SAP Marketing Connector.
-5. Install and configure the SAP Marketing Connector:
+5. Click **Add once** to install and configure the SAP Marketing Connector:
 
     |Parameter | Description |
     |---|---|
