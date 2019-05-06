@@ -3,7 +3,7 @@ version: 0.1.0
 description: "Lightweight substitute of SAP Marketing Cloud based on APIs only. It is not recommended for production scenarios."
 id: faebbe18-0a84-11e9-ab14-d663bd873d95
 displayName: "[Preview] SAP Marketing Cloud - Mock"
-tags: marketing,mock
+tags: preview,marketing,mock
 labels: 
   preview: "true"
 providerDisplayName: SAP

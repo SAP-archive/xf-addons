@@ -3,7 +3,7 @@ version: 0.1.0
 description: "Enables the preview integration of SAP Cloud for Customer. It is not recommended for production scenarios."
 id: faebbe18-0a84-11e5-ab14-d663bd873d94
 displayName: "[Preview] SAP Cloud For Customer - Connector"
-tags: c4c,connector
+tags: preview,c4c,connector
 labels: 
   preview: "true"
 providerDisplayName: SAP

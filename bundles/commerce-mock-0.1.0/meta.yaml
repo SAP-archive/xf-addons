@@ -3,7 +3,7 @@ version: 0.1.0
 description: "Lightweight substitute of SAP Commerce Cloud based on APIs only. It is not recommended for production scenarios."
 id: faebbe18-0a84-11e9-ab14-d663bd873d98
 displayName: "[Preview] SAP Commerce Cloud - Mock"
-tags: commerce,mock
+tags: preview,commerce,mock
 labels: 
   preview: "true"
 providerDisplayName: SAP

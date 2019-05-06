@@ -3,7 +3,7 @@ version: 0.1.0
 description: "Enables the preview integration of SAP Marketing Cloud. It is not recommended for production scenarios."
 id: faebbe18-0a84-11e9-ab14-d663bd873d92
 displayName: "[Preview] SAP Marketing Cloud - Connector"
-tags: marketing,connector
+tags: preview,marketing,connector
 labels: 
   preview: "true"
 providerDisplayName: SAP
