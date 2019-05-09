@@ -42,7 +42,7 @@ metadata:
     app: {{ template "bundle.fullname" . }}
   name: {{ template "bundle.fullname" . }}
 spec:
-  hostname: commerce
+  hostname: commerce-{{ .Release.Namespace }}
   service:
     name: {{ template "bundle.fullname" . }}
     port: 10000
