@@ -24,9 +24,7 @@ To establish the connection and allow data exchange between SAP Marketing Cloud 
 
 ### Create a Communication User
 
-1. Log in to the SAP Marketing Cloud frontend using the **SAP_BR_ADMINISTRATOR** role. Use the following credentials:
-    * **User**: `Administrator`
-    * **Password**: `Welcome1!`
+1. Log in to the SAP Marketing Cloud frontend with a user that has the **SAP_BR_ADMINISTRATOR** role assigned.
 2. Go to **Communication Management** > **Maintain Communication Users**.
 3. Click **New**.
 4. Enter the **User Name**, **Description**, and **Password**.
