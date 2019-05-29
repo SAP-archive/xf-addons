@@ -26,7 +26,7 @@ data:
   apis.json: |-
     [
       {
-        "path": "sap/byd/odata/v1/c4codata",
+        "path": "sap/byd/odata/v1/c4codataapi",
         "name": "OData API",
         "description": "Use the OData API, to query, read, add, update and delete data from and into SAP Cloud for Customer."
       }
