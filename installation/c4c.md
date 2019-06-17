@@ -3,7 +3,7 @@
 ## Overview
 
 
-The SAP Cloud for Customer Connector allows you to integrate an SAP Cloud for Customer instance by registering its OData services and Event catalog in an existing Application and activating Event publishing. The integration uses the [extensibility features](https://help.sap.com/viewer/dbce7cc5e9e3469c84849d35e777fe0b/2019-05-07/en-US/363cf54bad2c47aeb44a87c215ad91ea.html) available in the SAP C/4HANA cockpit based on concepts and solutions from the open-source project "Kyma", so that you can easily develop Side-by-Side extensions. 
+The SAP Cloud for Customer Connector allows you to integrate an SAP Cloud for Customer instance by registering its OData services and Event catalog in an existing Application and activating Event publishing. The integration uses the [extensibility features](https://help.sap.com/viewer/0815bc232f5140bba54a58ab15c82e99/Current/en-US/9ed15aa6eac34b948693955da0c90174.html) available in the SAP C/4HANA cockpit based on concepts and solutions from the open-source project "Kyma", so that you can easily develop Side-by-Side extensions. 
 
 > **NOTE**: The integration is possible in the **preview** mode only. Do not use it in production scenarios.
 
@@ -19,12 +19,12 @@ To establish the connection and allow data exchange between SAP Cloud for Custom
 
 
 1. Configure trust settings in SAP Cloud for Customer.
-2. Configure Event notification in SAP Cloud for Customer.
-3. Expose APIs in SAP Cloud for Customer and create credentials.
+2. Configure Event flow between SAP Cloud for Customer and "Kyma"
+3. Create a User for OData access.
 4. Set up the SAP Cloud for Customer Connector to register APIs in "Kyma".
 
 
-### 1. Configure trust settings
+### Configure trust settings
 
 1. Log in to SAP Cloud for Customer frontend.
 2. Go to **Administrator** > **Common Tasks** > **Edit Certificate Trust List**.
@@ -32,50 +32,52 @@ To establish the connection and allow data exchange between SAP Cloud for Custom
 
 ![Trust Certificate](assets/trust-certificate.png)
 
-### 2. Configure event notification
+### Enable Event flow
 
-1. Create an Application in the SAP Cloud Platform Extension Factory
-2. Click on the **Connect Application** of the Application action and copy the connector service URL
-3. In the SAP Cloud for Customer frontend, go to **Administrator** > **General Settings** > **System Administration** > **Event Notification**.
-4. Click **Add**.
-5. Select consumer type, and then enter a Name and an Endpoint.
+1. Navigate to the **Runtimes** view under **Extensibility** in SAP C/4HANA cockpit and choose **DISPLAY NAME** of a given runtime to access its details.. If you need to provision the runtime, follow [these instructions](https://help.sap.com/viewer/dbce7cc5e9e3469c84849d35e777fe0b/Current/en-US/0bb50b27d76d4113ac32655f31777662.html).
+2. Go to the **Registered Systems** view and choose **+**.
+4. Enter the name of the system and choose **Register**. Your system is registered as an Application available in the Kyma Console. 
+5. Copy the one-time temporary token assigned to the newly registered system.
+7. In the SAP Cloud for Customer frontend, go to **Administrator** > **General Settings** > **System Administration** > **Event Notification**.
+2. Click **Add**.
+3. Select consumer type, provide a **Name** and use the copied token as the **Endpoint**.
 
 ![Add Consumer](assets/add-consumer.png)
 
-4. **Edit** the consumer and click **Edit Credentials to enter authentication details.
+4. **Edit** the consumer and click **Edit Credentials** to enter authentication details.
 5. Go to **Subscriptions** > **Add**.
 6. Select a Business Object and Node and then select at least one of Create, Update, or Delete.
 
 ![Add Subscription](assets/add-subscription.png)
 7. Click **Add**.
-8. Select the consumer and go to **Actions** > **Activate**.
+8. Select the consumer and **Activate** it using the **Actions** menu.
 
-### 3. Create User for OData access
+### Create User for OData access
 
-Create Service Agent User
+#### Create Service Agent User
 
 1. Log in to SAP Cloud for Customer frontend.
-2. Go to **Business Partners** > **Service Agent**s.
+2. Go to **Business Partners** > **Service Agents**.
 3. Choose **New**, then **Service Agent**.
-4. Enter the relevant data, then save.
-5. Choose Request User, then close.
+4. Enter the relevant data and save the configuration.
+5. Choose **Request User**.
 
-Assign Work Centers and Views
+#### Assign Work Centers and Views
 
 1. Go to **Application and User Management** > **User and Access Management** >  **Business Users**.
-2. Choose the business user you just created
-3. Choose Edit and select Attributes.
+2. Choose the Business User you just created.
+3. Choose **Edit** and select **Attributes**.
 4. Enter and confirm the initial password.
-5. Save your changes and choose Edit Access Rights.
-6. Assign all work centers and views
+5. Save your changes and choose **Edit Access Rights**.
+6. Assign all work centers and views.
 
-> **NOTE**: Assigning all work centers and views will give the user read and write access to all OData entities. If you would like to use more restrictive priviledges, expand the work center to see all the associated views and assign a subset of the views within a work center.
+> **NOTE**: Assigning all work centers and views gives the user read and write access to all OData entities. If you want to restrict the priviledges, expand the work center to see all the associated views and assign a subset of the views within a work center.
 
-### 4. Set up the SAP Cloud for Customer Connector 
+### Set up the SAP Cloud for Customer Connector 
 
-1. Navigate to the **Runtimes** view under **Extensibility** in SAP C/4HANA cockpit. If you need to provision the runtime, follow [these instructions](https://help.sap.com/viewer/dbce7cc5e9e3469c84849d35e777fe0b/2019-05-07/en-US/0bb50b27d76d4113ac32655f31777662.html).
+1. Navigate to the **Runtimes** view under **Extensibility** in SAP C/4HANA cockpit.
 3. Click **Kyma Console**.
-4. In the Console, choose the Namespace, go to **Service Catalog** and select the SAP Cloud for Customer Connector.
+4. In the Console, choose the Namespace, go to **Catalog** and select **[Preview] SAP Cloud for Customer - Connector**.
 5. Click **Add once** to install and configure the SAP Cloud for Customer Connector:
 
     Parameter | Description |
