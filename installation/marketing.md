@@ -15,16 +15,16 @@ The SAP Marketing Connector allows you to integrate an SAP Marketing Cloud insta
 
 To establish the connection and allow data exchange between SAP Marketing Cloud and "Kyma", perform the following steps using the SAP Marketing Cloud solution, SAP C/4HANA cockpit and Kyma Console.
 
-1. [Create and configure a Communication User](#create-a-communication-user).
-2. [Create a Communication System](#create-a-communication-system) which is the external system you want to integrate with the marketing solution. With the Communication System in place, SAP Marketing Cloud is able to send Events to "Kyma". 
-3. [Create Communication Arrangements](#create-communication-arrangements) which help you to organize the data exchange between the external system and the Marketing system. You need to set them up for all APIs you want to register in "Kyma".
-4. Use the Kyma Console to [set up the SAP Marketing Connector](#set-up-the-sap-cloud-marketing-connector).
-5. [Configure Business Events handling](#configure-business-events-handling) using the SAP_COM_0092 Communication Scenario for Enterprise Messaging Integration.
+1. Create and configure a Communication User.
+2. Create a Communication System which is the external system you want to integrate with the marketing solution. With the Communication System in place, SAP Marketing Cloud is able to send Events to "Kyma". 
+3. Create Communication Arrangements which help you to organize the data exchange between the external system and the Marketing system. You need to set them up for all APIs you want to register in "Kyma".
+4. Use the Kyma Console to set up the SAP Marketing Connector.
+5. Configure Business Events handling using the SAP_COM_0092 Communication Scenario for Enterprise Messaging Integration.
 
 
 ### 1. Create a Communication User
 
-1. Log in to the SAP Marketing Cloud frontend with a business user that has the **SAP_BR_ADMINISTRATOR** role
+1. Log in to the SAP Marketing Cloud frontend with a business user that has the **SAP_BR_ADMINISTRATOR** role.
 2. Go to **Communication Management** > **Maintain Communication Users**.
 3. Click **New**.
 4. Enter the **User Name**, **Description**, and **Password**.
@@ -135,11 +135,12 @@ The connection is set up. Business Events triggered in SAP Marketing Cloud syste
 
 ### Troubleshooting 
 
-If the events are not being delivered to Kyma, it's possible that the event channel is not active. This can occur the Marketing system was not able to connect to Kyma for a period of time. Follow the steps below to check the status of the connection.
+If Kyma does not receive Events, it's possible that the Event channel is not active. This can occur if the SAP Marketing system was not able to connect to Kyma for a period of time. Follow the steps below to check the status of the connection.
 
-1. Goto **Communication Management** > **Maintain Communication Arrangement**.
-2. Open the Communication Arrangement that was created earlier for Communication Scenario SAP_COM_0092
-3. Click **Check Connection** to test the connectivity
-4. If the status shows as inactive, click the **Edit** button and save the Communication Arrangement then test the connection again. 
+1. Go to **Communication Management** > **Maintain Communication Arrangement**.
+2. Open the Communication Arrangement created for Communication Scenario SAP_COM_0092.
+3. Click **Check Connection** to test the connectivity.
+4. If the status shows as `inactive`, click the **Edit** button and save the Communication Arrangement.
+5. Test the connection again. 
 
 ![Check Connection](assets/check-connection.png)
