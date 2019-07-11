@@ -60,4 +60,4 @@ spec:
     - type: markdown
       name: markdown-commerce
       mode: single
-      url: https://github.com/SAP/xf-addons/blob/service-documentation/bundles/commerce-mock-0.1.0/Doc.md
+      url: https://github.com/SAP/xf-addons/tree/service-documentation/bundles/commerce-mock-0.1.0/Doc.md
