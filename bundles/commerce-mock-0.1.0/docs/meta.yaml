@@ -1,9 +1,9 @@
 docs:
   - template:
-        displayName: Commerce Mock
-        description: "Commerce Mock documentation"
-        sources:
-          - type: markdown
-            name: markdown-commerce
-            mode: single
-            filter: (docs/(.*?)\.md$)|(docs/assets)
+      displayName: "commerce-mock-0.1.0"
+      description: "Commerce Mock documentation"
+      sources:
+        - type: markdown
+          name: docs
+          mode: package
+          filter: (docs/(.*?)\.md$)
