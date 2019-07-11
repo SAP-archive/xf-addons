@@ -38,10 +38,17 @@ pipeline {
         stage('Push to Bucket for master'){
             steps{
                 script{
+                    if(env.TAG_NAME)
+                    {
+                        upload('prod')
+                    }
                     if(env.BRANCH_NAME=="master"){
                          upload('int')
+                         upload('stage')   
+                    }
+                    else
+                    {
                          upload('stage')
-                         upload('prod')
                     }
                 }
             }
