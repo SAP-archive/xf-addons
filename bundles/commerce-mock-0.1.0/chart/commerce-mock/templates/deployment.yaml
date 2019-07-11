@@ -46,18 +46,3 @@ spec:
   service:
     name: {{ template "bundle.fullname" . }}
     port: 10000
----
-apiVersion: cms.kyma-project.io/v1alpha1
-kind: DocsTopic
-metadata:
-  name: commerce-mock
-  labels:
-    cms.kyma-project.io/view-context: service-catalog
-spec:
-  displayName: Commerce Mock
-  description: "Commerce Mock documentation"
-  sources:
-    - type: markdown
-      name: markdown-commerce
-      mode: single
-      url: https://github.com/SAP/xf-addons/tree/service-documentation/bundles/commerce-mock-0.1.0/Doc.md

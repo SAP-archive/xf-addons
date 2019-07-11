@@ -1,0 +1,16 @@
+docs:
+  - template:
+      apiVersion: cms.kyma-project.io/v1alpha1
+      kind: DocsTopic
+      metadata:
+        name: commerce-mock
+        labels:
+          cms.kyma-project.io/view-context: service-catalog
+      spec:
+        displayName: Commerce Mock
+        description: "Commerce Mock documentation"
+        sources:
+          - type: markdown
+            name: markdown-commerce
+            mode: single
+            filter: (docs/(.*?)\.md$)|(docs/assets)
