@@ -36,11 +36,11 @@ To establish the connection and allow data exchange between SAP Cloud for Custom
 
 1. Navigate to the **Runtimes** view under **Extensibility** in SAP C/4HANA cockpit and choose **DISPLAY NAME** of a given runtime to access its details.. If you need to provision the runtime, follow [these instructions](https://help.sap.com/viewer/dbce7cc5e9e3469c84849d35e777fe0b/Current/en-US/0bb50b27d76d4113ac32655f31777662.html).
 2. Go to the **Registered Systems** view and choose **+**.
-4. Enter the name of the system and choose **Register**. Your system is registered as an Application available in the Kyma Console. 
-5. Copy the one-time temporary token assigned to the newly registered system.
-7. In the SAP Cloud for Customer frontend, go to **Administrator** > **General Settings** > **System Administration** > **Event Notification**.
-2. Click **Add**.
-3. Select consumer type, provide a **Name** and use the copied token as the **Endpoint**.
+3. Enter the name of the system and choose **Register**. Your system is registered as an Application available in the Kyma Console. 
+4. In Kyma Console, navigate to **Integration** > **Applications** > *select the newly registered system* > *click on* **Connect Application**, then copy the one-time temporary token.
+5. In the SAP Cloud for Customer frontend, go to **Administrator** > **General Settings** > **System Administration** > **Event Notification**.
+6. Click **Add**.
+7. Select consumer type, provide a **Name** and use the copied token as the **Endpoint**.
 
 ![Add Consumer](assets/add-consumer.png)
 
