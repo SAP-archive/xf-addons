@@ -1,0 +1,67 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "bundle.fullname" . }}-{{ .Values.mqttEventBridgeName }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.mqttEventBridgeName }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ template "bundle.fullname" . }}
+        component: {{ template "bundle.fullname" . }}-{{ .Values.mqttEventBridgeName }}
+      annotations:
+        sidecar.istio.io/inject: "true"
+    spec:
+      containers:
+      - name: {{ .Values.mqttEventBridgeName }}
+        image: "eu.gcr.io/kyma-project/incubator/mqtt-event-bridge:master"
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: {{ template "bundle.fullname" . }}-{{ .Values.mqttEventBridgeName }}
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ template "bundle.fullname" . }}-{{ .Values.mqttEventBridgeName }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.mqttEventBridgeName }}
+spec:
+  selector:
+    component: {{ template "bundle.fullname" . }}-{{ .Values.mqttEventBridgeName }}
+  ports:
+    - port: 8080
+      name: http
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ template "bundle.fullname" . }}-{{ .Values.mqttEventBridgeName }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.mqttEventBridgeName }}
+spec:
+  gateways:
+  - kyma-gateway.kyma-system.svc.cluster.local
+  hosts:
+  - {{ template "mqtt_server" . }}
+  http:
+  - match:
+    - uri:
+        regex: /.*
+    route:
+    - destination:
+        host: {{ template "bundle.fullname" . }}-{{ .Values.mqttEventBridgeName }}
+        port:
+          number: 8080
+    websocketUpgrade: true
