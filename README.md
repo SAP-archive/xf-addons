@@ -7,7 +7,7 @@ The SAP CP Extension Factory (XF) is designed to easily extend and mash up diffe
 ## Installation
 This addons repository as defined by [index.yaml](bundles/index.yaml) is installed to XF by default.
 
-If you need to install it manually, you need to upload the addon artifacts to a web server with location https://storage.googleapis.com/faros-prod-base-xf-bundles/index.yaml using `make preapre && make upload https://storage.googleapis.com/faros-prod-base-xf-bundles/index.yaml`. 
+If you need to install it manually, you need to upload the addon artifacts to a web server with location UPLOAD_DIR using `make preapre && make upload UPLOAD_DIR`. 
 In your XF or Kyma cluster you then need to create a configMap using following commands:
 
 ```
