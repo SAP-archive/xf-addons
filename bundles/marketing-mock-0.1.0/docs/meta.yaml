@@ -1,0 +1,9 @@
+docs:
+  - template:
+      displayName: "marketing-mock-0.1.0"
+      description: "Marketing Mock Documentation"
+      sources:
+        - type: markdown
+          name: docs
+          mode: package
+          filter: (docs/(.*?)\.md$)
