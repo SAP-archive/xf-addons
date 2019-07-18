@@ -99,7 +99,7 @@ Establishing this Communication Arrangement allows registering the services list
     |**OAuth2 client_id**    |The OAuth 2.0 Client ID for sending the MQTT events. The OAuth 2.0 credentials are required to configure the Communication Scenario|
     |**OAuth2 client_secret**| The OAuth 2.0 Client Secret for sending the MTTQ events |
     |**Application Name**   |The name of the Kyma Application CR where the ODATA services and the event catalog should be registered for consumption|
-    |**Cluster Domain** |The domain of the cluster. For example, `demo.kyma.cx`|
+    |**Cluster Domain** |The domain of the cluster. For example, `demo.cluster.extend.cx.cloud.sap`|
 
 
 6. Use the **Catalog** to view the newly registered Events and APIs.
