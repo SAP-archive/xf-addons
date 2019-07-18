@@ -42,7 +42,7 @@ pipeline {
                     {
                         upload('prod')
                     }
-                    if(env.BRANCH_NAME=="master"){
+                    else if(env.BRANCH_NAME=="master"){
                          upload('int')
                          upload('stage')   
                     }

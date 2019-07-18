@@ -11,7 +11,7 @@ If you need to install it manually, you need to upload the addon artifacts to a 
 In your XF or Kyma cluster you then need to create a configMap using following commands:
 
 ```
-kubectl create configmap xf-addons-repo -n kyma-system --from-literal=URLs=https://https://storage.googleapis.com/faros-prod-base-xf-bundles/index.yaml/index.yaml
+kubectl create configmap xf-addons-repo -n kyma-system --from-literal=URLs=https://UPLOAD_DIR/index.yaml
 kubectl label configmap xf-addons-repo -n kyma-system helm-broker-repo=true
 ```
 With that, all addons of this repository will be available in your Service Catalog.
