@@ -1,0 +1,9 @@
+docs:
+  - template:
+      displayName: "commerce-mock-0.1.0"
+      description: "SAP Commerce Cloud Mock documentation"
+      sources:
+        - type: markdown
+          name: docs
+          mode: package
+          filter: (docs/(.*?)\.md$)

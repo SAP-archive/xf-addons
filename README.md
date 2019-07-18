@@ -23,6 +23,15 @@ To remove the addons from your Service Catalog:
 If you update the addons and re-upload them to your web server, you need to trigger a scan by the service catalog at your XF or Kyma cluster by calling:
 `svcat sync broker helm-broker --scope cluster`
 where svcat is the [Service Catalog CLI](https://svc-cat.io/docs/cli/)
+### Development Phases
+
+#### Pushing to Branch
+If you push to a branch then the addon artifactes are uploaded to the staging location only (https://storage.googleapis.com/faros-stage-base-xf-bundles/index.yaml).
+#### Merging to master
+If you merge a branch to the master then the addon artifactes are uploaded to the staging (https://storage.googleapis.com/faros-stage-base-xf-bundles/index.yaml) and pre-production (https://storage.googleapis.com/faros-int-base-xf-bundles/index.yaml) locations.
+
+#### Adding a Tag
+If you add a tag in github then the addon artifactes are uploaded to the production location only (https://https://storage.googleapis.com/faros-prod-base-xf-bundles/index.yaml/index.yaml).
 
 ## Requirements
 All addon bundles are based on the [Kyma Helm Broker](https://kyma-project.io/docs/components/helm-broker/) and with that require to follow the [Helm Chart](https://helm.sh/) specification.
