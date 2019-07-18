@@ -1,7 +1,7 @@
 docs:
   - template:
       displayName: "marketing-mock-0.1.0"
-      description: "SAP Marketing Cloud Mock Documentation"
+      description: "SAP Marketing Cloud Mock documentation"
       sources:
         - type: markdown
           name: docs
