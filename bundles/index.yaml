@@ -20,3 +20,7 @@ entries:
     - name: SAP Commerce Cloud - Mock
       description: Lightweight substitute of SAP Commerce Cloud based on APIs only
       version: 0.1.0
+  litmos-connector:
+    - name: SAP Litmos - Connector
+      description: Enables integration of SAP Litmos
+      version: 0.1.0

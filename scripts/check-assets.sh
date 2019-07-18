@@ -14,6 +14,8 @@ function checkAssets() {
         helm lint ./bundles/commerce-mock-0.1.0/chart/commerce-mock/ --values ./bundles/commerce-mock-0.1.0/plans/default/values.yaml
         helm lint ./bundles/c4c-mock-0.1.0/chart/c4c-mock/ --values ./bundles/c4c-mock-0.1.0/plans/default/values.yaml
 
+	helm lint ./bundles/litmos-connector-0.1.0/chart/litmos-connector/ --values ./bundles/litmos-connector-0.1.0/plans/default/values.yaml
+
         echo "Processing done"
 }
 
