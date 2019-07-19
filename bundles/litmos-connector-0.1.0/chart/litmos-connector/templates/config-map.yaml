@@ -13,6 +13,7 @@ data:
   APPLICATION_NAME: {{ .Values.application_name | quote }}
   PROVIDER_NAME: SAP
   PRODUCT_NAME: SAP Litmos
+  APP_KIND: rest-with-apikey
 ---
 apiVersion: v1
 kind: ConfigMap
