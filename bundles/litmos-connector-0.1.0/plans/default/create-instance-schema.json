@@ -20,7 +20,7 @@
     "application_name": {
       "type": "string",
       "title": "Application Name",
-      "description": "The name of the Application CR where the ODATA services and the event catalog should be registered for consumption"
+      "description": "The name of the Application CR where the REST APIS should be registered for consumption"
     }
   },
   "required": [
