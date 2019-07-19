@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "system_url": {
+      "type": "string",
+      "title": "System URL",
+      "description": "The base URL of the SAP Litmos instance. For example, https://api.litmos.com/v1.svc"
+    },
+    "apikey": {
+      "type": "string",
+      "title": "API Key",
+      "description": "The API Key is passed as a header and used for authenticating the API calls by the SAP Litmos system"
+    },
+    "source": {
+      "type": "string",
+      "title": "Source",
+      "description": "Free text description of your app. Usually a company or product name."
+    },
+    "application_name": {
+      "type": "string",
+      "title": "Application Name",
+      "description": "The name of the Application CR where the REST APIS should be registered for consumption"
+    }
+  },
+  "required": [
+    "system_url",
+    "apikey",
+    "source",
+    "application_name"
+  ]
+}
