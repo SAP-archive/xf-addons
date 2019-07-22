@@ -18,7 +18,7 @@ spec:
       restartPolicy: Never
       containers:
       - name: {{ .Values.apiRegistrationJobName }}
-        image: "eu.gcr.io/kyma-project/incubator/api-registration-job:master"
+        image: "gabbi/api-registration-job:latest"
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
