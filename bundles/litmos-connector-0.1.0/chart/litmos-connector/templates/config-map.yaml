@@ -14,6 +14,7 @@ data:
   PROVIDER_NAME: SAP
   PRODUCT_NAME: SAP Litmos
   APP_KIND: rest-with-apikey
+  API_DESCRIPTION: "APIs for SAP Litmos"
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -25,10 +26,4 @@ metadata:
     component: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
 data:
   apis.json: |-
-    [
-      {
-        "path": "/users",
-        "name": "Users CRUD operations",
-        "description": "Use the users API to do CRUD operations on Users"
-      }
-    ]
+    []
