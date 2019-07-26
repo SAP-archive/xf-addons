@@ -39,9 +39,11 @@ function prepareAssets() {
         tar cfvz ${destination}/c4c-mock-0.1.0.tgz -C ./bundles/c4c-mock-0.1.0 .
         tar cfvz ${destination}/commerce-mock-0.1.0.tgz -C ./bundles/commerce-mock-0.1.0 .
         tar cfvz ${destination}/marketing-mock-0.1.0.tgz -C ./bundles/marketing-mock-0.1.0 .
-	tar cfvz ${destination}/litmos-connector-0.1.0.tgz -C ./bundles/litmos-connector-0.1.0 .
+	    tar cfvz ${destination}/litmos-connector-0.1.0.tgz -C ./bundles/litmos-connector-0.1.0 .
+        tar cfvz ${destination}/qualtrics-connector-0.1.0.tgz -C ./bundles/qualtrics-connector-0.1.0 .
 
         echo "Processing done"
 }
 
 prepareAssets
+
