@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  namespace: kyma-system
+  name: {{ template "bundle.fullname" . }}-event-gw
+  labels:
+    app: {{ template "bundle.fullname" . }}-event-gw
+    prometheus: monitoring #links to kyma prometheus instance
+spec:
+  jobLabel: "qualtrics-event-gw"
+  namespaceSelector:
+    any: true
+  selector:
+    matchLabels:
+      app: {{ template "bundle.fullname" . }}-event-gw # label selector for service
+  endpoints:
+    - port: management # port name in service
+      path: "/metrics"

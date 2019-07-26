@@ -1,0 +1,205 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "bundle.fullname" . }}-webhook-registration
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ template "bundle.fullname" . }}-webhook-registration
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "bundle.fullname" . }}-webhook-registration
+  template:
+    metadata:
+      labels:
+        app: {{ template "bundle.fullname" . }}-webhook-registration
+      annotations:
+        traffic.sidecar.istio.io/includeInboundPorts: "8081"
+        sidecar.istio.io/inject: "false"
+    spec:
+      containers:
+        - name: {{ template "bundle.fullname" . }}-webhook-registration
+          image: eu.gcr.io/kyma-project/incubator/qualtrics-webhook-registration:master
+          imagePullPolicy: "Always"
+          args:
+            - "-event-gateway-base-url"
+            - $(event-gateway-base-url)
+            - "-application-name"
+            - $(application-name)
+            - "-timeout-mil"
+            - $(timeout-mil)
+            - "-qualtrics-apikey"
+            - $(qualtrics-apikey)
+            - "-qualtrics-base-url"
+            - $(qualtrics-base-url)
+            - "-subscription-url"
+            - $(subscription-url)
+            - "-shared-key"
+            - $(shared-key)
+            - "-config-file"
+            - "conf/topic-config.json"
+            - "-refresh-interval"
+            - $(refresh-interval)
+            - "-refresh-cycle"
+            - $(refresh-cycle)
+            - "-log-level"
+            - "ERROR"
+          ports:
+            - containerPort: 8081
+              name: management
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8081
+            initialDelaySeconds: 30
+            periodSeconds: 60
+            failureThreshold: 2
+          env:
+            - name: event-gateway-base-url
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "bundle.fullname" . }}-webhook-registration-params
+                  key: event-gateway-base-url
+            - name: application-name
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "bundle.fullname" . }}-webhook-registration-params
+                  key: application-name
+            - name: timeout-mil
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "bundle.fullname" . }}-webhook-registration-params
+                  key: timeout-mil
+            - name: qualtrics-base-url
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "bundle.fullname" . }}-webhook-registration-params
+                  key: qualtrics-base-url
+            - name: subscription-url
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "bundle.fullname" . }}-webhook-registration-params
+                  key: subscription-url
+            - name: refresh-interval
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "bundle.fullname" . }}-webhook-registration-params
+                  key: refresh-interval
+            - name: refresh-cycle
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "bundle.fullname" . }}-webhook-registration-params
+                  key: refresh-cycle
+            - name: shared-key
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "bundle.fullname" . }}-shared-key
+                  key: shared-key
+            - name: qualtrics-apikey
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "bundle.fullname" . }}-webhook-registration-secret
+                  key: qualtrics-apikey
+          resources:
+            limits:
+              cpu: 200m
+              memory: 30Mi
+            requests:
+              cpu: 100m
+              memory: 5Mi
+          volumeMounts:
+            - mountPath: /conf
+              name: configuration
+              readOnly: true
+      volumes:
+        - name: configuration
+          configMap:
+            name: {{ template "bundle.fullname" . }}-webhook-registration-config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "bundle.fullname" . }}-webhook-registration-params
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ template "bundle.fullname" . }}-webhook-registration
+data:
+  event-gateway-base-url: "http://{{ .Values.application_name}}-event-service-external-api.kyma-integration.svc.cluster.local:8081"
+  application-name: {{ .Values.application_name | quote }}
+  timeout-mil: "2000"
+  qualtrics-base-url: {{ .Values.system_url }}
+  subscription-url: "https://qualtrics-event.{{ .Values.kyma_cluster}}"
+  refresh-interval: "60"
+  refresh-cycle: "10"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ template "bundle.fullname" . }}-webhook-registration-secret
+  namespace: {{ .Values.namespace }}
+type: Opaque
+data:
+  qualtrics-apikey: {{ .Values.api_key | b64enc }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "bundle.fullname" . }}-webhook-registration-config
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ template "bundle.fullname" . }}-webhook-registration
+data:
+  topic-config.json: |-
+    [
+        {
+            "qualtricsTopic": "surveyengine.completedResponse.*",
+            "kymaEventName": "surveyengine.completedResponse",
+            "kymaEventVersion": "v1" 
+        },
+        {
+            "qualtricsTopic": "controlpanel.deactivateSurvey",
+            "kymaEventName": "controlpanel.deactivateSurvey",
+            "kymaEventVersion": "v1"
+        },
+        {
+            "qualtricsTopic": "controlpanel.activateSurvey",
+            "kymaEventName": "controlpanel.activateSurvey",
+            "kymaEventVersion": "v1"
+        },
+        {
+            "qualtricsTopic": "threesixty.nominationCreated",
+            "kymaEventName": "threesixty.nominationCreated",
+            "kymaEventVersion": "v1"
+        },
+        {
+            "qualtricsTopic": "threesixty.nominationRemoved",
+            "kymaEventName": "threesixty.nominationRemoved",
+            "kymaEventVersion": "v1"
+        },
+        {
+            "qualtricsTopic": "threesixty.created",
+            "kymaEventName": "threesixty.created",
+            "kymaEventVersion": "v1"
+        },
+        {
+            "qualtricsTopic": "threesixty.evaluationStatusChanged",
+            "kymaEventName": "threesixty.evaluationStatusChanged",
+            "kymaEventVersion": "v1"
+        },
+        {
+            "qualtricsTopic": "threesixty.reportReady",
+            "kymaEventName": "threesixty.reportReady",
+            "kymaEventVersion": "v1"
+        },
+        {
+            "qualtricsTopic": "threesixty.statusChanged",
+            "kymaEventName": "threesixty.statusChanged",
+            "kymaEventVersion": "v1"
+        },
+        {
+            "qualtricsTopic": "threesixty.person.statusChanged",
+            "kymaEventName": "threesixty.person.statusChanged",
+            "kymaEventVersion": "v1"
+        }
+    ]

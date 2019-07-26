@@ -1,0 +1,9 @@
+docs:
+  - template:
+      displayName: "qualtrics-connector-0.1.0"
+      description: "SAP Qualtrics Connector documentation"
+      sources:
+        - type: markdown
+          name: docs
+          mode: package
+          filter: (docs/(.*?)\.md$)
