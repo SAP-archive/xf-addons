@@ -1,26 +1,26 @@
 apiVersion: v1
 entries:
   marketing-connector:
-    - name: SAP Marketing Cloud - Connector
+    - name: marketing-connector
       description: Enables the integration of SAP Marketing Cloud
       version: 0.1.0
   c4c-connector:
-    - name: SAP Cloud for Customer - Connector
+    - name: c4c-connector
       description: Enables the integration of SAP Cloud for Customer
       version: 0.1.0
   marketing-mock:
-    - name: SAP Marketing Cloud - Mock
+    - name: marketing-mock
       description: Lightweight substitute of SAP Marketing Cloud based on APIs only
       version: 0.1.0
   c4c-mock:
-    - name: SAP Cloud for Customer - Mock
+    - name: c4c-mock
       description: Lightweight substitute of SAP Cloud for Customer based on APIs only
       version: 0.1.0
   commerce-mock:
-    - name: SAP Commerce Cloud - Mock
+    - name: commerce-mock
       description: Lightweight substitute of SAP Commerce Cloud based on APIs only
       version: 0.1.0
   litmos-connector:
-    - name: SAP Litmos - Connector
+    - name: litmos-connector
       description: Enables integration of SAP Litmos
       version: 0.1.0
