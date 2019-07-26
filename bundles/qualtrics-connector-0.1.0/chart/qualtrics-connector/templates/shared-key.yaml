@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ template "bundle.fullname" . }}-shared-key
+  namespace: {{ .Values.namespace }}
+type: Opaque
+data:
+  shared-key:  {{ template "bundle.shared-key" }}
