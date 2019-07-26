@@ -18,7 +18,7 @@ spec:
       restartPolicy: Never
       containers:
       - name: {{ .Values.apiRegistrationJobName }}
-        image: "docker.io/brendandobbs/api-registration-job:d620808-dirty"
+        image: "eu.gcr.io/kyma-project/incubator/api-registration-job:qualtricsv1"
         imagePullPolicy: Always
         envFrom:
         - configMapRef:

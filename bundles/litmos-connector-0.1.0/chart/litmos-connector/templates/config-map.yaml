@@ -8,8 +8,6 @@ metadata:
     component: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
 data:
   SYSTEM_URL	: {{ .Values.system_url | quote }}
-  API_KEY: {{ .Values.apikey | quote }}
-  SOURCE: {{ .Values.source | quote }}
   APPLICATION_NAME: {{ .Values.application_name | quote }}
   PROVIDER_NAME: SAP
   PRODUCT_NAME: SAP Litmos
@@ -24,11 +22,15 @@ metadata:
     app: {{ template "bundle.fullname" . }}
     component: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
 data:
+  headers.json: |-
+    {
+      "apikey": {{ .Values.apikey | quote }}
+    }
+  params.json: |-
+    {
+      "source": {{ .Values.source | quote }},
+      "format": "json"
+    }
   apis.json: |-
     [
-      {
-        "path": "/users",
-        "name": "Users CRUD operations",
-        "description": "Use the users API to do CRUD operations on Users"
-      }
     ]
