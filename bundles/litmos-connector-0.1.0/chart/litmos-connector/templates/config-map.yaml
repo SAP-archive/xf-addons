@@ -12,6 +12,7 @@ data:
   PROVIDER_NAME: SAP
   PRODUCT_NAME: SAP Litmos
   APP_KIND: rest-with-apikey
+  API_DESCRIPTION: "APIs for SAP Litmos"
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -32,5 +33,4 @@ data:
       "format": "json"
     }
   apis.json: |-
-    [
-    ]
+    []
