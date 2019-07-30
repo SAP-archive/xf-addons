@@ -11,3 +11,4 @@ longDescription: "Integrates SAP Litmos in preview mode by registering its REST 
 documentationURL: https://support.litmos.com/hc/en-us/articles/227734667
 bindable: false
 provisionOnlyOnce: true
+imageUrl: https://storage.googleapis.com/faros-stage-base-xf-bundles/icons/litmos-connector.png
