@@ -24,3 +24,7 @@ entries:
     - name: litmos-connector
       description: Enables integration of SAP Litmos
       version: 0.1.0
+  qualtrics-connector:
+    - name: qualtrics-connector
+      description: Enables integration of SAP Qualtrics
+      version: 0.1.0
