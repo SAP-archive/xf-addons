@@ -32,7 +32,8 @@ function prepareAssets() {
         echo "Render installation guide"
         blackfriday-tool -page=true -css="style.css" installation/c4c.md ${destination}/installation/c4c.html
         blackfriday-tool -page=true -css="style.css" installation/marketing.md ${destination}/installation/marketing.html
-       
+        blackfriday-tool -page=true -css="style.css" installation/qualtrics.md ${destination}/installation/qualtrics.html
+
         echo "Zip and copy bundles"
         tar cfvz ${destination}/marketing-connector-0.1.0.tgz -C ./bundles/marketing-connector-0.1.0 .
         tar cfvz ${destination}/c4c-connector-0.1.0.tgz -C ./bundles/c4c-connector-0.1.0 .
