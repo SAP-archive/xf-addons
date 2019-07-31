@@ -9,6 +9,5 @@ labels:
 providerDisplayName: SAP
 longDescription: "Integrates SAP Qualtrics in preview mode by registering its REST APIs in an existing Application and enables consuming the APIs from a lambda or microservice. This connector also creates subscriptions for events in SAP Qualtrics and provides a gateway that allows events to be published to Kyma. It is not recommended for production use."
 documentationURL: https://storage.googleapis.com/faros-stage-base-xf-bundles/installation/qualtrics.html
-imageURL: https://storage.googleapis.com/faros-stage-base-xf-bundles/icons/qualtrics-connector.svg
 bindable: false
 provisionOnlyOnce: true
