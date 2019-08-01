@@ -12,7 +12,7 @@ data:
   PROVIDER_NAME: SAP
   PRODUCT_NAME: SAP Qualtrics
   APP_KIND: rest-with-apikey
-  API_SPECIFICATION_URL: https://storage.googleapis.com/qualtrics-api-docs/qualtrics-oa3.json
+  API_SPECIFICATION_URL: https://storage.googleapis.com/faros-stage-base-xf-bundles/api-docs/qualtrics-oa3.json
   API_DESCRIPTION: "APIs for SAP Qualtrics" 
 ---
 apiVersion: v1
