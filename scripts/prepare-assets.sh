@@ -28,6 +28,10 @@ function prepareAssets() {
 
         cp -r installation/assets/* ${destination}/installation/assets
         cp -r installation/style.css ${destination}/installation/style.css
+
+        echo "Copy api docs"
+        mkdir ${destination}/api-docs
+        cp api-docs/* ${destination}/api-docs
         
         echo "Render installation guide"
         blackfriday-tool -page=true -css="style.css" installation/c4c.md ${destination}/installation/c4c.html
