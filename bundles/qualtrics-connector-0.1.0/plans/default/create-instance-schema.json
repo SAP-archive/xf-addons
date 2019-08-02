@@ -15,7 +15,8 @@
     "api_key": {
       "type": "string",
       "title": "API Key",
-      "description": "The API Key (x-api-token) is passed as a header and used for authenticating the API calls by the SAP Qualtrics system"
+      "description": "The API Key (x-api-token) is passed as a header and used for authenticating the API calls by the SAP Qualtrics system",
+      "format": "password"
     },
     "application_name": {
       "type": "string",

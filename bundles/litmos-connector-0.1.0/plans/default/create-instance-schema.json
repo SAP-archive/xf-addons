@@ -10,7 +10,8 @@
     "apikey": {
       "type": "string",
       "title": "API Key",
-      "description": "The API Key is passed as a header and used for authenticating the API calls by the SAP Litmos system"
+      "description": "The API Key is passed as a header and used for authenticating the API calls by the SAP Litmos system",
+      "format": "password"
     },
     "source": {
       "type": "string",

@@ -15,7 +15,8 @@
     "basic_password": {
       "type": "string",
       "title": "Basic Auth Password",
-      "description": "The password for the Communication User in SAP Cloud for Customer"
+      "description": "The password for the Communication User in SAP Cloud for Customer",
+      "format": "password"
     },
     "application_name": {
       "type": "string",
