@@ -1,0 +1,155 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "Service to expose Litmos APIs from the GDM account. Litmos' Application Programming Interface (API) enables developers to connect external applications to Litmos LMS. The API gives organizations the ability to streamline data and processes across information systems for operational efficiency, including the automation of training assignments and the moderation of administrative tasks.",
+    "version": "1.0.0",
+    "title": "SAP Litmos APIs",
+    "contact": {
+      "email": "support@litmos.com"
+    }
+  },
+  "tags": [
+    {
+      "name": "litmos-fx-api",
+      "description": "List Courses assigned to a User",
+      "externalDocs": {
+        "description": "Users (API) - Get assigned courses",
+        "url": "https://api.litmos.com/v1.svc/courses"
+      }
+    }
+  ],
+  "paths": {
+    "/courses/{user-id}/courses": {
+      "get": {
+        "tags": [
+          "List all User Results for a Course"
+        ],
+        "summary": "get all results of currently assigned users to a specific course.",
+        "description": "get all results of currently assigned users to a specific course.",
+        "operationId": "listAllCourseResults",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "description": "return results in JSON format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json"
+              ]
+            }
+          },
+          {
+            "name": "user-id",
+            "in": "path",
+            "description": "Encrytpted Id of user assigned to the course to retrieve",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Course"
+              }
+            }
+          },
+          "500": {
+            "description": "The server encountered an error processing the request"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemas": {
+      "api_key": {
+        "type": "apiKey",
+        "name": "apikey",
+        "in": "header"
+      }
+    },
+    "schemas": {
+      "Course": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "string"
+          },
+          "Code": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Active": {
+            "type": "boolean"
+          },
+          "Complete": {
+            "type": "boolean"
+          },
+          "PercentageComplete": {
+            "type": "number",
+            "format": "double"
+          },
+          "AssignedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "StartDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "DateCompleted": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "UpToDate": {
+            "type": "boolean"
+          },
+          "Overdue": {
+            "type": "boolean"
+          },
+          "CompliantTill": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "IsLearningPath": {
+            "type": "boolean"
+          },
+          "CourseCreatedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "CourseCreator": {
+            "type": "string"
+          },
+          "OriginalId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "ResultId": {
+            "type": "string"
+          },
+          "AccessTillDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "xml": {
+          "name": "Course"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find more about Litmos API",
+    "url": "https://support.litmos.com/hc/en-us/articles/227734667-Overview-Developer-API"
+  }
+}
