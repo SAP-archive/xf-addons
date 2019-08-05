@@ -15,7 +15,8 @@
     "basic_password": {
       "type": "string",
       "title": "Basic Auth Password",
-      "description": "The password for the Communication User in SAP Marketing Cloud"
+      "description": "The password for the Communication User in SAP Marketing Cloud",
+      "format": "password"
     },
     "oauth_client_id": {
       "type": "string",
@@ -25,7 +26,8 @@
     "oauth_client_secret": {
       "type": "string",
       "title": "OAuth2 client_secret",
-      "description": "The OAuth 2.0 Client Secret for sending the MTTQ events"
+      "description": "The OAuth 2.0 Client Secret for sending the MTTQ events",
+      "format": "password"
     },
     "application_name": {
       "type": "string",
