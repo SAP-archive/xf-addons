@@ -13,7 +13,6 @@ data:
   PRODUCT_NAME: SAP Litmos
   APP_KIND: rest-with-apikey
   API_DESCRIPTION: "APIs for SAP Litmos"
-  API_SPECIFICATION_URL: https://storage.googleapis.com/faros-stage-base-xf-bundles/api-docs/litmos-oa3.json
 ---
 apiVersion: v1
 kind: ConfigMap
