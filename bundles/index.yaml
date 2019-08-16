@@ -28,3 +28,7 @@ entries:
     - name: qualtrics-connector
       description: Enables integration of SAP Qualtrics
       version: 0.1.0
+  openconnectors-connector:
+    - name: openconnectors-connector
+      description: Enables integration of SAP Open Connectors
+      version: 0.1.0
