@@ -1,0 +1,10 @@
+# Default values for openconnectors-connector.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+instanceName: "Open Connectors Trial"
+refreshIntervalSeconds: 30
+hostName: api.openconnectors.ext.hanatrial.ondemand.com
+organizationSecret: "4b27d22fbe6cbbfd39da311cba14fa88"
+userSecret: "VI5qtmF7epvu47hE9+EVYwZsiOmlMbnjhQetNOCmSRA="
+
