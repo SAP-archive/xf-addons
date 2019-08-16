@@ -1,7 +1,7 @@
 name: openconnectors-connector
 version: 0.1.0
 description: "Enables the preview integration of Open Connectors. It is not recommended for production scenarios."
-id: a974f421-9d6d-441e-ab10-0bc31fd9a9dd
+id: 582b010a-ee2e-4dbf-ae61-d087a0f5f2df
 displayName: "[Preview] SAP Open Connectors - Connector"
 tags: preview,open connectors,connector
 labels: 
