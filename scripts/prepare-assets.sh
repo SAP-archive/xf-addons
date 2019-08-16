@@ -47,7 +47,7 @@ function prepareAssets() {
 	    tar cfvz ${destination}/litmos-connector-0.1.0.tgz -C ./bundles/litmos-connector-0.1.0 .
         tar cfvz ${destination}/qualtrics-connector-0.1.0.tgz -C ./bundles/qualtrics-connector-0.1.0 .
         tar cfvz ${destination}/openconnectors-connector-0.1.0.tgz -C ./bundles/openconnectors-connector-0.1.0 .
-
+        tar cfvz ${destination}/openconnectors-account-0.1.0.tgz -C ./bundles/openconnectors-account-0.1.0 .
         echo "Processing done"
 }
 
