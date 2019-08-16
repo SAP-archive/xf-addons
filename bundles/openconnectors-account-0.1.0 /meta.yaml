@@ -1,0 +1,14 @@
+name: openconnectors-account
+version: 0.1.0
+description: "Configures an Open Connectors account allowing Open Connectors services to be registered in Kyma. It is not recommended for production scenarios."
+id: e87e5863-0548-4972-83f3-de9d3216043f
+displayName: "[Preview] SAP Open Connectors - Account"
+tags: preview,open connectors,connector
+labels: 
+  preview: "true"
+providerDisplayName: SAP
+longDescription: "NOTE: Open Connectors - Connect needs to be installed first before configuring an account. Integrates Open Connectors in preview mode. Service Instances need to be created in Open Connectors. After installing this connector using your Open Connectors credentials, service instances will be create the corresponding Applications and Services/APIs in Kyma. It is not recommended for production use."
+documentationURL: https://storage.googleapis.com/faros-stage-base-xf-bundles/installation/openconnectors.html
+imageURL: https://storage.googleapis.com/faros-stage-base-xf-bundles/icons/openconnectors-connector.png
+bindable: false
+provisionOnlyOnce: false

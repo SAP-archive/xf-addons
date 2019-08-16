@@ -15,7 +15,7 @@ function checkAssets() {
         helm lint ./bundles/c4c-mock-0.1.0/chart/c4c-mock/ --values ./bundles/c4c-mock-0.1.0/plans/default/values.yaml
 	    helm lint ./bundles/litmos-connector-0.1.0/chart/litmos-connector/ --values ./bundles/litmos-connector-0.1.0/plans/default/values.yaml
         helm lint ./bundles/openconnectors-connector-0.1.0/chart/openconnectors-connector/ --values ./bundles/openconnectors-connector-0.1.0/plans/default/values.yaml
-       
+       helm lint ./bundles/openconnectors-accoount-0.1.0/chart/openconnectors-account/ --values ./bundles/openconnectors-account-0.1.0/plans/default/values.yaml
 
         echo "Processing done"
 }
