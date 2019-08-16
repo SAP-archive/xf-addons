@@ -13,8 +13,9 @@ function checkAssets() {
         helm lint ./bundles/marketing-mock-0.1.0/chart/marketing-mock/ --values ./bundles/marketing-mock-0.1.0/plans/default/values.yaml
         helm lint ./bundles/commerce-mock-0.1.0/chart/commerce-mock/ --values ./bundles/commerce-mock-0.1.0/plans/default/values.yaml
         helm lint ./bundles/c4c-mock-0.1.0/chart/c4c-mock/ --values ./bundles/c4c-mock-0.1.0/plans/default/values.yaml
-
-	helm lint ./bundles/litmos-connector-0.1.0/chart/litmos-connector/ --values ./bundles/litmos-connector-0.1.0/plans/default/values.yaml
+	    helm lint ./bundles/litmos-connector-0.1.0/chart/litmos-connector/ --values ./bundles/litmos-connector-0.1.0/plans/default/values.yaml
+        helm lint ./bundles/qualtrics-connector-0.1.0/chart/openconnectors-connector/ --values ./bundles/openconnectors-connector-0.1.0/plans/default/values.yaml
+        helm lint ./bundles/qualtrics-connector-0.1.0/chart/qualtrics-connector/ --values ./bundles/qualtrics-connector-0.1.0/plans/default/values.yaml
 
         echo "Processing done"
 }
