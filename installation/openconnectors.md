@@ -1,4 +1,4 @@
-# SAP Open Connectors Connector
+# SAP Cloud Platform Open Connectors Connector
 
 ## Overview
 
