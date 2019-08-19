@@ -46,7 +46,7 @@ Note: The connector addon must to be installed before configuring an account.
     | **User Secret**| The value retrieved above in 'Retrieve Credentials' |
      
 ### 5. Registering a Connector Instance (from Open Connectors)
-1. Create a new Connector Instance in the SAP Cloud Platform Open Connectors Cockpit, see this (example)[https://blogs.sap.com/2018/09/28/part-8-simplify-connectivity-to-third-party-collaboration-application-slack-from-sap-cloud-platform-open-connectors/]
+1. Create a new Connector Instance in the SAP Cloud Platform Open Connectors Cockpit, see this [example](https://blogs.sap.com/2018/09/28/part-8-simplify-connectivity-to-third-party-collaboration-application-slack-from-sap-cloud-platform-open-connectors/)
 2. Navigate to the Kyma console and go to **Integration** > **Applications** 
 3. Open the Application created by the connector
 4. An API should be visible under **Provided Services & Events** for the Connector Instance that was created
