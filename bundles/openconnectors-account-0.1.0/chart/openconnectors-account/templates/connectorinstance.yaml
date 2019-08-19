@@ -1,7 +1,7 @@
 apiVersion: openconnectors.incubator.kyma-project.io/v1
 kind: ConnectorInstance
 metadata:
-  name: {{ .Release.Name }} 
+  name: {{ template "bundle.fullname" . }}-account
 spec:
   displayName: {{ .Values.instanceName | quote }} 
   refreshIntervalSeconds: {{ .Values.refreshIntervalSeconds }} 
