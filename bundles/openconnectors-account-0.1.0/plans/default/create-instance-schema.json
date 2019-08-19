@@ -4,7 +4,7 @@
   "properties": {
     "hostName": {
       "type": "string",
-      "title": "Open Connectors URL",
+      "title": "Open Connectors Host Name",
       "description": "The URL of for accessing Open Connectors. For example, `api.openconnectors.ext.hanatrial.ondemand.com`"
     },
     "organizationSecret": {
