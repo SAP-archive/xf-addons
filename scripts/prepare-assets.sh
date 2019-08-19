@@ -37,6 +37,7 @@ function prepareAssets() {
         blackfriday-tool -page=true -css="style.css" installation/c4c.md ${destination}/installation/c4c.html
         blackfriday-tool -page=true -css="style.css" installation/marketing.md ${destination}/installation/marketing.html
         blackfriday-tool -page=true -css="style.css" installation/qualtrics.md ${destination}/installation/qualtrics.html
+        blackfriday-tool -page=true -css="style.css" installation/openconnectors.md ${destination}/installation/openconnectors.html
 
         echo "Zip and copy bundles"
         tar cfvz ${destination}/marketing-connector-0.1.0.tgz -C ./bundles/marketing-connector-0.1.0 .
