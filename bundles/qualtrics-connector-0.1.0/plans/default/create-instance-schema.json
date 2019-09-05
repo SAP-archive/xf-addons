@@ -5,7 +5,7 @@
     "system_url": {
       "type": "string",
       "title": "Qualtrics URL",
-      "description": "The base URL of the Qualtrics tenant you want to register"
+      "description": "The base URL of the Qualtrics tenant you want to register. For exampe, `https://sapdevelopment.ca1.qualtrics.com`"
     },
     "kyma_cluster": {
       "type": "string",
@@ -15,13 +15,13 @@
     "api_key": {
       "type": "string",
       "title": "API Key",
-      "description": "The API Key (x-api-token) is passed as a header and used for authenticating the API calls by the SAP Qualtrics system",
+      "description": "The API Key (x-api-token) is passed as a header and used for authenticating the API calls by the SAP Qualtrics system. The API Key must be for a user that is a Brand Administrator",
       "format": "password"
     },
     "application_name": {
       "type": "string",
       "title": "Application Name",
-      "description": "The name of the Application CR where the REST APIS should be registered for consumption"
+      "description": "The name of the Kyma Application where the APIs should be registered for consumption"
     }
   },
   "required": [
