@@ -206,6 +206,8 @@ metadata:
  name: {{ template "bundle.fullname" . }}-role
  labels:
    app: {{ template "bundle.fullname" . }}-webhook-registration
+ annotations:
+   "helm.sh/hook": "pre-install"    
 rules:
  - apiGroups: ["*"]
    resources: ["services"]
@@ -217,6 +219,8 @@ metadata:
  name: {{ template "bundle.fullname" . }}-rolebinding
  labels:
    app: {{ template "bundle.fullname" . }}-webhook-registration
+ annotations:
+   "helm.sh/hook": "pre-install" 
 subjects:
  - kind: User
    name: system:serviceaccount:{{ .Release.namespace }}:default
