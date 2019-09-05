@@ -4,10 +4,6 @@ entries:
     - name: marketing-connector
       description: Enables the integration of SAP Marketing Cloud
       version: 0.1.0
-  c4c-connector:
-    - name: c4c-connector
-      description: Enables the integration of SAP Cloud for Customer
-      version: 0.1.0
   marketing-mock:
     - name: marketing-mock
       description: Lightweight substitute of SAP Marketing Cloud based on APIs only
@@ -30,9 +26,5 @@ entries:
       version: 0.1.0
   openconnectors-connector:
     - name: openconnectors-connector
-      description: Enables integration of SAP Open Connectors
-      version: 0.1.0
-  openconnectors-account:
-    - name: openconnectors-account
       description: Enables integration of SAP Open Connectors
       version: 0.1.0

@@ -1,9 +1,0 @@
-docs:
-  - template:
-      displayName: "open-connectors-connector-0.1.0"
-      description: "Open Connectors documentation"
-      sources:
-        - type: markdown
-          name: docs
-          mode: package
-          filter: (docs/(.*?)\.md$)
