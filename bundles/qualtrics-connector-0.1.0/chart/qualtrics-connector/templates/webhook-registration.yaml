@@ -203,25 +203,25 @@ data:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
- name: {{ template “bundle.fullname” . }}-role
+ name: {{ template "bundle.fullname" . }}-role
  labels:
-   app: {{ template “bundle.fullname” . }}-webhook-registration
+   app: {{ template "bundle.fullname" . }}-webhook-registration
 rules:
- - apiGroups: [“*”]
-   resources: [“services”]
-   verbs: [“list”]
+ - apiGroups: ["*"]
+   resources: ["services"]
+   verbs: ["list"]
 ---
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
- name: {{ template “bundle.fullname” . }}-rolebinding
+ name: {{ template "bundle.fullname" . }}-rolebinding
  labels:
-   app: {{ template “bundle.fullname” . }}-webhook-registration
+   app: {{ template "bundle.fullname" . }}-webhook-registration
 subjects:
  - kind: User
    name: system:serviceaccount:{{ .Release.namespace }}:default
    apiGroup: rbac.authorization.k8s.io
 roleRef:
  kind: ClusterRole
- name: {{ template “bundle.fullname” . }}-role
+ name: {{ template "bundle.fullname" . }}-role
  apiGroup: rbac.authorization.k8s.io
