@@ -6,6 +6,8 @@ metadata:
   labels:
     app: {{ template "bundle.fullname" . }}-event-gw
     prometheus: monitoring #links to kyma prometheus instance
+  annotations:
+    "helm.sh/hook": "pre-install"
 spec:
   jobLabel: "qualtrics-event-gw"
   namespaceSelector:
