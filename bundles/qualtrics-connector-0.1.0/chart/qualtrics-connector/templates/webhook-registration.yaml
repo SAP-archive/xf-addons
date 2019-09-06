@@ -126,7 +126,7 @@ data:
   application-name: {{ .Values.application_name | quote }}
   timeout-mil: "2000"
   qualtrics-base-url: {{ .Values.system_url }}
-  subscription-url: "https://qualtrics-event.{{ .Values.kyma_cluster}}"
+  subscription-url: "https://qualtrics-event-{{ .Release.Namespace }}.{{ .Values.kyma_cluster}}"
   refresh-interval: "60"
   refresh-cycle: "10"
 ---
