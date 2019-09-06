@@ -5,7 +5,7 @@ metadata:
   labels:
      app: {{ template "bundle.fullname" . }}-event-gw
 spec:
-  hostname: qualtrics-event
+  hostname: qualtrics-event-{{ .Release.Namespace }}
   service:
     name: {{ template "bundle.fullname" . }}-event-gw
     port: 8080
