@@ -5,6 +5,7 @@ metadata:
   labels:
     app: {{ template "bundle.fullname" . }}-webhook-registration
 spec:
+  serviceAccountName: qualtrics-serviceaccount
   replicas: 1
   selector:
     matchLabels:
@@ -22,8 +23,6 @@ spec:
           image: eu.gcr.io/kyma-project/incubator/qualtrics-webhook-registration:qualtrics-service-discovery
           imagePullPolicy: "Always"
           args:
-            - "-event-gateway-base-url"
-            - $(event-gateway-base-url)
             - "-application-name"
             - $(application-name)
             - "-timeout-mil"
@@ -200,14 +199,17 @@ data:
         }
     ]
 ---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: qualtrics-serviceaccount
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
- name: {{ template "bundle.fullname" . }}-role
+ name: {{ template "bundle.fullname" . }}-{{ .Release.Name }}-role
  labels:
-   app: {{ template "bundle.fullname" . }}-webhook-registration
- annotations:
-   "helm.sh/hook": "pre-install"    
+   app: {{ template "bundle.fullname" . }}-webhook-registration  
 rules:
  - apiGroups: ["*"]
    resources: ["services"]
@@ -216,16 +218,14 @@ rules:
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
- name: {{ template "bundle.fullname" . }}-rolebinding
+ name: {{ template "bundle.fullname" . }}-{{ .Release.Name }}-rolebinding
  labels:
    app: {{ template "bundle.fullname" . }}-webhook-registration
- annotations:
-   "helm.sh/hook": "pre-install" 
 subjects:
  - kind: User
-   name: system:serviceaccount:{{ .Release.namespace }}:default
+   name: system:serviceaccount:{{ .Release.Namespace }}:qualtrics-serviceaccount
    apiGroup: rbac.authorization.k8s.io
 roleRef:
  kind: ClusterRole
- name: {{ template "bundle.fullname" . }}-role
+ name: {{ template "bundle.fullname" . }}-{{ .Release.Name }}-role
  apiGroup: rbac.authorization.k8s.io
