@@ -2,16 +2,15 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   namespace: kyma-system
-  name: {{ template "bundle.fullname" . }}-event-gw
+  name: {{ template "bundle.fullname" . }}-{{ .Release.Name }}-event-gw
   labels:
     app: {{ template "bundle.fullname" . }}-event-gw
     prometheus: monitoring #links to kyma prometheus instance
-  annotations:
-    "helm.sh/hook": "pre-install"
 spec:
   jobLabel: "qualtrics-event-gw"
   namespaceSelector:
-    any: true
+    matchNames:
+    - {{ .Release.Namespace }}
   selector:
     matchLabels:
       app: {{ template "bundle.fullname" . }}-event-gw # label selector for service
