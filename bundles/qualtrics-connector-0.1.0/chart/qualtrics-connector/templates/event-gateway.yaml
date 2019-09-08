@@ -58,11 +58,9 @@ spec:
     spec:
       containers:
       - name: qualtrics-event-gw
-        image: eu.gcr.io/kyma-project/incubator/qualtrics-event-gw:master
+        image: eu.gcr.io/kyma-project/incubator/qualtrics-event-gw:qualtrics-service-discovery
         imagePullPolicy: "Always"
         args: 
-         - "-kyma-eventurl"
-         - $(kyma-eventurl)
          - "-applicationname"
          - $(application-name)
          - "-hmac-key"
