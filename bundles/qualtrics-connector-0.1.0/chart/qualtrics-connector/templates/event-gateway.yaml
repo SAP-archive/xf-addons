@@ -56,6 +56,7 @@ spec:
       annotations:
         traffic.sidecar.istio.io/includeInboundPorts: "8080"
     spec:
+      serviceAccountName: qualtrics-serviceaccount
       containers:
       - name: qualtrics-event-gw
         image: eu.gcr.io/kyma-project/incubator/qualtrics-event-gw:qualtrics-service-discovery
