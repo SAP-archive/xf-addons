@@ -59,7 +59,7 @@ spec:
       serviceAccountName: qualtrics-serviceaccount
       containers:
       - name: qualtrics-event-gw
-        image: eu.gcr.io/kyma-project/incubator/qualtrics-event-gw:qualtrics-service-discovery
+        image: eu.gcr.io/kyma-project/incubator/qualtrics-event-gw:master
         imagePullPolicy: "Always"
         args: 
          - "-applicationname"
