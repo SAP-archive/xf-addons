@@ -20,7 +20,7 @@ spec:
       serviceAccountName: qualtrics-serviceaccount
       containers:
         - name: {{ template "bundle.fullname" . }}-webhook-registration
-          image: eu.gcr.io/kyma-project/incubator/qualtrics-webhook-registration:qualtrics-service-discovery
+          image: eu.gcr.io/kyma-project/incubator/qualtrics-webhook-registration:master
           imagePullPolicy: "Always"
           args:
             - "-application-name"
