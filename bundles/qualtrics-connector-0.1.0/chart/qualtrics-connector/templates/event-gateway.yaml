@@ -62,6 +62,8 @@ spec:
         image: eu.gcr.io/kyma-project/incubator/qualtrics-event-gw:master
         imagePullPolicy: "Always"
         args: 
+         - -event-gateway-label-selector 
+         - app=$(application-name)-event-service
          - "-applicationname"
          - $(application-name)
          - "-hmac-key"
