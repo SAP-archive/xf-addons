@@ -23,6 +23,8 @@ spec:
           image: eu.gcr.io/kyma-project/incubator/qualtrics-webhook-registration:master
           imagePullPolicy: "Always"
           args:
+            - -event-gateway-label-selector 
+            - app=$(application-name)-event-service
             - "-application-name"
             - $(application-name)
             - "-timeout-mil"
