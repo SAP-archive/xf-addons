@@ -58,7 +58,7 @@ spec:
     spec:
       serviceAccountName: qualtrics-serviceaccount
       containers:
-      - name: qualtrics-event-gw
+      - name: {{ template "bundle.fullname" . }}-event-gw
         image: eu.gcr.io/kyma-project/incubator/qualtrics-event-gw:master
         imagePullPolicy: "Always"
         args: 
