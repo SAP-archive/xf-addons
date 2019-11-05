@@ -1,0 +1,32 @@
+apiVersion: "ui.kyma-project.io/v1alpha1"
+kind: MicroFrontend
+metadata:
+  name: commercermicrofrontend
+  namespace: <namespace>
+  labels:
+    app: commercemicrofrontend
+spec:
+  appName: commerce-microfrontend
+  displayName: Commerce View Configuration
+  version: v1
+  category: <category>
+  viewBaseUrl: <base-url>
+  navigationNodes:
+    - label: Commerce
+      navigationPath: commerce
+      viewUrl: /angular.html
+    - label: Commerce Api View
+      navigationPath: commerce/apiview
+      viewUrl: /angular.html#/apiview
+    - label: Commerce Api View
+      navigationPath: commerce/apiview/:id
+      viewUrl: /angular.html#/apiview/:id
+    - label: Commerce Api View
+      navigationPath: commerce/apiview/:id/:remote
+      viewUrl: /angular.html#/apiview/:id/:remote
+    - label: Commerce Create Api View
+      navigationPath: commerce/createapi
+      viewUrl: /angular.html#/createapi
+    - label: Commerce Create Api View
+      navigationPath: commerce/createapi/:event
+      viewUrl: /angular.html#/createapi/:event
