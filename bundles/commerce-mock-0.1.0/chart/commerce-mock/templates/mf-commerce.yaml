@@ -1,18 +1,18 @@
 apiVersion: "ui.kyma-project.io/v1alpha1"
 kind: MicroFrontend
 metadata:
-  name: commercermicrofrontend
+  name:  {{ template "bundle.fullname" . }}
   namespace: <namespace>
   labels:
-    app: commercemicrofrontend
+    app:  {{ template "bundle.fullname" . }}
 spec:
-  appName: commerce-microfrontend
-  displayName: Commerce View Configuration
+  appName:  {{ template "bundle.fullname" . }}
+  displayName: {{ template "bundle.fullname" . }}
   version: v1
-  category: <category>
+  category: Mocks
   viewBaseUrl: <base-url>
   navigationNodes:
-    - label: Commerce
+    - label: {{ template "bundle.fullname" . }}
       navigationPath: commerce
       viewUrl: /angular.html
     - label: Commerce Api View
@@ -24,9 +24,9 @@ spec:
     - label: Commerce Api View
       navigationPath: commerce/apiview/:id/:remote
       viewUrl: /angular.html#/apiview/:id/:remote
-    - label: Commerce Create Api View
-      navigationPath: commerce/createapi
-      viewUrl: /angular.html#/createapi
-    - label: Commerce Create Api View
-      navigationPath: commerce/createapi/:event
-      viewUrl: /angular.html#/createapi/:event
+    # - label: Commerce Create Api View
+    #   navigationPath: commerce/createapi
+    #   viewUrl: /angular.html#/createapi
+    # - label: Commerce Create Api View
+    #   navigationPath: commerce/createapi/:event
+    #   viewUrl: /angular.html#/createapi/:event
