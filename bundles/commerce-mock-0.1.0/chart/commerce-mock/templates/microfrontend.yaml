@@ -1,0 +1,35 @@
+apiVersion: "ui.kyma-project.io/v1alpha1"
+kind: MicroFrontend
+metadata:
+  name:  {{ template "bundle.fullname" . }}
+  labels:
+    app:  {{ template "bundle.fullname" . }}
+spec:
+  displayName: {{ .Values.name }}
+  version: v1
+  category: Mocks
+  placement: namespace
+  navigationNodes:
+    - label: {{ .Values.name }}
+      navigationPath: {{ template "bundle.fullname" . }}
+      viewUrl: /angular.html
+    - label: Api View
+      navigationPath: {{ template "bundle.fullname" . }}/apiview
+      viewUrl: /angular.html#/apiview
+      showInNavigation: false
+    - label: Api View
+      navigationPath: {{ template "bundle.fullname" . }}/apiview/:id
+      viewUrl: /angular.html#/apiview/:id
+      showInNavigation: false
+    - label: Api View
+      navigationPath: {{ template "bundle.fullname" . }}/apiview/:id/:remote
+      viewUrl: /angular.html#/apiview/:id/:remote
+      showInNavigation: false
+    # - label: Create Api View
+    #   navigationPath: {{ template "bundle.fullname" . }}/createapi
+    #   viewUrl: /angular.html#/createapi
+    #   showInNavigation: false
+    # - label: Create Api View
+    #   navigationPath: {{ template "bundle.fullname" . }}/createapi/:event
+    #   viewUrl: /angular.html#/createapi/:event
+    #   showInNavigation: false
