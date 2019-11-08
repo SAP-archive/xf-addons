@@ -1,0 +1,11 @@
+apiVersion: gateway.kyma-project.io/v1alpha2
+kind: Api
+metadata:
+  labels:
+    app: {{ template "bundle.fullname" . }}
+  name: {{ template "bundle.fullname" . }}
+spec:
+  hostname: c4c-{{ .Release.Namespace }}
+  service:
+    name: {{ template "bundle.fullname" . }}
+    port: 10000

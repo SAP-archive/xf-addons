@@ -12,8 +12,8 @@ spec:
         app: {{ template "bundle.fullname" . }}
     spec:
       containers:
-      - image: eu.gcr.io/kyma-project/xf-application-mocks/commerce-mock:latest
-        imagePullPolicy: Always
+      - image: {{ .Values.image.name }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         name: {{ template "bundle.fullname" . }}
         ports:
         - name: http
