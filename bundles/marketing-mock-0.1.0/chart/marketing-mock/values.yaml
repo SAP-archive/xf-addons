@@ -1,0 +1,8 @@
+kyma-console:
+    enabled: false
+    navigation.category: "Mocks"
+    navigation.name: "SAP Marketing Cloud"
+
+image:
+    name: eu.gcr.io/kyma-project/xf-application-mocks/marketing-mock:latest
+    pullPolicy: Always

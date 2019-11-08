@@ -1,0 +1,8 @@
+kyma-console:
+    enabled: false
+    navigation.category: "Mocks"
+    navigation.name: "SAP Commerce Cloud"
+
+image:
+    name: eu.gcr.io/kyma-project/xf-application-mocks/commerce-mock:latest
+    pullPolicy: Always
