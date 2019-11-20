@@ -44,7 +44,6 @@ pipeline {
                     }
                     else if(env.BRANCH_NAME=="master"){
                          upload('int')
-                         upload('stage')   
                     }
                     else
                     {
