@@ -1,4 +1,4 @@
-kyma-console:
+console:
     enabled: false
     navigation.category: "Mocks"
     navigation.name: "SAP Marketing Cloud"

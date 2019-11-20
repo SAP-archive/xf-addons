@@ -1,4 +1,4 @@
-{{- if .Values.kyma-console.enabled }}
+{{- if .Values.console.enabled }}
 apiVersion: "ui.kyma-project.io/v1alpha1"
 kind: MicroFrontend
 metadata:
@@ -7,10 +7,10 @@ metadata:
     app:  {{ template "bundle.fullname" . }}
 spec:
   displayName: {{ template "bundle.fullname" . }}
-  category: {{ .Values.kyma-console.navigation.category }}
+  category: {{ .Values.console.navigation.category }}
   viewBaseUrl: xxx
   navigationNodes:
-    - label: {{ .Values.kyma-console.navigation.name }}
+    - label: {{ .Values.console.navigation.name }}
       navigationPath: {{ template "bundle.fullname" . }}
       viewUrl: /angular.html
     - label: Api List
