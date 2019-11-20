@@ -8,7 +8,7 @@ metadata:
 spec:
   displayName: {{ template "bundle.fullname" . }}
   category: {{ .Values.kyma-console.navigation.category }}
-  viewBaseUrl: <base-url>
+  viewBaseUrl: xxx
   navigationNodes:
     - label: {{ .Values.kyma-console.navigation.name }}
       navigationPath: {{ template "bundle.fullname" . }}
