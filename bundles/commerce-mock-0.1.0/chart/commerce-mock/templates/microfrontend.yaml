@@ -1,4 +1,4 @@
-{{- if .Values.console.enabled }}
+{{- if and .Values.console.enabled .Values.domain}}
 apiVersion: "ui.kyma-project.io/v1alpha1"
 kind: MicroFrontend
 metadata:
@@ -8,7 +8,7 @@ metadata:
 spec:
   displayName: {{ template "bundle.fullname" . }}
   category: {{ .Values.console.navigation.category }}
-  viewBaseUrl: xxx
+  viewBaseUrl: https://{{ .Values.api.prefix }}-{{ .Release.Namespace }}.{{ .Values.domain }}
   navigationNodes:
     - label: {{ .Values.console.navigation.name }}
       navigationPath: {{ template "bundle.fullname" . }}
@@ -25,12 +25,12 @@ spec:
       navigationPath: {{ template "bundle.fullname" . }}/apiview/:id/:remote
       viewUrl: /angular.html#/apiview/:id/:remote
       showInNavigation: false
-    # - label: Create Api
-    #   navigationPath: {{ template "bundle.fullname" . }}/createapi
-    #   viewUrl: /angular.html#/createapi
-    #   showInNavigation: false
-    # - label: Create Event
-    #   navigationPath: {{ template "bundle.fullname" . }}/createapi/:event
-    #   viewUrl: /angular.html#/createapi/:event
-    #   showInNavigation: false
+    - label: Create Api
+      navigationPath: {{ template "bundle.fullname" . }}/createapi
+      viewUrl: /angular.html#/createapi
+      showInNavigation: false
+    - label: Create Event
+      navigationPath: {{ template "bundle.fullname" . }}/createapi/:event
+      viewUrl: /angular.html#/createapi/:event
+      showInNavigation: false
 {{- end}}

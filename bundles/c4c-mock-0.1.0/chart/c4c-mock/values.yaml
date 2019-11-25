@@ -1,7 +1,12 @@
 console:
-    enabled: false
-    navigation.category: "Mocks"
-    navigation.name: "SAP Cloud for Customerd"
+    enabled: true
+    navigation:
+        category: "Mocks"
+        name: "SAP Cloud for Customers"
+
+api:
+    prefix: c4c
+domain:
 
 image:
     name: eu.gcr.io/kyma-project/xf-application-mocks/c4c-mock:latest

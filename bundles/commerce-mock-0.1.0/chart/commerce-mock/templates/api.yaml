@@ -5,7 +5,7 @@ metadata:
     app: {{ template "bundle.fullname" . }}
   name: {{ template "bundle.fullname" . }}
 spec:
-  hostname: commerce-{{ .Release.Namespace }}
+  hostname: {{ .Values.api.prefix }}-{{ .Release.Namespace }}
   service:
     name: {{ template "bundle.fullname" . }}
     port: 10000

@@ -1,7 +1,12 @@
 console:
-    enabled: false
-    navigation.category: "Mocks"
-    navigation.name: "SAP Commerce Cloud"
+    enabled: true
+    navigation:
+        category: "Mocks"
+        name: "SAP Commerce Cloud"
+
+api:
+    prefix: commerce
+domain:
 
 image:
     name: eu.gcr.io/kyma-project/xf-application-mocks/commerce-mock:latest
