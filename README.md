@@ -1,11 +1,11 @@
 # XF Addons
-Addon bundles for the SAP Cloud Platform Extension Factory (XF) installable via the Service Catalog.
+Kyma Addons for the SAP Cloud Platform Extension Factory (XF) installable via the Service Catalog.
 
 ## Description
-The SAP CP Extension Factory (XF) is designed to easily extend and mash up different SAP applications and third-party APIs. The [Kyma Helm Broker](https://kyma-project.io/docs/components/helm-broker/) provides a mechanism to easily deploy integration and extension functionality for SAP applications (addons) to a running XF cluster. The `XF Addons` are the default set of addons for any XF cluster by mainly providing connector and mock bundles for SAP Marketing Cloud, SAP Cloud for Customer, and SAP Commerce Cloud.
+The SAP CP Extension Factory (XF) is designed to easily extend and mash up different SAP applications and third-party APIs. The [Kyma Helm Broker](https://kyma-project.io/docs/components/helm-broker/) provides a mechanism to easily deploy integration and extension functionality for SAP applications (addons) to a running XF cluster. The `XF Addons` are the default set of addons for any XF cluster by mainly providing connector and mock addons for SAP Marketing Cloud, SAP Cloud for Customer, and SAP Commerce Cloud.
 
 ## Installation
-This addons repository as defined by [index.yaml](bundles/index.yaml) is installed to XF by default.
+This addons repository as defined by [index.yaml](addons/index.yaml) is installed to XF by default.
 
 If you need to install it manually, you need to upload the addon artifacts to a web server with location UPLOAD_DIR using `make preapre && make upload UPLOAD_DIR`. 
 In your XF or Kyma cluster you then need to create a configMap using following commands:
@@ -34,7 +34,7 @@ If you merge a branch to the master then the addon artifactes are uploaded to th
 If you add a tag in github then the addon artifactes are uploaded to the production location only (https://storage.googleapis.com/faros-prod-base-xf-bundles/index.yaml).
 
 ## Requirements
-All addon bundles are based on the [Kyma Helm Broker](https://kyma-project.io/docs/components/helm-broker/) and with that require to follow the [Helm Chart](https://helm.sh/) specification.
+All addons are based on the [Kyma Helm Broker](https://kyma-project.io/docs/components/helm-broker/) and with that require to follow the [Helm Chart](https://helm.sh/) specification.
 
 ## Known Issues
 The connector addons based on MQTT (currently marketing-connector) are using an experimental way of integration. MQTT based integration will be an official feature of XF soon.

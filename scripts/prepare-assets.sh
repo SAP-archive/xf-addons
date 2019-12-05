@@ -16,7 +16,7 @@ function prepareAssets() {
         mkdir -p ${destination}
 
         echo "Copy index yaml"
-        cp bundles/*.yaml ${destination}
+        cp addons/*.yaml ${destination}
 
         echo "Copy icons"
         mkdir ${destination}/icons
@@ -38,14 +38,14 @@ function prepareAssets() {
         blackfriday-tool -page=true -css="style.css" installation/qualtrics.md ${destination}/installation/qualtrics.html
         blackfriday-tool -page=true -css="style.css" installation/openconnectors.md ${destination}/installation/openconnectors.html
 
-        echo "Zip and copy bundles"
-        tar cfvz ${destination}/marketing-connector-0.1.0.tgz -C ./bundles/marketing-connector-0.1.0 .
-        tar cfvz ${destination}/c4c-mock-0.1.0.tgz -C ./bundles/c4c-mock-0.1.0 .
-        tar cfvz ${destination}/commerce-mock-0.1.0.tgz -C ./bundles/commerce-mock-0.1.0 .
-        tar cfvz ${destination}/marketing-mock-0.1.0.tgz -C ./bundles/marketing-mock-0.1.0 .
-	tar cfvz ${destination}/litmos-connector-0.1.0.tgz -C ./bundles/litmos-connector-0.1.0 .
-        tar cfvz ${destination}/qualtrics-connector-0.1.0.tgz -C ./bundles/qualtrics-connector-0.1.0 .
-        tar cfvz ${destination}/openconnectors-connector-0.1.0.tgz -C ./bundles/openconnectors-connector-0.1.0 .
+        echo "Zip and copy addons"
+        tar cfvz ${destination}/marketing-connector-0.1.0.tgz -C ./addons/marketing-connector-0.1.0 .
+        tar cfvz ${destination}/c4c-mock-0.1.0.tgz -C ./addons/c4c-mock-0.1.0 .
+        tar cfvz ${destination}/commerce-mock-0.1.0.tgz -C ./addons/commerce-mock-0.1.0 .
+        tar cfvz ${destination}/marketing-mock-0.1.0.tgz -C ./addons/marketing-mock-0.1.0 .
+	tar cfvz ${destination}/litmos-connector-0.1.0.tgz -C ./addons/litmos-connector-0.1.0 .
+        tar cfvz ${destination}/qualtrics-connector-0.1.0.tgz -C ./addons/qualtrics-connector-0.1.0 .
+        tar cfvz ${destination}/openconnectors-connector-0.1.0.tgz -C ./addons/openconnectors-connector-0.1.0 .
         echo "Processing done"
 }
 
