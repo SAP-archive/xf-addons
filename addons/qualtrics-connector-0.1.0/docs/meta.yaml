@@ -6,4 +6,8 @@ docs:
         - type: markdown
           name: docs
           mode: package
-          filter: (docs/(.*?)\.md$)
+          filter: (docs/(.*?)\.md$)|(docs/assets)
+        - type: openapi
+          name: openapi
+          mode: package
+          filter: docs/qualtrics-oa3\.json

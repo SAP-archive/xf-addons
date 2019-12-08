@@ -8,7 +8,7 @@ labels:
   preview: "true"
 providerDisplayName: SAP
 longDescription: "Integrates SAP Cloud Platform Open Connectors in preview mode. Connector Instances are created in SAP Cloud Platform Open Connectors and after installing this connector using your Open Connectors credentials, service instances will be create the corresponding Applications and Services/APIs in Kyma. It is not recommended for production use."
-documentationURL: https://storage.googleapis.com/faros-stage-base-xf-bundles/installation/openconnectors.html
-imageURL: https://storage.googleapis.com/faros-stage-base-xf-bundles/icons/openconnectors-connector.png
+documentationURL: https://help.openconnectors.ext.hana.ondemand.com
+imageURL: https://raw.githubusercontent.com/SAP/xf-addons/master/icons/openconnectors-connector.png
 bindable: false
 provisionOnlyOnce: true
