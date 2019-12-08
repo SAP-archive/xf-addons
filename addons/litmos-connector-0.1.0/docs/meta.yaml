@@ -7,7 +7,3 @@ docs:
           name: docs
           mode: package
           filter: (docs/(.*?)\.md$)
-        - type: openapi
-          name: openapi
-          mode: package
-          filter: docs/litmos-oa3\.json

@@ -2,8 +2,6 @@
 title: Overview
 type: Details
 ---
-## Overview
-
 This connector allows you to use the connectors provided by SAP Cloud Platform Open Connectors to connect to 150+ cloud applications.
 
 > **NOTE**: The integration is possible in the **preview** mode only. Do not use it in production scenarios.
