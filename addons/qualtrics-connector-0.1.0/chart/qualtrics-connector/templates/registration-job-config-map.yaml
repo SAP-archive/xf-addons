@@ -11,7 +11,7 @@ data:
   PROVIDER_NAME: SAP
   PRODUCT_NAME: SAP Qualtrics
   APP_KIND: rest-with-apikey
-  API_SPECIFICATION_URL: https://raw.githubusercontent.com/SAP/xf-addons/restructure/addons/qualtrics-connector-0.1.0/docs/qualtrics-oa3.json
+  API_SPECIFICATION_URL: https://gitcdn.link/repo/SAP/xf-addons/restructure/addons/qualtrics-connector-0.1.0/docs/qualtrics-oa3.json
   API_DESCRIPTION: "APIs for SAP Qualtrics" 
 ---
 apiVersion: v1
