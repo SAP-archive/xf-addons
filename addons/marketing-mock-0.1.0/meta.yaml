@@ -9,6 +9,6 @@ labels:
 providerDisplayName: SAP
 longDescription:  "Lightweight substitute of SAP Marketing Cloud based on APIs only. It is not recommended for production scenarios."
 documentationURL: https://github.com/SAP/xf-application-mocks/tree/master/marketing-mock
-imageURL: https://gitcdn.link/repo/SAP/xf-addons/master/icons/marketing-mock.svg
+imageURL: https://rawcdn.githack.com/SAP/xf-addons/master/icons/marketing-mock.svg
 bindable: false
 provisionOnlyOnce: true

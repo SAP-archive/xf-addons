@@ -9,6 +9,6 @@ labels:
 providerDisplayName: SAP
 longDescription:  "Integrates an SAP Marketing Cloud instance in a preview mode by registering its ODATA services and Event catalog in an existing Application and activates Event sending based on MQTT. It is not recommended for production scenarios."
 documentationURL: https://www.sap.com/products/crm/marketing.html
-imageURL: https://gitcdn.link/repo/SAP/xf-addons/master/icons/marketing-connector.svg
+imageURL: https://rawcdn.githack.com/SAP/xf-addons/master/icons/marketing-connector.svg
 bindable: false
 provisionOnlyOnce: true

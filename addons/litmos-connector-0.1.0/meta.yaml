@@ -11,4 +11,4 @@ longDescription: "Integrates SAP Litmos in preview mode by registering its REST 
 documentationURL: https://support.litmos.com/hc/en-us/articles/227734667
 bindable: false
 provisionOnlyOnce: true
-imageUrl: https://gitcdn.link/repo/SAP/xf-addons/master/icons/litmos-connector.png
+imageUrl: https://rawcdn.githack.com/SAP/xf-addons/master/icons/litmos-connector.png
