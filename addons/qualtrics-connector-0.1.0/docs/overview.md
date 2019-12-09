@@ -1,5 +1,5 @@
 ---
-title: Overview
+title: Installation
 type: Details
 ---
 The SAP Qualtrics Connector allows you to integrate an SAP Qualtrics tenant by registering its APIs and Events and providing an event bridge that publishes [webhook events](https://api.qualtrics.com/docs/webhooks) from SAP Qualtrics to the Kyma event bus. The integration uses the [extensibility features](https://help.sap.com/viewer/0815bc232f5140bba54a58ab15c82e99/Current/en-US/9ed15aa6eac34b948693955da0c90174.html) available in the SAP C/4HANA cockpit based on concepts and solutions from the open-source project "Kyma", so that you can easily develop Side-by-Side extensions. 

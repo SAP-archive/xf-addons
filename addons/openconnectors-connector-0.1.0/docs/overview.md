@@ -1,5 +1,5 @@
 ---
-title: Overview
+title: Installation
 type: Details
 ---
 This connector allows you to use the connectors provided by SAP Cloud Platform Open Connectors to connect to 150+ cloud applications.
