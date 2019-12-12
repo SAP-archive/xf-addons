@@ -10,7 +10,7 @@ This addons repository as defined by [index.yaml](addons/index.yaml) is installe
 If you need to install it manually, you need to create a configMap in your XF or Kyma cluster using following commands:
 
 ```
-kubectl create configmap xf-addons-repo -n kyma-system --from-literal=URLs=https://github.com/sap/xf-addons//addons/index.yaml
+kubectl create configmap xf-addons-repo -n kyma-system --from-literal=URLs=github.com/sap/xf-addons//addons/index.yaml
 kubectl label configmap xf-addons-repo -n kyma-system helm-broker-repo=true
 ```
 With that, all addons of this repository will be available in your Service Catalog.
