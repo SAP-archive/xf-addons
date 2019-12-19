@@ -1,6 +1,6 @@
 ---
 title: Overview
-type: Overview
+type: Details
 ---
 
 ## Training in the Now

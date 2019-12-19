@@ -6,4 +6,4 @@ docs:
         - type: markdown
           name: docs
           mode: package
-          filter: (docs/(.*?)\.md$)
+          filter: (docs/(.*?)\.md$)|(docs/assets)

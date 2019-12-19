@@ -1,6 +1,7 @@
-# SAP Marketing Connector
-
-## Overview
+---
+title: Installation
+type: Details
+---
 
 The SAP Marketing Connector allows you to integrate an SAP Marketing Cloud instance by registering its OData services and Event catalog in an existing Application and activating Event publishing. The integration uses the [extensibility features](https://help.sap.com/viewer/dbce7cc5e9e3469c84849d35e777fe0b/2019-05-07/en-US/363cf54bad2c47aeb44a87c215ad91ea.html) available in the SAP C/4HANA cockpit based on concepts and solutions from the open-source project "Kyma", so that you can easily develop Side-by-Side extensions. 
 

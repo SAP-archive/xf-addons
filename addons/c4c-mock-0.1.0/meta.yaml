@@ -9,6 +9,6 @@ labels:
 providerDisplayName: SAP
 longDescription:  "Lightweight substitute of SAP Cloud for Customer based on APIs only. It is not recommended for production scenarios."
 documentationURL: https://github.com/SAP/xf-application-mocks/tree/master/c4c-mock
-imageURL: https://storage.googleapis.com/faros-stage-base-xf-bundles/icons/c4c-mock.svg
+imageURL: https://rawcdn.githack.com/SAP/xf-addons/master/icons/c4c-mock.svg
 bindable: false
 provisionOnlyOnce: true
