@@ -10,10 +10,12 @@ The SAP Qualtrics Connector allows you to integrate an SAP Qualtrics tenant by r
 
 The SAP Qualtrics Connector using [API Key Authentication](https://api.qualtrics.com/docs/api-key-authentication). 
 
-1. Login to your SAP Qualtrics tenant
+1. Login to your SAP Qualtrics tenant (with a user having the brand administrator role)
 2. Go to **My Account** > **General Settings** > **Qualtrics ID**
 3. If there is no API token already generated then generate a new one
 4. Copy the API token
+
+> **NOTE**: The API Key need to be issued for a user with Brand Administrator rights. This is needed as the Web Hook Subscriptions are updated through this user which is only possible with the Brand Administrator privileges
 
 ![Generate Token](assets/qualtrics-api-token.png)
 
