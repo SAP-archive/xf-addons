@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "bundle.fullname" . }}-event-gw
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ template "bundle.fullname" . }}-event-gw
+    component: {{ template "bundle.fullname" . }}-event-gw
+data:
+  APPLICATION_NAME: {{ .Values.application_name | quote }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: {{ template "bundle.fullname" . }}-event-gw
+  name: {{ template "bundle.fullname" . }}-event-gw
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "bundle.fullname" . }}-event-gw
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: {{ template "bundle.fullname" . }}-event-gw
+    spec:
+      containers:
+      - image: gabbi/litmos-event-gw:0.0.1
+        imagePullPolicy: "Always"
+        args:
+        - --app-name=$(APPLICATION_NAME)
+        name: {{ template "bundle.fullname" . }}-event-gw
+        ports:
+        - containerPort: 8080
+          name: http
+        resources: {}
+        envFrom:
+        - configMapRef:
+            name: {{ template "bundle.fullname" . }}-event-gw
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:    
+     app: {{ template "bundle.fullname" . }}-event-gw
+  name: {{ template "bundle.fullname" . }}-event-gw
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: {{ template "bundle.fullname" . }}-event-gw
+  ports:
+  - name: http
+    port: 8080
+  type: ClusterIP
+---
+apiVersion: gateway.kyma-project.io/v1alpha2
+kind: Api
+metadata:
+  name: {{ template "bundle.fullname" . }}-event-gw
+  namespace: {{ .Values.namespace }}
+  labels:
+     app: {{ template "bundle.fullname" . }}-event-gw
+spec:
+  hostname: litmos-event-gw-{{ .Release.Namespace }}
+  service:
+    name: {{ template "bundle.fullname" . }}-event-gw
+    port: 8080

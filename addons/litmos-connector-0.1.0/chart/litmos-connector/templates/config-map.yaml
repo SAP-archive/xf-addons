@@ -34,3 +34,117 @@ data:
     }
   apis.json: |-
     []
+  events.json: |
+    {
+      "provider": "litmos",
+      "name": "Litmos Events",
+      "description": "Litmos Events",
+      "shortDescription": "Litmos Events",
+      "labels": {
+        "example": "true"
+      },
+      "events": {
+        "spec": {
+          "asyncapi": "1.0.0",
+          "info": {
+            "title": "Litmos Events",
+            "version": "1.0.0",
+            "description": "Description of all the litmos events"
+          },
+          "baseTopic": "litmos",
+          "topics": {
+            "achievement.earned.v1": {
+              "subscribe": {
+                "summary": "Event containing information about achievement earned",
+                "payload": {
+                  "type": "object",
+                  "properties": {
+                    "userId": {
+                      "title": "User Id",
+                      "description": "User Id",
+                      "type": "string"
+                    },
+                    "userName": {
+                      "title": "User Name",
+                      "description": "User Name",
+                      "type": "string"
+                    },
+                    "courseId": {
+                      "title": "Course Id",
+                      "description": "Course Id",
+                      "type": "string"
+                    },
+                    "title": {
+                      "title": "Title",
+                      "description": "Title",
+                      "type": "string"
+                    },
+                    "code": {
+                      "title": "Code",
+                      "description": "Code",
+                      "type": "string"
+                    },
+                    "achievementDate": {
+                      "title": "Achievement Date",
+                      "description": "Achievement Date",
+                      "type": "string"
+                    },
+                    "compliantTilldate": {
+                      "title": "Compliant Till Date",
+                      "description": "Compliant Till Date",
+                      "type": "string"
+                    },
+                    "result": {
+                      "title": "Result",
+                      "description": "Result",
+                      "type": "string"
+                    },
+                    "type": {
+                      "title": "Type",
+                      "description": "Type",
+                      "type": "string"
+                    },
+                    "firstName": {
+                      "title": "First Name",
+                      "description": "First Name",
+                      "type": "string"
+                    },
+                    "lastName": {
+                      "title": "Last Name",
+                      "description": "Last Name",
+                      "type": "string"
+                    },
+                    "achievementId": {
+                      "title": "Achievement Id",
+                      "description": "Achievement Id",
+                      "type": "integer"
+                    },
+                    "certificateId": {
+                      "title": "Certificate Id",
+                      "description": "Certificate Id",
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "userId": "yj-nr8PhW8o1",
+                    "userName": "sample",
+                    "courseId": "nAcqwEA8jUo1",
+                    "title": "Course Demo",
+                    "code": "",
+                    "achievementDate": "2019-05-06T01:12:35.990",
+                    "compliantTilldate": null,
+                    "result": "Completed",
+                    "type": "Course Completed",
+                    "firstName": "Sample",
+                    "lastName": "User",
+                    "achievementId": 368800,
+                    "certificateId": "biZrK8ab0LE1"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    
