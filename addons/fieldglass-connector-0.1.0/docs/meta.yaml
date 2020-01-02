@@ -1,0 +1,9 @@
+docs:
+  - template:
+      displayName: "fieldglass-connector-0.1.0"
+      description: "SAP Fieldglass Connector documentation"
+      sources:
+        - type: markdown
+          name: docs
+          mode: package
+          filter: (docs/(.*?)\.md$)

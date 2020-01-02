@@ -1,0 +1,396 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
+data:
+  APPLICATION_NAME: {{ .Values.application_name | quote }}
+  PROVIDER_NAME: "SAP"
+  PRODUCT_NAME: "SAP Fieldglass"
+  APP_KIND: rest-with-apikey
+  API_DESCRIPTION: "APIs for SAP Fieldglass"
+  SYSTEM_URL: {{ .Values.system_url | quote }}
+  API_SPECIFICATION_URL: https://raw.githubusercontent.com/jcawley5/xf-addons/master/addons/fieldglass-connector-0.1.0/docs/assets/fieldglass.json
+  CLIENT_ID: {{ .Values.username }}
+  CLIENT_SECRET: {{ .Values.password }}
+  OAUTH_URL: {{ template "oauth_proxy_service" . }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}-api
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
+data:
+  headers.json: |-
+    {
+      "x-applicationKey": {{ .Values.x_applicationKey | quote }},
+      "Accept": "application/json"
+    }
+  events.json: |-
+    {
+      "name": "SAP Fieldglass Business Events",
+      "provider": "SAP Fieldglass",
+      "description": "SAP Fieldglass Business Events",
+      "events": {
+        "spec": {
+          "asyncapi": "1.0.0",
+          "info": {
+            "title": "SAP Fieldglass Business Events",
+            "version": "1.0.0",
+            "description": "SAP Fieldglass Business Events"
+          },
+          "topics": {
+            "jobPosting.v1": {
+              "subscribe": {
+                "summary": "Job Posting",
+                "payload": {
+                  "type": "object",
+                  "example": {
+                    "StaffingOrder": {
+                      "@xmlns": "jobPosting",
+                      "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+                      "@xsi:schemaLocation": "jobPosting https://xcore1.fgvms.com/schema/InSiteJobPostingV2.xsd",
+                      "OrderId": {
+                        "@validFrom": "2019-10-30",
+                        "@validTo": "2019-11-15",
+                        "IdValue": "JCJGJP00000014",
+                        "Status": "Submitted"
+                      },
+                      "ReferenceInformation": {
+                        "StaffingSupplierId": {
+                          "IdValue": "E009"
+                        },
+                        "StaffingCustomerId": {
+                          "IdValue": "JCJG"
+                        }
+                      },
+                      "BusinessUnit": "JCJG",
+                      "ClosedReasonName": null,
+                      "OrderClassification": {
+                        "@orderType": "Accountant - US",
+                        "@orderStatus": "new"
+                      },
+                      "Comments": {
+                        "Comment": null,
+                        "CreatorName": null,
+                        "CreateTime": null
+                      },
+                      "OrderContact": {
+                        "@contactType": "placedBy",
+                        "ContactInfo": {
+                          "PersonName": {
+                            "LegalName": "jane_doe",
+                            "FormattedName": "Doe, Jane"
+                          }
+                        }
+                      },
+                      "RequiredResponseDate": "2019-10-31",
+                      "PositionQuantity": "1",
+                      "MaxSubmissionsAllowed": "3",
+                      "CanSubmitJobSeeker": "no",
+                      "StaffingPosition": {
+                        "PositionHeader": {
+                          "PositionTitle": "Accountant - US",
+                          "FormattedPositionDescription": {
+                            "Value": "Performs work to ensure employees are paid on time and their paychecks\nare accurate Screen time worked inputs for calculating, coding, or other\nerrors. Performs action necessary to determine pay and deductions including\nFederal and State taxes, insurance, retirement, union dues, savings and\nother deductions."
+                          }
+                        },
+                        "PrimaryDepartment": "Network Solutions",
+                        "Departments": {
+                          "Department": {
+                            "Code": "300",
+                            "Name": "Network Solutions",
+                            "Allocation": "100.000"
+                          }
+                        },
+                        "PositionDateRange": {
+                          "StartDate": "2019-10-30",
+                          "ExpectedEndDate": "2019-11-15",
+                          "CreateDate": "2019-10-22",
+                          "SubmitDate": "2019-10-22",
+                          "ClosedDate": null
+                        },
+                        "ServiceType": "Temp",
+                        "JobType": "Full Time",
+                        "ReportToPerson": {
+                          "ContactInfo": {
+                            "PersonName": {
+                              "LegalName": "jgebo_gebo",
+                              "FormattedName": "Gebo, Jeff"
+                            }
+                          }
+                        },
+                        "Coordinator": {
+                          "ContactInfo": {
+                            "PersonName": {
+                              "LegalName": null,
+                              "FormattedName": null
+                            }
+                          }
+                        },
+                        "Distributor": {
+                          "ContactInfo": {
+                            "PersonName": {
+                              "LegalName": null,
+                              "FormattedName": null
+                            }
+                          }
+                        },
+                        "WorkSite": {
+                          "WorkSiteId": {
+                            "Id": "111 North Canal Suite 600"
+                          },
+                          "Address": "111 North Canal",
+                          "Address2": "Suite 600",
+                          "City": "Chicago",
+                          "StateCode": "IL",
+                          "PostalCode": "60606"
+                        },
+                        "Rates": [
+                          {
+                            "@rateType": "bill",
+                            "@rateStatus": "agreed",
+                            "@payType": "Recruited",
+                            "BillAmount": {
+                              "@rateAmountPeriod": "Hr",
+                              "@currency": "USD",
+                              "$": "55.00"
+                            },
+                            "PayAmount": {
+                              "@rateAmountPeriod": "Hr",
+                              "@currency": "USD",
+                              "$": "0.00"
+                            },
+                            "Class": "ST",
+                            "Markup": null,
+                            "Factor": null,
+                            "BaseClass": null
+                          },
+                          {
+                            "@rateType": "bill",
+                            "@rateStatus": "agreed",
+                            "@payType": "Recruited",
+                            "BillAmount": {
+                              "@rateAmountPeriod": "Hr",
+                              "@currency": "USD",
+                              "$": "82.50"
+                            },
+                            "PayAmount": {
+                              "@rateAmountPeriod": "Hr",
+                              "@currency": "USD",
+                              "$": "0.00"
+                            },
+                            "Class": "OT",
+                            "Markup": null,
+                            "Factor": "1.500",
+                            "BaseClass": "ST"
+                          },
+                          {
+                            "@rateType": "bill",
+                            "@rateStatus": "agreed",
+                            "@payType": "Recruited",
+                            "BillAmount": {
+                              "@rateAmountPeriod": "Hr",
+                              "@currency": "USD",
+                              "$": "110.00"
+                            },
+                            "PayAmount": {
+                              "@rateAmountPeriod": "Hr",
+                              "@currency": "USD",
+                              "$": "0.00"
+                            },
+                            "Class": "DT",
+                            "Markup": null,
+                            "Factor": "2.000",
+                            "BaseClass": "ST"
+                          }
+                        ],
+                        "CustomFields": {
+                          "CustomField": [
+                            {
+                              "@name": "What's your favorite color?",
+                              "@mandatory": "yes",
+                              "@type": "xsd:pickList",
+                              "pickList": {
+                                "@isCompleteList": "yes",
+                                "@totalNumberOfItems": "6",
+                                "item": [
+                                  "Blue",
+                                  "Brown",
+                                  "Green",
+                                  "Purple",
+                                  "Red",
+                                  "Yellow"
+                                ]
+                              },
+                              "Value": "Red",
+                              "Class": "JobPosting"
+                            },
+                            {
+                              "@name": "What's your favorite color?",
+                              "@mandatory": "yes",
+                              "@type": "xsd:pickList",
+                              "pickList": {
+                                "@isCompleteList": "yes",
+                                "@totalNumberOfItems": "6",
+                                "item": [
+                                  "Blue",
+                                  "Brown",
+                                  "Green",
+                                  "Purple",
+                                  "Red",
+                                  "Yellow"
+                                ]
+                              },
+                              "Value": null,
+                              "Class": "JobSeeker"
+                            }
+                          ]
+                        },
+                        "Quals": {
+                          "Qual": {
+                            "@name": "How well do you know Google Docs?",
+                            "@mandatory": "yes",
+                            "@type": "xsd:Ratings",
+                            "Ratings": "-1"
+                          }
+                        },
+                        "PositionRules": {
+                          "AutoEngage": "no",
+                          "AutoRegister": "yes",
+                          "AutoActivate": "yes",
+                          "PayRateRequired": "yes",
+                          "ResumeRequired": "yes",
+                          "JobSeekerBillRateCanExceedRequestedBillRate": "no",
+                          "SupplierMustEnterRateChangeAmountsAndDurationOnJobSeekers": "no",
+                          "AllowSupplierToSelectJobSeekerSite": "no"
+                        },
+                        "InvoiceInfo": {
+                          "AutoInvoiceType": "Both",
+                          "TrialEndDate": null,
+                          "TravelTime": "0.000",
+                          "HoursPerDay": "8.00",
+                          "HoursPerWeek": "40.00",
+                          "BillablePerDiem": "0.00",
+                          "EstimatedAdditionalSpend": "6006.00",
+                          "EstimatedTotalHours": "104.0",
+                          "EstimatedExpenses": "0.000",
+                          "SiteTax": "0.000",
+                          "MaximumExpenses": "0.00",
+                          "ExternalReqNumber": null,
+                          "PurchaseOrderNumber": null
+                        },
+                        "SecurityIdInstruction": null,
+                        "SecurityIdPattern": "[A-Z][A-Z][A-Z][A-Z][A-Z][A-Z][0-3][0-9][0-1][0-9][0-9][0-9][0-9][0-9]"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "worker.v1": {
+              "subscribe": {
+                "summary": "Job Work Order",
+                "payload": {
+                  "type": "object",
+                  "example": 
+                    {
+                      "ShowWorker" : {
+                        "@xmlns" : "worker",
+                        "@xmlns:xsi" : "http://www.w3.org/2001/XMLSchema-instance",
+                        "@languageCode" : "en-US",
+                        "@versionID" : "normalizedString",
+                        "@releaseID" : "9.0",
+                        "@systemEnvironmentCode" : "FieldglassTest",
+                        "@xsi:schemaLocation" : "worker https://xcore1.fgvms.com/schema/InSiteWorker.xsd",
+                        "ApplicationArea" : {
+                          "CreationDateTime" : "2019-11-18"
+                        },
+                        "DataArea" : {
+                          "Worker" : {
+                            "JobSeekerID" : "F003JS00000015",
+                            "ExternalReferenceId" : "3e502ce1-ad15-4ce0-83ff-b54311f44db5",
+                            "JobSeekerCode" : null,
+                            "WorkerID" : "JCJGWK00000008",
+                            "WorkOrderID" : "JCJGWO00000012",
+                            "Sequence" : "1",
+                            "SecurityID" : null,
+                            "PersonID" : "z11112320494425089408905",
+                            "Status" : "Active",
+                            "InSiteStatus" : null,
+                            "FirstName" : "Joyce",
+                            "LastName" : "Gebo",
+                            "WorkersEmail" : "qa_test@sap.com",
+                            "JobPostingID" : "JCJGJP00000017",
+                            "JobPostingTitle" : "Accountant - US",
+                            "WorkOrderOwner" : "NA",
+                            "WorkOrderOwnerEmployeeID" : "NA",
+                            "VendorNumber" : "E009",
+                            "VendorName" : "EDH Supplier Inc.",
+                            "BuyerCode" : "GEBO",
+                            "RemitToAddressCode" : null,
+                            "BillablePerDiem" : "0.00",
+                            "StartDate" : "09/27/2019",
+                            "EndDate" : "10/15/2019",
+                            "Currency" : "USD",
+                            "BusinessUnit" : {
+                              "Name" : "Gebo Inc.",
+                              "Code" : "GEBO"
+                            },
+                            "Site" : {
+                              "Name" : "Chicago IL",
+                              "Code" : "Chicago IL"
+                            },
+                            "JobCode" : "NA",
+                            "CostCenters" : {
+                              "CostCenter" : {
+                                "Name" : "Operational Accounting",
+                                "Code" : "200",
+                                "Tasks" : {
+                                  "Task" : [ {
+                                    "Name" : null,
+                                    "Code" : null
+                                  }, {
+                                    "Name" : null,
+                                    "Code" : null
+                                  }, {
+                                    "Name" : null,
+                                    "Code" : null
+                                  } ]
+                                }
+                              }
+                            },
+                            "Rates" : {
+                              "Rate" : [ {
+                                "RateCategory" : "ST",
+                                "UOM" : "Hr",
+                                "BillRate" : "55.00",
+                                "PayRate" : "55.00"
+                              }, {
+                                "RateCategory" : "OT",
+                                "UOM" : "Hr",
+                                "BillRate" : "82.50",
+                                "PayRate" : "82.50"
+                              }, {
+                                "RateCategory" : "DT",
+                                "UOM" : "Hr",
+                                "BillRate" : "110.00",
+                                "PayRate" : "110.00"
+                              } ]
+                            },
+                            "CustomFields" : "\n\t\t\t"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }     
+      }
