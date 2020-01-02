@@ -16,4 +16,4 @@ Note that `PREFIX` is optional and used when specified while creating a service 
 
 The connector will deploy an HTTP gateway that takes [Litmos webhook payloads](https://support.litmos.com/hc/en-us/articles/360022948994-Webhooks) and converts them to Kyma events.
 
-The HTTP URL for the webhook will be of the form <https://litmos-event-gw-{addon-namespace}-{KYMA CLUSTER DOMAIN}>. The event gateway is exposed as a Kyma API. One can find it in the `addon-namespace --> APIs`.
+The HTTP URL for the webhook will be of the form <https://litmos-event-gw-{addon-namespace}-{KYMA-CLUSTER-DOMAIN}>. The event gateway is exposed as a Kyma API. One can find it in the `addon-namespace --> APIs`.
