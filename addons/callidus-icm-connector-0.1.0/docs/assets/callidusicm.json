@@ -1,0 +1,267 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "Service to expose Callidus ICM APIs",
+    "version": "1.0.0",
+    "title": "Callidus ICM APIs",
+    "contact": {}
+  },
+  "tags": [{
+    "name": "callidus-icm-api",
+    "description": "Callidus ICM APIs",
+    "externalDocs": {
+      "description": "API for Listing Finding Entity Data",
+      "url": "https://mycompany.callidusinsurance.net/ICM/REST"
+    }
+  }],
+  "paths": {
+    "/REST/entity/{entity}": {
+      "get": {
+        "tags": [
+          "Entities API"
+        ],
+        "summary": "API to list all records for an entity",
+        "description": "API to list all records for an entity",
+        "operationId": "",
+        "parameters": [{
+            "name": "where",
+            "in": "path",
+            "description": "SQL where clause to be used for filtering the query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "joins",
+            "in": "path",
+            "description": "SQL join clause to be used for filtering the query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order-by",
+            "in": "path",
+            "description": "SQL order-by clause to be used for filtering the query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Entity data queried successfully. Does not necessarily mean that matching records were found"
+          },
+          "400": {
+            "description": "Bad Request - Invalid SQL in where, order-by parameters; Invalid entity or EntityMapping referenced"
+          },
+          "403": {
+            "description": "Forbidden - Invalid session or user not authorized to use this API"
+          },
+          "500": {
+            "description": "Internal Server Error - Unexpected runtime error occurred. See ICM Application Log. Could result from invalid SQL passed in request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {},
+              "example": {
+                "status": {
+                  "@code": "200",
+                  "#text": "4 records found."
+                },
+                "messages": [],
+                "timestamp": "1311110612345",
+                "content": [{
+                  "@count": "4",
+                  "customer": [{
+                      "link": {
+                        "@rel": "self",
+                        "@href": "https://mycompany.callidusinsurance.net/ICM/REST/entity/customer/pk/13089267862890000"
+                      },
+                      "customerno": {
+                        "@label": "CustomerNo",
+                        "#text": "13089267862890000"
+                      },
+                      "customerid": {
+                        "@label": "CustomerId",
+                        "#text": "C1"
+                      }
+                    },
+                    {
+                      "link": {
+                        "@rel": "self",
+                        "@href": "https://mycompany.callidusinsurance.net/ICM/REST/entity/customer/pk/13089268043540000"
+                      },
+                      "customerno": {
+                        "@label": "CustomerNo",
+                        "#text": "13089268043540000"
+                      },
+                      "customerid": {
+                        "@label": "CustomerId",
+                        "#text": "C2"
+                      }
+                    },
+                    {
+                      "link": {
+                        "@rel": "self",
+                        "@href": "https://mycompany.callidusinsurance.net/ICM/REST/entity/customer/pk/13089268310840000"
+                      },
+                      "customerno": {
+                        "@label": "CustomerNo",
+                        "#text": "13089268310840000"
+                      },
+                      "customerid": {
+                        "@label": "CustomerId",
+                        "#text": "C3"
+                      }
+                    },
+                    {
+                      "link": {
+                        "@rel": "self",
+                        "@href": "https://mycompany.callidusinsurance.net/ICM/REST/entity/customer/pk/13089269032870000"
+                      },
+                      "customerno": {
+                        "@label": "CustomerNo",
+                        "#text": "13089269032870000"
+                      },
+                      "customerid": {
+                        "@label": "CustomerId",
+                        "#text": "C4"
+                      }
+                    }
+                  ]
+                }]
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "API to post records to an entity",
+        "description": "The request may be form-based (application/x-www-form-urlencoded) or XML-based (multipart application/xml request). When posting an XML file, you may persist multiple records including child-data.\nWhen posting form-based data, you're limited to persisting a single row.",
+        "parameters": [{
+          "name": "doAsUser",
+          "in": "header",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "description": "doAsUser (optional): The valid userId from UsrSet.UserId to be used. When this param is valid and is not blank, this userId will be used while updating all the audit-related information. This includes the FstUser and LstUser fields on the entity row, as well as the Audit.UserNo."
+        }],
+        "operationId": "",
+        "responses": {
+          "201": {
+            "description": "Created - Entity insert successful"
+          },
+          "400": {
+            "description": "Bad Request - Invalid entity data was submitted. This may result from standard or user-defined edits (Entity Edits)"
+          },
+          "401": {
+            "description": "Unauthorized - Entered user is invalid"
+          },
+          "403": {
+            "description": "Forbidden - Invalid session or user not authorized to use this API"
+          },
+          "500": {
+            "description": "Internal Server Error - Unexpected runtime error occurred. See ICM Application Log."
+          }
+        },
+        "tags": [
+          "Entities API"
+        ]
+      },
+      "put": {
+        "summary": "API to update records of an entity",
+        "description": "The request may be form-based (application/x-www-form-urlencoded) or XML-based (multipart application/xml request). When posting an XML file, you may persist multiple records including child-data.\nWhen posting form-based data, you're limited to persisting a single row.",
+        "parameters": [{
+          "name": "doAsUser",
+          "in": "header",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "description": "doAsUser (optional): The valid userId from UsrSet.UserId to be used. When this param is valid and is not blank, this userId will be used while updating all the audit-related information. This includes the FstUser and LstUser fields on the entity row, as well as the Audit.UserNo."
+        }],
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "OK - Entity update successful"
+          },
+          "400": {
+            "description": "Bad Request - Invalid entity data was submitted. This may result from standard or user-defined edits (Entity Edits)"
+          },
+          "401": {
+            "description": "Unauthorized - Entered user is invalid"
+          },
+          "403": {
+            "description": "Forbidden - Invalid session or user not authorized to use this API"
+          },
+          "404": {
+            "description": "Not Found - No entity was found for the specified pk or id value. This may also occur when the record exists but the user does not have access to the row via Row-Level security"
+          },
+          "500": {
+            "description": "Internal Server Error - Unexpected runtime error occurred. See ICM Application Log."
+          }
+        },
+        "tags": [
+          "Entities API"
+        ]
+      },
+      "delete": {
+        "summary": "API to delete an entity",
+        "description": "/REST/entity/{entity}/pk/{objectno}\n/REST/entity/{entity}/id/{entityid}\nNote that not all entities have a unique id field and therefore the /id/ path is not available for all entities.",
+        "parameters": [{
+          "name": "doAsUser",
+          "in": "header",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "description": "doAsUser (optional): The valid userId from UsrSet.UserId to be used. When this param is valid and is not blank, this userId will be used while updating all the audit-related information. This includes the FstUser and LstUser fields on the entity row, as well as the Audit.UserNo."
+        }],
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "OK - Entity delete successful"
+          },
+          "400": {
+            "description": "Bad Request - Invalid entity data was submitted. This may result from standard or user-defined edits (Entity Edits)"
+          },
+          "401": {
+            "description": "Unauthorized - Entered user is invalid"
+          },
+          "403": {
+            "description": "Forbidden - Invalid session or user not authorized to use this API"
+          },
+          "410": {
+            "description": " Gone - No entity was found for the specified pk or id value. This could also result from user not having access to the row via Row-Level security."
+          },
+          "500": {
+            "description": "Internal Server Error - Unexpected runtime error occurred. See ICM Application Log."
+          }
+        },
+        "tags": [
+          "Entities API"
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    },
+    "links": {},
+    "callbacks": {},
+    "schemas": {}
+  },
+  "security": [],
+  "servers": []
+}

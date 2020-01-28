@@ -28,4 +28,11 @@ entries:
     - name: openconnectors-connector
       description: Enables integration of SAP Open Connectors
       version: 0.1.0
-
+  fieldglass-connector:
+    - name: fieldglass-connector
+      description: "SAP Fieldglass Connector"
+      version: 0.1.0
+  callidus-icm-connector:
+    - name: callidus-icm-connector
+      description: "SAP Callidus ICM Connector"
+      version: 0.1.0

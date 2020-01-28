@@ -1,0 +1,1517 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"description": "SAP Fieldglass APIs",
+		"version": "1.0.0",
+		"title": "SAP Fieldglass APIs"
+	},
+	"paths": {
+		"/api/vc/connector/jobposting": {
+			"get": {
+				"summary": "Get Job Posting",
+				"description": "The following method retrieves detail for a Job Posting ID form SAP Fieldglass based on the previously received identifier.",
+				"parameters": [{
+					"name": "object_ref",
+					"in": "query",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"description": "SAP Fieldglass unique job posting identifier."
+				}],
+				"operationId": "",
+				"responses": {
+					"200": {
+						"description": "The request was received successfully."
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				},
+				"tags": ["Talent Management"]
+			}
+		},
+		"/api/vc/connector/worker_download": {
+			"get": {
+				"summary": "Get Work Order Offer",
+				"description": "The following method posts job posting data to the external system upon distribution, update, halt, or closure of the job posting in SAP Fieldglass. ",
+				"parameters": [{
+					"name": "object_ref",
+					"in": "query",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"description": "SAP Fieldglass unique work order identifier."
+				}],
+				"operationId": "",
+				"responses": {
+					"200": {
+						"description": "The request was received successfully."
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				},
+				"tags": ["Talent Management"]
+			}
+		},
+		"/api/vc/connector/jobseeker": {
+			"post": {
+				"summary": "Post Job Seeker",
+				"description": "The following method posts job seeker data to SAP Fieldglass from the external system",
+				"parameters": [],
+				"operationId": "",
+				"responses": {
+					"200": {
+						"description": "The request was received successfully."
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				},
+				"tags": ["Talent Management"],
+
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {},
+							"example": {
+								"HumanResource": {
+									"@xmlns": "jobSeeker",
+									"@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+									"@xsi:schemaLocation": "jobSeeker https://localhost/schema/InSiteJobSeeker.xsd",
+									"HumanResourceId": {
+										"@validFrom": "2018-03-12",
+										"@validTo": "2018-11-01",
+										"IdValue": null,
+										"ExternalReferenceId": "External Candidate ID 5",
+										"EntityContactInfo": {
+											"PersonName": {
+												"LegalName ": "REST_ABC1"
+											}
+										}
+									},
+									"ReferenceInformation": {
+										"StaffingSupplierId": {
+											"IdValue": "ABC1"
+										},
+										"StaffingCustomerId": {
+											"IdValue": "FGFL"
+										},
+										"OrderId": {
+											"IdValue": "FGFLJP00000010"
+										},
+										"RemitToAddress": null
+									},
+									"ResourceInformation": {
+										"EntityContactInfo": {
+											"PersonName": {
+												"LegalName": "Pascal White",
+												"FirstName": "Pascal",
+												"LastName": "White"
+											},
+											"UserName": null,
+											"SecurityId": "05179908PW",
+											"ContactMethod": {
+												"InternetEmailAddress ": "testworker@sap.com"
+											}
+										},
+										"AvailabilityDate": {
+											"AvailabilityStartDate": "2018-03-05"
+										}
+									},
+									"Rates": [{
+											"@rateType": "bill",
+											"@rateStatus": "agreed",
+											"BillAmount": {
+												"@rateAmountPeriod": "Hr",
+												"@currency": "USD",
+												"$": "60.00"
+											},
+											"MinBillAmount": "40.00",
+											"MaxBillAmount": "60.00",
+											"PayAmount": {
+												"@rateAmountPeriod": "Hr",
+												"@currency": "USD",
+												"$": "50.00"
+											},
+											"Class": "ST",
+											"Markup": null,
+											"Factor": null,
+											"BaseClass": null
+										},
+										{
+											"@rateType": "bill",
+											"@rateStatus": "agreed",
+											"BillAmount": {
+												"@rateAmountPeriod": "Hr",
+												"@currency": "USD",
+												"$": "90.00"
+											},
+											"MinBillAmount": "60.00",
+											"MaxBillAmount": "90.00",
+											"PayAmount": {
+												"@rateAmountPeriod": "Hr",
+												"@currency": "USD",
+												"$": "75.00"
+											},
+											"Class": "OT",
+											"Markup": null,
+											"Factor": "1.500",
+											"BaseClass": "ST"
+										}
+									],
+									"CustomFields": {
+										"CustomField": [{
+												"@name": "If candidate is from a sub-vendor, please enter sub-vendor zip code",
+												"@mandatory": "no",
+												"@type": "xsd:numeric",
+												"Value": "60606",
+												"Class": "JobSeeker"
+											},
+											{
+												"@name": "Previous experience working for FGFL as a contractor?",
+												"@mandatory": "yes",
+												"@type": "xsd:pickList",
+												"pickList": {
+													"@isCompleteList": "yes",
+													"@totalNumberOfItems": "2",
+													"item": [
+														"No",
+														"Yes"
+													]
+												},
+												"Value": "No",
+												"Class": "JobSeeker"
+											}
+										]
+									},
+									"Quals": {
+										"Qual": [{
+												"@name": "Relevant Work Experience (Years)",
+												"@mandatory": "no",
+												"@type": "xsd:Ratings and Years",
+												"Ratings": "5",
+												"Years": "8"
+											},
+											{
+												"@name": "Lean/Six Sigma Green Belt",
+												"@mandatory": "no",
+												"@type": "xsd:Certification",
+												"Certification": {
+													"CertificationName": {
+														"@label": "Certificate Number",
+														"$": "10001"
+													},
+													"StartDate": {
+														"@label": "Date Issued",
+														"$": "2016-01-01"
+													},
+													"EndDate": {
+														"@label": "Date Ended",
+														"$": "2018-12-05"
+													}
+												}
+											}
+										]
+									},
+									"HumanResourceComments": "",
+									"Profile": {
+										"Resume": {
+											"NonXMLResume": {
+												"TextResume": "BRi0xwYWNlL0y3Vi9MCAw [base64 encoded document]",
+												"SupportingMaterials": {
+													"AttachmentReference": {
+														"@mimeType": "application/pdf",
+														"$": "resume.pdf"
+													}
+												}
+											}
+										},
+										"AdditionalAttachment": {
+											"NonXMLAttachment": [{
+													"TextAttachment": "VBERi0xLjKNCAw [base64 encoded document]",
+													"SupportingMaterials": {
+														"AttachmentReference": {
+															"@mimeType": "application/pdf",
+															"$": "Additional doc 1.pdf"
+														}
+													}
+												},
+												{
+													"TextAttachment": "VBERi0xLjQKJe [base64 encoded document]",
+													"SupportingMaterials": {
+														"AttachmentReference": {
+															"@mimeType": "application/pdf",
+															"$": "Additional doc 2.pdf"
+														}
+													}
+												}
+											]
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/vc/connector/work_order": {
+			"post": {
+				"summary": "Respond to Work Order Offer",
+				"description": "The following method posts job posting data to the external system upon distribution, update, halt, or closure of the job posting in SAP Fieldglass. ",
+				"parameters": [],
+				"operationId": "",
+				"responses": {
+					"200": {
+						"description": "The request was received successfully."
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				},
+				"tags": ["Talent Management"]
+			}
+		},
+		"/api/vc/connector/work_order_revision": {
+			"post": {
+				"summary": "Respond to Work Order Offer",
+				"description": "The following method posts job posting data to the external system upon distribution, update, halt, or closure of the job posting in SAP Fieldglass. ",
+				"parameters": [],
+				"operationId": "",
+				"responses": {
+					"200": {
+						"description": "The request was received successfully."
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				},
+				"tags": ["Talent Management"]
+			}
+		},
+		"/api/v1/approvals": {
+			"get": {
+				"summary": "Get a list of items that require approval",
+				"description": "Returns a list of work items requiring approval action.",
+				"tags": [
+					"Approval"
+				],
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "Successful operation.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/approvals"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request. This response is returned if the specified URL is\ninvalid, the request is not formatted correctly, or if the request\nis missing a required field."
+					},
+					"401": {
+						"description": "Unauthorized. User/password or application key is not verified.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Error"
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "Forbidden. Token is not verified."
+					},
+					"404": {
+						"description": "Not Found. Service being requested does not exist."
+					},
+					"500": {
+						"description": "Internal Server Error. Server is not available.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Status"
+								}
+							}
+						}
+					},
+					"503": {
+						"description": "Internal Server Error. Server is not available.",
+						"content": {
+							"text/html": {
+								"examples": {
+									"response": {
+										"value": "Http/1.1 Service Unavailable"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/v1/approvals/module_{moduleId}": {
+			"get": {
+				"summary": "Get items that require approval for a module",
+				"description": "Returns a list of work items requiring approval action, filtered down to\na specific module.",
+				"tags": [
+					"Approval"
+				],
+				"parameters": [{
+					"name": "moduleId",
+					"description": "The ID for the module (for example, 40 for Job Posting or 270 for\nWork Order). A full list can be found in the supporting\ndocumentation.",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "Successful operation.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/approvals"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request. This response is returned if the specified URL is\ninvalid, the request is not formatted correctly, or if the request\nis missing a required field."
+					},
+					"401": {
+						"description": "Unauthorized. User/password or application key is not verified.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Error"
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "Forbidden. Token is not verified."
+					},
+					"404": {
+						"description": "Not Found. Service being requested does not exist."
+					},
+					"500": {
+						"description": "Internal Server Error. Server is not available.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Status"
+								}
+							}
+						}
+					},
+					"503": {
+						"description": "Internal Server Error. Server is not available.",
+						"content": {
+							"text/html": {
+								"examples": {
+									"response": {
+										"value": "Http/1.1 Service Unavailable"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/v1/approvals/module_{moduleId}/{workItemId}/action/{action}": {
+			"post": {
+				"summary": "Approve or reject an item",
+				"description": "Take action on the work item by either approving or rejecting it.",
+				"tags": [
+					"Approval"
+				],
+				"parameters": [{
+						"name": "moduleId",
+						"description": "The ID for the module (for example, 40 for Job Posting or 270 for\nWork Order). A full list can be found in the supporting\ndocumentation.",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "workItemId",
+						"description": "The ID of the work item. You can get this from the response received\nwhen getting the list of items that require approval.",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "action",
+						"description": "The action to take on the work item. This can be either ''approve''\nor ''reject''. If it is reject, the reasonId is required.",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "comments",
+						"description": "Any comments about the action.",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "reasonId",
+						"description": "The reasonId for the rejection. This is required when the action is\n'reject'. You can get a list of rejection reasons available for the\nmodule from the response when getting rejection reasons.",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful operation.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/approvals"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request. This response is returned if the specified URL is\ninvalid, the request is not formatted correctly, or if the request\nis missing a required field."
+					},
+					"401": {
+						"description": "Unauthorized. User/password or application key is not verified.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Error"
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "Forbidden. Token is not verified."
+					},
+					"404": {
+						"description": "Not Found. Service being requested does not exist."
+					},
+					"500": {
+						"description": "Internal Server Error. Server is not available.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Status"
+								}
+							}
+						}
+					},
+					"503": {
+						"description": "Internal Server Error. Server is not available.",
+						"content": {
+							"text/html": {
+								"examples": {
+									"response": {
+										"value": "Http/1.1 Service Unavailable"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/v1/approvals/module_{moduleId}/{workItemId}": {
+			"get": {
+				"summary": "Get details for work item",
+				"description": "Returns details for a specific work item.",
+				"tags": [
+					"Approval"
+				],
+				"parameters": [{
+						"name": "moduleId",
+						"description": "The ID for the module (for example, 40 for Job Posting or 270 for\nWork Order). A full list can be found in the supporting\ndocumentation.",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "workItemId",
+						"description": "The ID of the work item.",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful operation.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/approvals"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request. This response is returned if the specified URL is\ninvalid, the request is not formatted correctly, or if the request\nis missing a required field."
+					},
+					"401": {
+						"description": "Unauthorized. User/password or application key is not verified.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Error"
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "Forbidden. Token is not verified."
+					},
+					"404": {
+						"description": "Not Found. Service being requested does not exist."
+					},
+					"500": {
+						"description": "Internal Server Error. Server is not available.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Status"
+								}
+							}
+						}
+					},
+					"503": {
+						"description": "Internal Server Error. Server is not available.",
+						"content": {
+							"text/html": {
+								"examples": {
+									"response": {
+										"value": "Http/1.1 Service Unavailable"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/v1/approvals/reject_reasons/module_{moduleId}": {
+			"get": {
+				"summary": "Get rejection reasons",
+				"description": "Returns all configured work item rejection reasons by module.",
+				"tags": [
+					"Approval"
+				],
+				"parameters": [{
+					"name": "moduleId",
+					"description": "The ID for the module (for example, 40 for Job Posting or 270 for\nWork Order). A full list can be found in the supporting\ndocumentation.",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "Successful operation.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/approvals"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request. This response is returned if the specified URL is\ninvalid, the request is not formatted correctly, or if the request\nis missing a required field."
+					},
+					"401": {
+						"description": "Unauthorized. User/password or application key is not verified.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Error"
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "Forbidden. Token is not verified."
+					},
+					"404": {
+						"description": "Not Found. Service being requested does not exist."
+					},
+					"500": {
+						"description": "Internal Server Error. Server is not available.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Status"
+								}
+							}
+						}
+					},
+					"503": {
+						"description": "Internal Server Error. Server is not available.",
+						"content": {
+							"text/html": {
+								"examples": {
+									"response": {
+										"value": "Http/1.1 Service Unavailable"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/vc/auditTrail": {
+			"get": {
+				"summary": "Get audit trail details",
+				"description": "Returns audit trail details. When using this with query parameter pairs\nfor start and stop times, you can limit the results to a particular\ntimeframe.",
+				"tags": [
+					"Audit Trail"
+				],
+				"parameters": [{
+						"name": "Content-Type",
+						"in": "header",
+						"required": false,
+						"description": "This value is required in production and must be\napplication/x-www-form-urlencoded.",
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "TransactionId",
+						"in": "query",
+						"required": false,
+						"description": "Transaction ID for transmission.",
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "PriorStartTime",
+						"in": "query",
+						"required": false,
+						"description": "Start time of the integration. Pair this with PriorStopTime.",
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "CurrentStartTime",
+						"in": "query",
+						"required": false,
+						"description": "Start time of the integration. Pair this with CurrentStopTime.",
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "PriorStopTime",
+						"in": "query",
+						"required": false,
+						"description": "Stop time of the integration. Pair this with PriorStartTime.",
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "CurrentStopTime",
+						"in": "query",
+						"required": false,
+						"description": "Stop time of the integration. Pair this with CurrentStartTime.",
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "Status",
+						"in": "query",
+						"required": false,
+						"description": "Error / OK status tied to the integration process to be filtered on.",
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK. The request was received successfully.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/auditTrail"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "No Result",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/vc/report": {
+			"get": {
+				"summary": "Get a list of available reports",
+				"description": "Returns a list of all available reports including the report ID and name.",
+				"operationId": "getReports",
+				"tags": [
+					"Business Analytics API"
+				],
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "An array of reports",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/report"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request. This response is returned if the specified URL is\ninvalid, the request is not formatted correctly, or if the request\nis missing a required field."
+					},
+					"401": {
+						"description": "Unauthorized. User/password or application key is not verified."
+					},
+					"403": {
+						"description": "Forbidden. Token is not verified."
+					},
+					"404": {
+						"description": "Not Found. Service being requested does not exist."
+					},
+					"500": {
+						"description": "Internal Server Error. Server is not available."
+					},
+					"default": {
+						"description": "No Result",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/vc/report/{report_id}": {
+			"get": {
+				"summary": "Get a specific report",
+				"description": "Returns report data for the report ID specified by the user.",
+				"tags": [
+					"Business Analytics API"
+				],
+				"operationId": "getReportById",
+				"parameters": [{
+					"name": "report_id",
+					"in": "path",
+					"description": "The ID of the report. You can obtain it by getting the list of\navailable reports.",
+					"required": true,
+					"schema": {
+						"type": "string"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK. The request was received successfully.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/report"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Unexpected error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/v1/bgc/order_confirmation": {
+			"post": {
+				"tags": [
+					"Background Check"
+				],
+				"summary": "Provides confirmation of a background check request",
+				"description": "Posts a background check request acknowledgment to SAP Fieldglass.",
+				"parameters": [{
+					"name": "Content-Type",
+					"in": "header",
+					"required": false,
+					"description": "JSON format is supported. This value is application/json.",
+					"schema": {
+						"type": "string"
+					}
+				}],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/OrderConfirmation"
+							}
+						}
+					},
+					"description": "The body of the request.",
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "Order Confirmation POST successful"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/api/v1/bgc/result": {
+			"post": {
+				"tags": [
+					"Background Check"
+				],
+				"summary": "Provides results for the work order",
+				"description": "Posts results for a specific background check request.",
+				"parameters": [{
+						"name": "Content-Type",
+						"in": "header",
+						"required": false,
+						"description": "JSON format is supported. This value is application/json.",
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "clientReferenceId",
+						"required": true,
+						"description": "Globally-unique SAP Fieldglass identifier of the object. This is the\nWork Order ID used for the drill-down call in SAP Fieldglass. It is\nnot visible to end users.",
+						"in": "query",
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ResultConfirmation"
+							}
+						}
+					},
+					"description": "The body of the request.",
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "Order Result POST successful"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"examples": {
+
+		},
+		"schemas": {
+			"approvals": {
+				"type": "object",
+				"properties": {
+					"HEADER": {
+						"type": "object",
+						"properties": {
+							"appVersion": {
+								"type": "string",
+								"description": "API version."
+							},
+							"OSUAStr": {
+								"type": "string",
+								"description": "API version"
+							},
+							"numRecs": {
+								"type": "integer",
+								"description": "Number of records returned in the payload."
+							},
+							"status": {
+								"type": "string",
+								"description": "Status of the API call."
+							},
+							"details": {
+								"type": "string",
+								"description": "Always All Ok for successful responses."
+							}
+						}
+					},
+					"PAYLOAD": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"moduleID": {
+									"type": "string",
+									"description": "Numeric module reference ID."
+								},
+								"moduleName": {
+									"type": "string",
+									"description": "Name of module, also type of object to be approved."
+								},
+								"ID": {
+									"type": "string",
+									"description": "Globally unique database-level identifier of object. This is\nthe ID used for the drill down call. Not visible to end users."
+								},
+								"Attributes": {
+									"type": "object",
+									"properties": {
+										"ref": {
+											"type": "string",
+											"description": "Object ID, visible to end users."
+										},
+										"uom": {
+											"type": "string",
+											"description": "3-character currency code."
+										},
+										"name": {
+											"type": "string",
+											"description": "Name of object as defined by user."
+										},
+										"startDate": {
+											"type": "string",
+											"description": "Start date."
+										},
+										"endDate": {
+											"type": "string",
+											"description": "End date."
+										},
+										"amount": {
+											"type": "string",
+											"description": "Amount to be approved."
+										},
+										"refVersion": {
+											"type": "integer",
+											"description": "Revision number of object to be approved."
+										},
+										"validObject": {
+											"type": "boolean",
+											"description": "Always returns false."
+										},
+										"createDate": {
+											"type": "string",
+											"description": "Recorded start date of object to be approved. Logical\nvalue is module dependent."
+										},
+										"creatorName": {
+											"type": "string",
+											"description": "Creator name."
+										},
+										"uniqueName": {
+											"type": "string",
+											"description": "Unique name."
+										},
+										"emailId": {
+											"type": "string",
+											"description": "Unique name."
+										},
+										"status": {
+											"type": "string",
+											"description": "Ok if response is OK."
+										},
+										"sourceLink": {
+											"type": "string",
+											"description": "Source link."
+										},
+										"others": {
+											"type": "object",
+											"description": "Additional data captured in SAP Fieldglass for the object.\nFull list of data is module and configuration-dependent\nand should be consumed/presented as extrinsic."
+										}
+									}
+								},
+								"Status": {
+									"type": "string",
+									"description": "Ok if response is OK."
+								},
+								"Details": {
+									"type": "string",
+									"description": "All ok if response is OK."
+								},
+								"ActivityID": {
+									"type": "string",
+									"description": "Ok if response is OK."
+								}
+							}
+						}
+					}
+				}
+			},
+			"auditTrail": {
+				"type": "object",
+				"properties": {
+					"HEADER": {
+						"type": "object",
+						"properties": {
+							"appVersion": {
+								"type": "string",
+								"description": "App Version"
+							},
+							"OSUAStr": {
+								"type": "string",
+								"description": "App Version"
+							},
+							"numRecs": {
+								"type": "integer",
+								"description": "Number of records"
+							},
+							"status": {
+								"type": "string",
+								"description": "Status"
+							},
+							"details": {
+								"type": "string",
+								"description": "Details"
+							}
+						}
+					},
+					"PAYLOAD": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string",
+									"description": ">- Reflects the type of subscription/delivery method or\nthe type of integration connector being processed."
+								},
+								"company": {
+									"type": "string",
+									"description": "Client buyer code associated to the subscription/integration."
+								},
+								"startTime": {
+									"type": "string",
+									"description": ">- Time and date associated to the start time of the\nsubscription process or individual file transfer. Only\napplicable to integration file errors."
+								},
+								"stopTime": {
+									"type": "string",
+									"description": "Time and date associated to the stop time of the subscription\nprocess or individual file transfer"
+								},
+								"user": {
+									"type": "string",
+									"description": "Integration User associated to client integration process\n(systematic/manual)."
+								},
+								"category": {
+									"type": "string",
+									"description": "Description of source audit trail where the error/exception\noccurred from (the subscription/delivery audit trail or the\nintegration audit trail of the delivered and processed file)."
+								},
+								"ID": {
+									"type": "string",
+									"description": "Unique ID associated to the specific integration file being\nprocessed within SAP Fieldglass."
+								},
+								"Attributes": {
+									"type": "object",
+									"properties": {
+										"version": {
+											"type": "string",
+											"description": "Reflects the current version and type of the integration\nconnector."
+										},
+										"activity": {
+											"type": "string",
+											"description": "Upload"
+										},
+										"company": {
+											"type": "string",
+											"description": "Name of object as defined by user."
+										},
+										"documentStatus": {
+											"type": "string",
+											"description": "Status of the delivery of the integration between SAP\nFieldglass and external platform."
+										},
+										"deliveryTime": {
+											"type": "integer",
+											"description": "Time associated to the subscription delivery of the\nintegration (not the individually processed integration\nfile)."
+										},
+										"deliveryStatus": {
+											"type": "string",
+											"description": "Reflected status of the subscription / delivery for the\nintegration."
+										},
+										"message": {
+											"type": "boolean",
+											"description": "Detailed message associated to the delivery or document\nassociated to the subscription and delivery of the\nintegration."
+										},
+										"duration": {
+											"type": "string",
+											"description": "Amount of time associated to the processing of an\nintegration file within SAP F Fieldglass."
+										},
+										"serverStatus": {
+											"type": "string",
+											"description": "Reflects the standard error message associated to the\nintegration file processing."
+										},
+										"serverMessage": {
+											"type": "string",
+											"description": "Associated to errors on the subscription and individual\nintegration files processing."
+										},
+										"recordsProcessed": {
+											"type": "string",
+											"description": ">- Number of records processed within a file transfer.\nNot displayed for a subscription error."
+										},
+										"recordsFailed": {
+											"type": "string",
+											"description": " Number of records failed within a file transfer. Not\ndisplayed for a subscription error."
+										},
+										"clientReturnCode": {
+											"type": "string",
+											"description": ""
+										},
+										"clientMessage": {
+											"type": "string",
+											"description": ""
+										},
+										"crc32Checksum": {
+											"type": "string",
+											"description": ""
+										},
+										"uploadFile": {
+											"type": "string",
+											"description": "Name of the file associated to the integration."
+										}
+									}
+								},
+								"details": {
+									"type": "string",
+									"description": "All ok if response is OK."
+								},
+								"status": {
+									"type": "string",
+									"description": "Ok if response is OK."
+								}
+							}
+						}
+					}
+				}
+			},
+			"report": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string",
+						"maxLength": 24,
+						"description": "Unique identifier representing a specific report."
+					},
+					"name": {
+						"type": "string",
+						"maxLength": 500,
+						"description": "Name of the report."
+					},
+					"dataType": {
+						"type": "string",
+						"description": "Data type."
+					},
+					"maxLength": {
+						"type": "string",
+						"description": "Max length."
+					},
+					"analyticType": {
+						"type": "string",
+						"description": "Analytic Type."
+					},
+					"semanticType": {
+						"type": "string",
+						"description": "Semantic type."
+					},
+					"measureUnitType": {
+						"type": "string",
+						"description": "Measure unit type."
+					},
+					"measureUnits": {
+						"type": "string",
+						"description": "Measure units."
+					},
+					"measureAggregation": {
+						"type": "string",
+						"description": "Measure aggregation."
+					},
+					"scale": {
+						"type": "string",
+						"description": "Scale."
+					}
+				}
+			},
+			"OrderConfirmation": {
+				"type": "object",
+				"properties": {
+					"HEADER": {
+						"type": "object",
+						"properties": {
+							"AppVersion": {
+								"type": "string",
+								"description": "App version",
+								"example": "FieldglassAPIServer/1.0"
+							},
+							"OSUAStr": {
+								"type": "string",
+								"description": "Description",
+								"example": "FieldglassAPIServer/1.0"
+							},
+							"NumRecs": {
+								"type": "integer",
+								"description": "Number of records",
+								"example": 1
+							},
+							"Status": {
+								"type": "string",
+								"description": "Status",
+								"example": "ok"
+							},
+							"Details": {
+								"type": "string",
+								"description": "Details",
+								"example": "all ok"
+							}
+						}
+					},
+					"backgroundReportPackage": {
+						"type": "object",
+						"properties": {
+							"clientReferenceId": {
+								"type": "string",
+								"description": "Globally-unique SAP Fieldglass identifier of the object. This is\nthe Work Order ID used for the drill down call in SAP\nFieldglass. It is not visible to end users."
+							},
+							"providerReferenceId": {
+								"type": "string",
+								"description": "Candidate ID from background check provider."
+							}
+						}
+					},
+					"Status": {
+						"type": "string",
+						"description": "Status",
+						"example": "ok"
+					},
+					"Details": {
+						"type": "string",
+						"description": "Details",
+						"example": "all ok"
+					}
+				}
+			},
+			"ResultConfirmation": {
+				"type": "object",
+				"properties": {
+					"HEADER": {
+						"type": "object",
+						"properties": {
+							"AppVersion": {
+								"type": "string",
+								"description": "App version",
+								"example": "FieldglassAPIServer/1.0"
+							},
+							"OSUAStr": {
+								"type": "string",
+								"description": "Description",
+								"example": "FieldglassAPIServer/1.0"
+							},
+							"NumRecs": {
+								"type": "integer",
+								"description": "Number of records",
+								"example": 1
+							},
+							"Status": {
+								"type": "string",
+								"description": "Status",
+								"example": "ok"
+							},
+							"Details": {
+								"type": "string",
+								"description": "Details",
+								"example": "all ok"
+							}
+						}
+					},
+					"backgroundReportPackage": {
+						"type": "object",
+						"properties": {
+							"providerReferenceId": {
+								"type": "string",
+								"description": "Background check order ID"
+							},
+							"orderStatus": {
+								"type": "string",
+								"description": "Overall order status"
+							},
+							"resultStatus": {
+								"type": "string",
+								"description": "Overall result status"
+							},
+							"dateOrderReceived": {
+								"type": "string",
+								"description": "Date order received"
+							},
+							"dateOrderCompleted": {
+								"type": "string",
+								"description": "Verification date"
+							},
+							"screenings": {
+								"type": "array",
+								"description": "Details about individual screenings",
+								"items": {
+									"type": "object",
+									"properties": {
+										"name": {
+											"type": "string",
+											"description": "Source name"
+										},
+										"description": {
+											"type": "string",
+											"description": "Source detail"
+										},
+										"type": {
+											"type": "string",
+											"description": "Test name"
+										},
+										"screeningStatus": {
+											"type": "string",
+											"description": "Screening status"
+										},
+										"screeningResultStatus": {
+											"type": "string",
+											"description": "Screening result status"
+										},
+										"dateOrderReceived": {
+											"type": "string",
+											"description": "Verification date"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"Status": {
+				"type": "object",
+				"properties": {
+					"TransactionID": {
+						"type": "string",
+						"description": "Transaction ID."
+					},
+					"ReturnCode": {
+						"type": "integer",
+						"format": "int32",
+						"description": "Return code."
+					},
+					"Message": {
+						"type": "string",
+						"description": "Message."
+					}
+				}
+			},
+			"Error": {
+				"type": "string"
+			}
+		}
+	}
+}

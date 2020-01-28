@@ -1,0 +1,45 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "bundle.fullname" . }}-{{ .Values.oAuthProxyName }}
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.oAuthProxyName }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ template "bundle.fullname" . }}
+        component: {{ template "bundle.fullname" . }}-{{ .Values.oAuthProxyName }}
+      annotations:
+        sidecar.istio.io/inject: "true"
+    spec:
+      containers:
+      - name: {{ .Values.oAuthProxyName }}
+        image: "jcawley5/fg-oauth-proxy"
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 8080
+        envFrom:
+          - secretRef:
+              name: {{ template "bundle.fullname" . }}
+              optional: false
+        args:
+          - --forwardToUrl={{ template "oauth_server" .}}
+          - --apiKey={{ .Values.x_applicationKey }}
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.oAuthProxyName }}
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.oAuthProxyName }}
+spec:
+  selector:
+    component: {{ template "bundle.fullname" . }}-{{ .Values.oAuthProxyName }}
+  ports:
+    - port: 8080
+      name: http
