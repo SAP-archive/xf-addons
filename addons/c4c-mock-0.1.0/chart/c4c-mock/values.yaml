@@ -9,5 +9,5 @@ api:
 domain:
 
 image:
-    name: eu.gcr.io/kyma-project/xf-application-mocks/c4c-mock:0.3.4
+    name: eu.gcr.io/kyma-project/xf-application-mocks/c4c-mock:0.3.5
     pullPolicy: Always
