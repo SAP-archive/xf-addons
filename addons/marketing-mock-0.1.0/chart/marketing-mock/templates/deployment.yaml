@@ -5,6 +5,9 @@ metadata:
   labels:
     app: {{ template "bundle.fullname" . }}
 spec:
+  selector:
+    matchLabels:
+      app: {{ template "bundle.fullname" . }}
   replicas: 1
   template:
     metadata:
