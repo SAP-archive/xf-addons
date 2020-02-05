@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
+  namespace: {{ .Values.namespace }}
+labels:
+  app: {{ template "bundle.fullname" . }}
+  component: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
+spec:
+  template:
+    metadata:
+      labels:
+        app: {{ template "bundle.fullname" . }}
+        component: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
+      annotations:
+        sidecar.istio.io/inject: "false"
+    spec:
+      containers:
+      - image: eu.gcr.io/kyma-project/incubator/api-registration-job:master
+        imagePullPolicy: Always
+        name: {{ .Values.apiRegistrationJobName }}
+        envFrom:
+        - configMapRef:
+            name: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}-config
+        volumeMounts:
+        - name: {{ template "bundle.fullname" . }}-volume
+          mountPath: /app/files/
+      volumes:
+      - name: {{ template "bundle.fullname" . }}-volume
+        configMap:
+          name: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}-spec
+      restartPolicy: Never
+status: {}

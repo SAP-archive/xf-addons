@@ -1,0 +1,74 @@
+apiVersion: kubeless.io/v1beta1
+kind: Function
+metadata:
+  annotations:
+    function-size: S
+  name: cds-events
+spec:
+  checksum: ""
+  deployment:
+    metadata:
+      creationTimestamp: null
+    spec:
+      replicas: 1
+      strategy: {}
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          containers:
+          - name: cds-events
+            resources:
+              limits:
+                cpu: 100m
+                memory: 128Mi
+              requests:
+                cpu: 100m
+                memory: 100Mi
+    status: {}
+  deps:  |
+    {
+      "dependencies": {
+        "request": "^2.81.0"
+      }
+    }
+
+  function:  |
+    var request = require('request');
+    module.exports = { main: function (event, context) {
+            console.log("data is" + JSON.stringify(event.data))
+            request({
+                url: "http://event-publish-service.kyma-system.svc.cluster.local:8080/v1/events",
+                method: "POST",
+                json: true,
+                body: event.data
+            }, function (error, response, body){
+                console.log(response);
+            });
+        } }
+  function-content-type: text
+  handler: handler.main
+  runtime: nodejs8
+  service:
+    ports:
+    - name: http-function-port
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    selector:
+      created-by: kubeless
+      function: cds-events
+  timeout: ""
+---
+apiVersion: gateway.kyma-project.io/v1alpha2
+kind: Api
+metadata:
+  labels:
+    function: cds-events
+    example: cds-events
+  name: cds-events
+spec:
+  hostname: "cds-event-{{ .Release.Namespace }}.{{ .Values.cluster_domain}}"
+  service:
+    name: cds-events
+    port: 8080

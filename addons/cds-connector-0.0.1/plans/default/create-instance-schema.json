@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "system_url": {
+      "type": "string",
+      "title": "System URL",
+      "description": "The base URL of the Github developer API. For example, https://api.github.com"
+    },
+    "oauth_url": {
+      "type": "string",
+      "title": "OAUTH_URL",
+      "description": "OAUTH_URL"
+    },
+    "headers": {
+      "type": "string",
+      "title": "Header Parameters",
+      "description": "Comma seperated headers for oauth in the format of h1=v1,h2=v2"
+    },
+    "formparameters": {
+      "type": "string",
+      "title": "Form Parameters",
+      "description": "Comma seperated form parameters for oauth in the format of f1=v1,f2=v2"
+    },
+    "application_name": {
+      "type": "string",
+      "title": "Application Name",
+      "description": "The name of the Application CR where the REST APIS should be registered for consumption"
+    },
+    "cluster_domain" : {
+      "type": "string",
+      "title": "Kyma Cluster Domain",
+      "description": "The domain of the Kyma cluster"
+    }
+  },
+  "required": [
+    "system_url",
+    "oauth_url",
+    "application_name",
+    "cluster_domain"
+  ]
+}

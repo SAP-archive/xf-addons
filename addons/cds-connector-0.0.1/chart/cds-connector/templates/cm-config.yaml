@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}-config
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
+data:
+  SYSTEM_URL	: {{ .Values.system_url | quote }}
+  APPLICATION_NAME: {{ .Values.application_name | quote }}
+  PROVIDER_NAME: CDS
+  PRODUCT_NAME: CDS
+  APP_KIND: rest-with-apikey
+  API_DESCRIPTION: "APIs for SAP CDS"
+  API_SPECIFICATION_URL: https://raw.githubusercontent.com/jokafreak/kyma-addons/master/addons/cds-connector-0.0.1/docs/api-specfication.json
+  OAUTH_URL: {{ template "oauth_proxy_service" . }}

@@ -1,0 +1,127 @@
+apiVersion: v1
+data:
+  events.json: |
+    {
+      "provider": "SAP CDS",
+      "name": "SAP CDS Events",
+      "description": "Package containing all events from SAP CDS, for details see https://www.sap.com/products/commerce-cloud-context-driven-services.html",
+      "events": {
+        "spec": {
+          "asyncapi": "1.0.0",
+          "info": {
+            "title": "cds-events",
+            "version": "v1",
+            "description": "SAP CDS Events v1"
+          },
+          "topics": {
+            "orderCreated.v1": {
+              "subscribe": {
+                "summary": "New order created",
+                "payload": {
+                  "type": "object",
+                  "required": [
+                    "action"
+                  ],
+                  "properties": {
+                    "profileId": {
+                      "type": "string"
+                    },
+                    "orderId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "profiles.affinities": {
+              "subscribe": {
+                "summary": "Affinity is updated",
+                "payload": {
+                  "type": "object",
+                  "required": [
+                    "action"
+                  ],
+                  "properties": {
+                    "profileId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "profiles.transactions": {
+              "subscribe": {
+                "summary": "Transaction is updated",
+                "payload": {
+                  "type": "object",
+                  "required": [
+                    "action"
+                  ],
+                  "properties": {
+                    "profileId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "profiles.identities": {
+              "subscribe": {
+                "summary": "identity is updated",
+                "payload": {
+                  "type": "object",
+                  "required": [
+                    "action"
+                  ],
+                  "properties": {
+                    "profileId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "context.commerce.campaignStarted": {
+              "subscribe": {
+                "summary": "identity is updated",
+                "payload": {
+                  "type": "object",
+                  "required": [
+                    "action"
+                  ],
+                  "properties": {
+                    "profileId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "documentation": {
+        "displayName": "SAP CDS Events Documentation",
+        "description": "SAP CDS Events Documentation",
+        "type": "API Doc",
+        "docs": [
+          {
+            "title": "SAP CDS events",
+            "type": "Link",
+            "source": "https://www.sap.com/products/commerce-cloud-context-driven-services.html"
+          }
+        ]
+      }
+    }
+  headers.json: |
+    {
+        "Authorization" : {{ printf "token %s" .Values.token | quote }}
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}-spec
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
