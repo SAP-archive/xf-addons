@@ -10,7 +10,7 @@ data:
   username: {{ .Values.username | b64enc }}
   password: {{ .Values.password | b64enc }}
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "bundle.fullname" . }}-{{ .Values.apiProxyName }}
@@ -18,6 +18,10 @@ metadata:
     app: {{ template "bundle.fullname" . }}
     component: {{ template "bundle.fullname" . }}-{{ .Values.apiProxyName }}
 spec:
+  selector:
+    matchLabels:
+      app: {{ template "bundle.fullname" . }}
+      component: {{ template "bundle.fullname" . }}-{{ .Values.apiProxyName }}
   replicas: 1
   template:
     metadata:

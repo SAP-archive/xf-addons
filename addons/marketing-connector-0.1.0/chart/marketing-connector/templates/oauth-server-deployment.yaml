@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "bundle.fullname" . }}-{{ .Values.oauthServerName }}
@@ -7,6 +7,10 @@ metadata:
     app: {{ template "bundle.fullname" . }}
     component: {{ template "bundle.fullname" . }}-{{ .Values.oauthServerName }}
 spec:
+  selector:
+    matchLabels:
+      app: {{ template "bundle.fullname" . }}
+      component: {{ template "bundle.fullname" . }}-{{ .Values.oauthServerName }}
   replicas: 1
   template:
     metadata:
