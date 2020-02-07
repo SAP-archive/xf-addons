@@ -4,4 +4,3 @@
 
 apiRegistrationJobName: api-registration-job
 oAuthProxyName: oauth-proxy-connector
-namespace: kyma-integration

@@ -1,4 +1,11 @@
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}-spec
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
 data:
   events.json: |
     {
@@ -117,11 +124,3 @@ data:
     {
         "Authorization" : {{ printf "token %s" .Values.token | quote }}
     }
-kind: ConfigMap
-metadata:
-  creationTimestamp: null
-  name: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}-spec
-  namespace: {{ .Values.namespace }}
-  labels:
-    app: {{ template "bundle.fullname" . }}
-    component: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
