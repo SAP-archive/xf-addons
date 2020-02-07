@@ -5,14 +5,19 @@ The SAP Context-Driven Services(CDS) Connector allows you to integrate a CDS ten
 
 ### Set up the SAP Context-Driven Services Connector
 
-####Pre-requiste
+###Pre-requiste
 1. Goto your SAP Context-Driven Services tenant , goto **Clients and extensions** and click on **Create client**. Copy the Client ID and Client secret.
 
-####Setup
+###Setup
+
 1. Navigate to the **Runtimes** view under **Extensibility** in SAP C/4HANA cockpit and click on the cluster that you will be using
+
 2. Register a new system providing an appropriate name (e.g. 'cds')
+
 3. Click **Kyma Console**.
+
 4. In the Console, choose the Namespace, go to **Catalog** and select **[Preview] SAP Context-Driven Services - Connector**.
+
 5. Click **Add once** to install and configure the SAP  Context-Driven Services Connector:
 
     | Parameter            | Description                                                                                    |
@@ -28,13 +33,15 @@ The SAP Context-Driven Services(CDS) Connector allows you to integrate a CDS ten
 
 ### Set up the SAP Context-Driven Services tenant
 
-####Pre-requiste
+###Pre-requiste
 1. Goto Kyma Console, Choose Namespace, go to **Lambdas** , open lambda **cds-events**, hover on the http icon next to **Select function Trigger** and copy the URL. We will provide this URL to a lambda running in CDS enricher workbench.
 
-####CDS Setup
+###CDS Setup
+
 1. Open the **Enricher workbench** in your CDS tenant.
 
 2. Create a new lambda and give it a suitable name.
+
 3. In the **Enricher configuration**, as depicted in the image- choose the right schemas.
 ![schema](./assets/cds-lambda-schema.png)
 

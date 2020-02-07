@@ -1,0 +1,9 @@
+docs:
+  - template:
+      displayName: "cds-connector-0.0.1"
+      description: "SAP Context Driven Services Connector documentation"
+      sources:
+        - type: markdown
+          name: docs
+          mode: package
+          filter: (docs/(.*?)\.(md|svg)$)
