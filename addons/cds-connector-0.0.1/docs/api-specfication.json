@@ -1,9 +1,9 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "description": "CDS APIs Spec",
+        "description": "SAP Context Driven Services APIs Spec",
         "version": "1.0.0",
-        "title": "CDS APIs Spec",
+        "title": "SAP Context Driven Services APIs Spec",
         "contact": {},
         "license": {}
     },

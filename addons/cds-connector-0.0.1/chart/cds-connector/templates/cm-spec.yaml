@@ -9,8 +9,8 @@ metadata:
 data:
   events.json: |
     {
-          "provider": "SAP Commerce Cloud, Context Driven Services",
-          "name": "SAP Commerce Cloud, Context Driven Services Events",
+          "provider": "SAP Context Driven Services",
+          "name": "SAP Context Driven Services Events",
           "description": "Package containing all events from SAP CDS, for details see https://www.sap.com/products/commerce-cloud-context-driven-services.html",
           "events": {
             "spec": {
