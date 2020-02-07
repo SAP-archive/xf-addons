@@ -4,3 +4,4 @@
 
 apiRegistrationJobName: api-registration-job
 oAuthProxyName: oauth-proxy-connector
+header: Content-Type=application/x-www-form-urlencoded

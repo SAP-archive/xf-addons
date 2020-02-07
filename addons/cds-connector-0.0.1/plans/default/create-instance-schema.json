@@ -12,11 +12,6 @@
       "title": "OAUTH_URL",
       "description": "OAUTH_URL"
     },
-    "headers": {
-      "type": "string",
-      "title": "Header Parameters",
-      "description": "Comma seperated headers for oauth in the format of h1=v1,h2=v2"
-    },
     "formparameters": {
       "type": "string",
       "title": "Form Parameters",
