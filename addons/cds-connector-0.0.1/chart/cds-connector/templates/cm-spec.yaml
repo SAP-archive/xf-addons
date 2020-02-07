@@ -21,22 +21,6 @@ data:
                 "description": "SAP CDS Events v1"
               },
               "topics": {
-                "profiles.affinities": {
-                  "subscribe": {
-                    "summary": "Affinity is updated",
-                    "payload": {
-                      "type": "object",
-                      "required": [
-                        "action"
-                      ],
-                      "properties": {
-                        "profileId": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  }
-                },
                 "profiles.transactions": {
                   "subscribe": {
                     "summary": "Transaction is updated",
