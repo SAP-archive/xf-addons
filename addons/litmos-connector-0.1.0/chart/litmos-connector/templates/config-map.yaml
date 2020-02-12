@@ -12,6 +12,7 @@ data:
   PRODUCT_NAME: SAP Litmos
   APP_KIND: rest-with-apikey
   API_DESCRIPTION: "APIs for SAP Litmos"
+  API_SPECIFICATION_URL: https://raw.githubusercontent.com/abbi-gaurav/xf-addons/litmos-api-spec/addons/litmos-connector-0.1.0/docs/assets/litmos-apis.json
 ---
 apiVersion: v1
 kind: ConfigMap
