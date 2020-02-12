@@ -1,21 +1,10 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.0",
   "info": {
-    "version": "1.0",
+    "version": "3.0.0",
     "title": "LitmosAPIs-Kyma",
     "contact": {}
   },
-  "host": "api.litmos.com",
-  "basePath": "/v1.svc/bulkimports",
-  "schemes": [
-    "https"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
   "paths": {
     "/users": {
       "post": {
@@ -6128,8 +6117,7 @@
   },
   "tags": [
     {
-      "name": "Users",
-      "description": "Getusers,createuser,getuserbyusername,getuserbyuser-id,updateuser,checktoseeifvaluewasupdated,updateattributestodefault,checktoseeifresetiscomplete."
+      "name": "Users"
     },
     {
       "name": "Modules"
