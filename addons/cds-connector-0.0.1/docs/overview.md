@@ -19,17 +19,15 @@ The SAP Context-Driven Services(CDS) Connector allows you to integrate a CDS ten
 
 4. In the Console, choose the Namespace, go to **Catalog** and select **[Preview] SAP Context-Driven Services - Connector**.
 
-5. Click **Add once** to install and configure the SAP  Context-Driven Services Connector:
+5. Click **Add once** to install and configure the SAP Context-Driven Services Connector:
 
-    | Parameter            | Description                                                                                    |
-    | -------------------- | ---------------------------------------------------------------------------------------------- |
-    | **Application Name** | The name of the registered system from step 2.                                                 |
-    | **Cluster Domain**   | The domain of the Kyma cluster. For example, `demo.cluster.extend.cx.cloud.sap`                |
-    | **Formparameters**   | Client credentials in this format- client_id=yourclientId,grant_type=client_credentials,client_secret=yoursecret    
+    | Parameter | Description |
+    | --- | --- |
+    | **Application Name** | The name of the registered system from step 2.|
+    | **Cluster Domain**   | The domain of the Kyma cluster. For example, `demo.cluster.extend.cx.cloud.sap` |
+    | **Formparameters**   | Client credentials in this format: client_id=yourclientId,grant_type=client_credentials,client_secret=yoursecret |
     | **System URL**       | The URL of your CDS tenant. For example `https://api.us.context.cloud.sap` |
-    | **OAuth URL**        | The url of the OAuth server of the SAP CDS Tenant.`https://htp741143850.api.us.context.cloud.sap/uaa/oauth/token`   
-                                                       
-                                                       |
+    | **OAuth URL**        | The url of the OAuth server of the SAP CDS Tenant. `https://htp741143850.api.us.context.cloud.sap/uaa/oauth/token` |
 
 
 ### Set up the SAP Context-Driven Services tenant
@@ -47,6 +45,6 @@ The SAP Context-Driven Services(CDS) Connector allows you to integrate a CDS ten
 3. In the **Enricher configuration**, as depicted in the image- choose the right schemas.
 ![schema](./assets/cds-lambda-schema.png)
 
-4. Copy the lambda code from [link] and use it as code for lambda created in step 2.(https://raw.githubusercontent.com/SAP-samples/xf-addons/master/addons/cds-connector-0.0.1/lambda/cds-lambda.js)
+4. Copy the lambda code from [link](https://raw.githubusercontent.com/SAP-samples/xf-addons/master/addons/cds-connector-0.0.1/lambda/cds-lambda.js) and use it as code for lambda created in step 2.
 
 5. In the lambda code, search for variable **endpointURL** and give the value of the url of lambda copied earlier.
