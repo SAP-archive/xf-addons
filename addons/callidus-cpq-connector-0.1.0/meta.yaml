@@ -1,0 +1,14 @@
+name: callidus-cpq-connector
+version: 0.1.0
+description: "Enables the preview integration of SAP Callidus CPQ. It is not recommended for production scenarios."
+id: f6c90502-3f7c-47d5-90ba-0f4178d8728c
+displayName: "[Preview] SAP Callidus CPQ - Connector"
+tags: preview,callidus,cpq,connector
+labels:
+  preview: "true"
+providerDisplayName: SAP
+longDescription: "Integrates SAP Callidus CPQ in preview mode by registering its APIs in an existing Application and enables consuming the APIs and Events from a lambda or microservice. It is not recommended for production use."
+documentationURL: https://docs.calliduscloud.com/
+bindable: false
+provisionOnlyOnce: true
+imageUrl: https://raw.githubusercontent.com/SAP/xf-addons/master/icons/calliduscloud.png
