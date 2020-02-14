@@ -1,0 +1,74 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ template "bundle.fullname" . }}-{{ .Values.apiProxyName }}
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}
+type: Opaque
+data:
+  headers: {{ .Values.headers_csv | b64enc }}
+  formparameters: {{ .Values.formparameters_csv | b64enc }}
+  oauthURL: {{ .Values.oauthURL | b64enc }}
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "bundle.fullname" . }}-{{ .Values.apiProxyName }}
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.apiProxyName }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ template "bundle.fullname" . }}
+        component: {{ template "bundle.fullname" . }}-{{ .Values.apiProxyName }}
+      annotations:
+        sidecar.istio.io/inject: "true"
+    spec:
+      containers:
+      - name: {{ .Values.apiProxyName }}
+        image: "jcawley5/kyma-oauth-proxy"
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 8080
+        envFrom:
+          - secretRef:
+              name: {{ template "bundle.fullname" . }}-{{ .Values.apiProxyName }}
+              optional: false
+        args:
+          - --requestBodyForm=$(formparameters)
+          - --headers=$(headers)
+          - --oauthURL=${oauthURL}
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 60
+          periodSeconds: 60
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+          periodSeconds: 30
+          initialDelaySeconds: 5
+          failureThreshold: 1
+          successThreshold: 1
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.apiProxyName }}
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.apiProxyName }}
+spec:
+  selector:
+    component: {{ template "bundle.fullname" . }}-{{ .Values.apiProxyName }}
+  ports:
+    - port: 8080
+      name: http
