@@ -37,6 +37,6 @@ entries:
       description: "SAP Callidus ICM Connector"
       version: 0.1.0
   callidus-cpq-connector:
-    - name: callidus-icm-connector
-      description: "SAP Callidus ICM Connector"
+    - name: callidus-cpq-connector
+      description: "SAP Callidus CPQ Connector"
       version: 0.1.0
