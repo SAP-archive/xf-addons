@@ -3,7 +3,7 @@ title: Installation
 type: Details
 ---
 
-The SAP Callidus CPQ Connector allows you to integrate an SAP Callidus CPQ tenant by registering its APIs and Events.  The integration uses the [extensibility features](https://help.sap.com/viewer/0815bc232f5140bba54a58ab15c82e99/Current/en-US/9ed15aa6eac34b948693955da0c90174.html) available in the SAP C/4HANA cockpit based on concepts and solutions from the open-source project "Kyma", so that you can easily develop Side-by-Side extensions. 
+The SAP Callidus CPQ Connector allows you to integrate a SAP Callidus CPQ tenant by registering its APIs.  The integration uses the [extensibility features](https://help.sap.com/viewer/0815bc232f5140bba54a58ab15c82e99/Current/en-US/9ed15aa6eac34b948693955da0c90174.html) available in the SAP C/4HANA cockpit based on concepts and solutions from the open-source project "Kyma", so that you can easily develop Side-by-Side extensions. 
 
 > **NOTE**: The integration is possible in the **preview** mode only. Do not use it in production scenarios.
 
@@ -27,3 +27,14 @@ The SAP Callidus CPQ Connector allows you to integrate an SAP Callidus CPQ tenan
 ### Set up the SAP Callidus CPQ Events 
 Refer to the **Setting up Subscription to Events** instructions found at
 https://help.webcomcpq.com/doku.php?id=adminhelp:crmintegrationsetup:subscription_to_events
+
+For the Authentication type choose Basic and use the following values.
+
+    | Parameter               | Value                                                |
+    | ----------------------- | ---------------------------------------------------- |
+    | **Webhook URL**         | https://cc-cpq-event-gw-<namespace>.<cluster domain> |
+    | **Webhook HTTP method** | POST                                                 |
+    | **Username**            | The username used for API authentication             |
+    | **Password**            | The password used for API authentication             |
+
+The Username and Password values will be defaulted to the same used for API authentication.  These can be changed by modifying the secret 	**callidus-cpq-connector-cc-cpq-event-gw** found in the namespace where the connector has been provisioned.  Restart the event gw pod after making any changes.

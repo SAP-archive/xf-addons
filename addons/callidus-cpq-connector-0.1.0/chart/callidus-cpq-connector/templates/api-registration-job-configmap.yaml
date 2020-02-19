@@ -26,55 +26,58 @@ data:
     {
     }
   events.json: |-
-    {
+   {
       "name": "SAP Callidus Cloud CPQ Business Events",
       "provider": "SAP Callidus Cloud",
       "description": "SAP Callidus Cloud CPQ Business Events",
       "events": {
-        "spec": {
-          "asyncapi": "1.0.0",
-          "info": {
-            "title": "SAP  Callidus Cloud CPQ Business Events",
-            "version": "1.0.0",
-            "description": "SAP  Callidus Cloud CPQ Business Events"
-          },
-          "topics": {
-            "ProductAdded.v1": {
-              "subscribe": {
+        "asyncapi": "2.0.0",
+        "info": {
+          "title": "SAP  Callidus Cloud CPQ Business Events",
+          "version": "1.0.0",
+          "description": "SAP  Callidus Cloud CPQ Business Events"
+        },
+        "channels": {
+          "ProductAdded.v1": {
+            "subscribe": {
+              "message": {
                 "summary": "Triggered when a product is added to SAP CPQ",
                 "payload": {
-                  "type": "object",
-                  "example": {}
+                  "type": "object"
                 }
               }
-            },
-            "ProductUpdated.v1": {
-              "subscribe": {
+            }
+          },
+          "ProductUpdated.v1": {
+            "subscribe": {
+              "message": {
                 "summary": "Triggered when a product is updated in SAP CPQ",
                 "payload": {
-                  "type": "object",
-                  "example": {}
+                  "type": "object"
                 }
               }
-            },
-            "ProductRemoved.v1": {
-              "subscribe": {
+            }
+          },
+          "ProductRemoved.v1": {
+            "subscribe": {
+              "message": {
                 "summary": "Triggered when a product is removed from SAP CPQ",
                 "payload": {
-                  "type": "object",
-                  "example": {}
+                  "type": "object"
                 }
               }
-            },
-            "QuoteProvisioned.v1": {
-              "subscribe": {
+            }
+          },
+          "QuoteProvisioned.v1": {
+            "subscribe": {
+              "message": {
                 "summary": "Triggered when the Place Order action is taken on Quote 2.0",
                 "payload": {
-                  "type": "object",
-                  "example": {}
+                  "type": "object"
                 }
               }
             }
           }
-        }     
+        }
       }
+    }
