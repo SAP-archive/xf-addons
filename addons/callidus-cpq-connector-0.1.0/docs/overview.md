@@ -7,7 +7,7 @@ The SAP Callidus CPQ Connector allows you to integrate a SAP Callidus CPQ tenant
 
 > **NOTE**: The integration is possible in the **preview** mode only. Do not use it in production scenarios.
 
-### Set up the SAP Callidus CPQ Connector 
+## Set up the SAP Callidus CPQ Connector 
 
 1. Navigate to the **Runtimes** view under **Extensibility** in SAP C/4HANA cockpit and click on the cluster that you will be using
 2. Register a new system providing an appropriate name (e.g. 'callidus-cpq')
@@ -24,7 +24,7 @@ The SAP Callidus CPQ Connector allows you to integrate a SAP Callidus CPQ tenant
     | **Username**         | The username for API authentication                                              |
 
 
-### Set up the SAP Callidus CPQ Events 
+## Set up the SAP Callidus CPQ Events 
 Refer to the **Setting up Subscription to Events** instructions found at
 https://help.webcomcpq.com/doku.php?id=adminhelp:crmintegrationsetup:subscription_to_events
 
