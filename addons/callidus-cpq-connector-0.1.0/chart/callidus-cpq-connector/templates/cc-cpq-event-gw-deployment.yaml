@@ -69,7 +69,7 @@ spec:
   gateways:
   - kyma-gateway.kyma-system.svc.cluster.local
   hosts:
-  - {{ template "eb_server" . }}
+  - {{ template "event_gateway_url" . }}
   http:
   - match:
     - uri:
