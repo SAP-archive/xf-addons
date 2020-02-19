@@ -30,11 +30,11 @@ https://help.webcomcpq.com/doku.php?id=adminhelp:crmintegrationsetup:subscriptio
 
 For the Authentication type choose Basic and use the following values.
 
-    | Parameter               | Value                                                |
-    | ----------------------- | ---------------------------------------------------- |
-    | **Webhook URL**         | https://cc-cpq-event-gw-<namespace>.<cluster domain> |
-    | **Webhook HTTP method** | POST                                                 |
-    | **Username**            | The username used for API authentication             |
-    | **Password**            | The password used for API authentication             |
+    | Parameter               | Value                                                       |
+    | ----------------------- | ----------------------------------------------------------- |
+    | **Webhook URL**         | https://cc-cpq-event-gw-<namespace>.<cluster domain>/events |
+    | **Webhook HTTP method** | POST                                                        |
+    | **Username**            | The username used for API authentication                    |
+    | **Password**            | The password used for API authentication                    |
 
 The Username and Password values will be defaulted to the same used for API authentication.  These can be changed by modifying the secret 	**callidus-cpq-connector-cc-cpq-event-gw** found in the namespace where the connector has been provisioned.  Restart the event gw pod after making any changes.
