@@ -9,10 +9,13 @@ data:
   APPLICATION_NAME: {{ .Values.application_name | quote }}
   PROVIDER_NAME: "SAP"
   PRODUCT_NAME: "SAP Callidus CPQ"
-  SYSTEM_URL: {{ template "oauth_proxy_service" . }}
+  SYSTEM_URL: {{ .Values.system_url | quote }}
   APP_KIND: rest-with-apikey
   API_SPECIFICATION_URL: {{ template "api_spec_url" . }}
   API_DESCRIPTION: "APIs for SAP Callidus CPQ" 
+  OAUTH_URL: {{ template "oauth_proxy_service" . }}
+  CLIENT_ID: "dummy"
+  CLIENT_SECRET: "dummy"
 ---
 apiVersion: v1
 kind: ConfigMap
