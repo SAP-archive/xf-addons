@@ -11,10 +11,6 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- printf "http://%s.%s:8080" .Values.apiProxyName .Release.Namespace | trimAll " " | quote -}}
 {{- end -}}
 
-{{- define "api_spec_url" -}}
-{{- printf "%s%s" .Values.system_url .Values.apiSpecPath | trimAll " " | quote -}}
-{{- end -}}
-
 {{- define "formparameters_csv" -}}
 {{- printf "grant_type=password,username=%s,password=%s,domain=%s" .Values.username .Values.password .Values.domain | trimAll " " | quote | b64enc -}}
 {{- end -}}

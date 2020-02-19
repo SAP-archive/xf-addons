@@ -11,7 +11,7 @@ data:
   PRODUCT_NAME: "SAP Callidus CPQ"
   SYSTEM_URL: {{ .Values.system_url | quote }}
   APP_KIND: rest-with-apikey
-  API_SPECIFICATION_URL: {{ template "api_spec_url" . }}
+  API_SPECIFICATION_URL: https://raw.githubusercontent.com/jcawley5/xf-addons/master/addons/callidus-cpq-connector-0.1.0/docs/cpq-apis.json
   API_DESCRIPTION: "APIs for SAP Callidus CPQ" 
   OAUTH_URL: {{ template "oauth_proxy_service" . }}
   CLIENT_ID: "dummy"
