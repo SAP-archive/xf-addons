@@ -7,9 +7,9 @@ metadata:
     component: {{ template "bundle.fullname" . }}
 type: Opaque
 data:
-  headers: {{ template "headers_csv" | b64enc }}
-  formparameters: {{ template "formparameters_csv" | b64enc }}
-  oauthURL: {{ template "oauthURL" | b64enc }}
+  headers: {{ template "headers_csv" . }}
+  formparameters: {{ template "formparameters_csv" . }}
+  oauthURL: {{ template "oauthURL" . }}
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
