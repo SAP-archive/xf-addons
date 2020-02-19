@@ -26,7 +26,7 @@
     "system_url": {
       "type": "string",
       "title": "System URL",
-      "description": "The base URL of the SAP Callidus CPQ instance. For example, https://dev.webcomcpq.com/"
+      "description": "The base URL of the SAP Callidus CPQ instance. For example, https://dev.webcomcpq.com"
     },
     "cluster_domain": {
       "type": "string",

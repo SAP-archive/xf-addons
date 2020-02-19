@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: {{ template "bundle.fullname" . }}-{{ .Values.eventBridgeName }}
+  name: {{ template "bundle.fullname" . }}-{{ .Values.eventGatewayName }}
   labels:
     app: {{ template "bundle.fullname" . }}
     component: {{ template "bundle.fullname" . }}
@@ -13,17 +13,17 @@ data:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ template "bundle.fullname" . }}-{{ .Values.eventBridgeName }}
+  name: {{ template "bundle.fullname" . }}-{{ .Values.eventGatewayName }}
   labels:
     app: {{ template "bundle.fullname" . }}
-    component: {{ template "bundle.fullname" . }}-{{ .Values.eventBridgeName }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.eventGatewayName }}
 spec:
   replicas: 1
   template:
     metadata:
       labels:
         app: {{ template "bundle.fullname" . }}
-        component: {{ template "bundle.fullname" . }}-{{ .Values.eventBridgeName }}
+        component: {{ template "bundle.fullname" . }}-{{ .Values.eventGatewayName }}
       annotations:
         sidecar.istio.io/inject: "true"
     spec:
@@ -36,7 +36,7 @@ spec:
           containerPort: 8080
         envFrom:
           - secretRef:
-              name: {{ template "bundle.fullname" . }}-{{ .Values.eventBridgeName }}
+              name: {{ template "bundle.fullname" . }}-{{ .Values.eventGatewayName }}
               optional: false
         args:
           - --app-name={{ .Values.application_name }}
@@ -47,13 +47,13 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: {{ template "bundle.fullname" . }}-{{ .Values.eventBridgeName }}
+  name: {{ template "bundle.fullname" . }}-{{ .Values.eventGatewayName }}
   labels:
     app: {{ template "bundle.fullname" . }}
-    component: {{ template "bundle.fullname" . }}-{{ .Values.eventBridgeName }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.eventGatewayName }}
 spec:
   selector:
-    component: {{ template "bundle.fullname" . }}-{{ .Values.eventBridgeName }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.eventGatewayName }}
   ports:
     - port: 8080
       name: http
@@ -61,10 +61,10 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: {{ template "bundle.fullname" . }}-{{ .Values.eventBridgeName }}
+  name: {{ template "bundle.fullname" . }}-{{ .Values.eventGatewayName }}
   labels:
     app: {{ template "bundle.fullname" . }}
-    component: {{ template "bundle.fullname" . }}-{{ .Values.eventBridgeName }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.eventGatewayName }}
 spec:
   gateways:
   - kyma-gateway.kyma-system.svc.cluster.local
@@ -76,7 +76,7 @@ spec:
         regex: /.*
     route:
     - destination:
-        host: {{ template "bundle.fullname" . }}-{{ .Values.eventBridgeName }}
+        host: {{ template "bundle.fullname" . }}-{{ .Values.eventGatewayName }}
         port:
           number: 8080
     websocketUpgrade: true
