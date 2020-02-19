@@ -42,7 +42,7 @@ spec:
         args:
           - --requestBodyForm=$(formparameters)
           - --headers=$(headers)
-          - --oauthURL=${oauthURL}
+          - --oauthURL=$(oauthURL)
         livenessProbe:
           httpGet:
             path: /healthz

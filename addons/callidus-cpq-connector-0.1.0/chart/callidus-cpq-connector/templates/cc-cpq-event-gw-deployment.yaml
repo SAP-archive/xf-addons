@@ -9,6 +9,7 @@ type: Opaque
 data:
   username: {{ .Values.username | b64enc }}
   password: {{ .Values.password | b64enc }}
+  eventTypeQuery: {{ .Values.eventTypeQuery | b64enc }}
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -42,6 +43,7 @@ spec:
           - --app-name={{ .Values.application_name }}
           - --password=$(password)
           - --username=$(username)
+          - --event-type-query=$(eventTypeQuery)
           - --event-publish-url=http://event-publish-service.kyma-system.svc.cluster.local:8080/v1/events
 ---
 kind: Service

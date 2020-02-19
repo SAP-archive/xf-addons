@@ -5,4 +5,5 @@
 apiRegistrationJobName: api-registration-job
 apiProxyName: cc-cpq-proxy
 eventGatewayName: cc-cpq-event-gw
-apiSpecPath: /webapihelp/index
+apiSpecPath: /swagger/docs/v1
+eventTypeQuery: EventType
