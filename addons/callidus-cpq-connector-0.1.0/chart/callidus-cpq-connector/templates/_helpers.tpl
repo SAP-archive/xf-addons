@@ -16,15 +16,15 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- end -}}
 
 {{- define "formparameters_csv" -}}
-{{- printf "grant_type=password,username=%s,password=%s,domain=%s" .Values.username .Values.password .Values.domain| trimAll " " | quote - | b64enc}}
+{{- printf "grant_type=password,username=%s,password=%s,domain=%s" .Values.username .Values.password .Values.domain| trimAll " " | quote | b64enc -}}
 {{- end -}}
 
 {{- define "headers_csv" -}}
-{{- printf "Content-Type=application/x-www-form-urlencoded" | trimAll " " | quote - | b64enc}}
+{{- printf "Content-Type=application/x-www-form-urlencoded" | trimAll " " | quote | b64enc -}}
 {{- end -}}
 
 {{- define "oauthURL" -}}
-{{- printf "%s/basic/api/token" .Values.system_url | trimAll " " | quote - | b64enc}}
+{{- printf "%s/basic/api/token" .Values.system_url | trimAll " " | quote | b64enc -}}
 {{- end -}}
 
 
