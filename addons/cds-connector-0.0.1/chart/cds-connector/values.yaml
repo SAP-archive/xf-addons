@@ -1,0 +1,7 @@
+# Default values for github-connector.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+apiRegistrationJobName: api-registration-job
+oAuthProxyName: oauth-proxy-connector
+headers: Content-Type=application/x-www-form-urlencoded

@@ -16,6 +16,9 @@ metadata:
     app: {{ template "bundle.fullname" . }}-event-gw
   name: {{ template "bundle.fullname" . }}-event-gw
 spec:
+  selector:
+    matchLabels:
+      app: {{ template "bundle.fullname" . }}-event-gw
   replicas: 1
   selector:
     matchLabels:

@@ -1,0 +1,6162 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "3.0.0",
+    "title": "LitmosAPIs-Kyma",
+    "contact": {}
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "description": "Creates a new user profile in your organisation. By default, no emails will be sent when the user is created. To have an email sent to the user when they are created, the following query string parameter needs to be added to the request: &sendmessage=true. \r\n\r\nNote: By default all new users that you create will be prompted to change their password the first time they login. If you are using the single sign-on approach then this may not be desirable. To stop this from happening you need to set the SkipFirstLogin field to true. By default it is assumed that a username will be a valid email address. If you want to use a non-email address as username you must also set the IsCustomUsername property to true.\r\n\r\nNote: You will need to use the same order listed below to update the information. Do not change the order of items or the PUT or POST request will not update/create the users. You can either use the short body or the full body for the request.\r\n\r\nAccess Level: Account Owners Only",
+        "summary": "Create New User",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "CreateNewUser",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateNewUserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "description": "Returns a list of people in your organisation including active and inactive people. By default only the first 100 people are returned. The list can be filtered on first or last name and paged using the optional paging parameters.\r\n\r\nTo page through users add \"&limit=####\" to the end of the request.  For example:  \r\n\r\nGET https://api.litmos.com/v1.svc/users?source=MY-APP&limit=1000\r\n\r\n To retrieve only active users, add the parameter \"&showInactive=false\" to the end of the request.\r\n\r\nGET https://api.litmos.com/v1.svc/users?source=MY-APP&showInactive=false\r\n\r\nAccess Level: Account Owners Only",
+        "summary": "Get Users",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "GetUsers",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/users/{username}": {
+      "get": {
+        "description": "Returns user data with a matching username in the string. AccessLevel: Account Owners Only",
+        "summary": "Get  a User by Username",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "GetaUserbyUsername",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/users/{user_id}": {
+      "put": {
+        "description": "Update a single user profile in your organisation.  The user Id in the uri must match the Id specified in the request body. AccessLevel: Account Owners Only",
+        "summary": "Update a User",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "UpdateaUser",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateaUserRequest"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "description": "Returns a single user profile for the given user Id. AccessLevel: Account Owners Only",
+        "summary": "Get User by User Id",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "GetUserbyUserId",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete a single user profile in your organisation.  The user will be deleted completely from the system.\r\n\r\nNote: Please be careful with the use of this function as once the user is deleted from the system there is no way to recover the user.\r\n\r\nAccess Level: Account Owners Only",
+        "summary": "Delete a User",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "DeleteaUser",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/users/details": {
+      "get": {
+        "description": "Returns a detailed list of people in your organisation including active and inactive people. By default only the first 100 people are returned. The list can be filtered on first or last name, paged using the optional paging parameters, and created date.\r\n\r\nTo return users with a Created Date after a specific date add \"&since=YYYY-MM-DD\" to the end of the request.  For example:  \r\n\r\nGET https://api.litmos.com/v1.svc/users/details?source=MY-APP&since=2015-12-09\r\n\r\nAccess Level: Account Owners Only",
+        "summary": "Get Users Details",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "GetUsersDetails",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/users/{user_id}/usercustomfields": {
+      "post": {
+        "description": "Post a list of Advanced User Custom Fields set up in Account Settings> Litmos Features > Custom Fields > User Custom Fields in your organisation per user.\r\n\r\nAccess Level: Account Owners Only",
+        "summary": "Post Advanced Custom Fields for a User",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "PostAdvancedCustomFieldsforaUser",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "fromat",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/PostAdvancedCustomFieldsforaUserRequest"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "description": "Returns a list of Advanced User Custom Fields set up in Account Settings > Litmos Features > Custom Fields > User Custom Fields in your organisation per user.\r\n\r\nAccess Level: Account Owners Only",
+        "summary": "Get a User's Advanced Custom Fields",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "GetaUser'sAdvancedCustomFields",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/bulkimports": {
+      "post": {
+        "description": "We recommend the \"/bulkimports?\" endpoint for situations where you need to create or update multiple users via the API. \n\nAccess Level: Account Owners, Administrators, Team Admin and Team Leaders\n\nThis endpoint only works for creating/updating users at this time, both use the POST request using XML or JSON formats. The bulk import runs the same process as the bulk import functionality available within the UI. \n\nPlease Note: The <Team> and <Course> fields require the use of the TeamCodeForBulkImport and CourseCodeForBulkImport respectively. These codes can be located in the UI on the Team and Course settings page, otherwise they are available via the API GET /Teams? and GET /Courses? endpoints. \n\nCompany Name cannot be longer than 100 characters.\n\nQuerystring parameters:\n\n&sendmessage=[true/false] set true if you want to send login emails\n\n&skipfirstlogin=[true/false] set to true if you want to skipfirstlogin\n\n&format=json for json format",
+        "summary": "Create a new User Bulk Import",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "CreateanewUserBulkImport",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "sendmessage",
+            "in": "query",
+            "required": true,
+            "type": "boolean",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "example": [
+                {
+                  "Username": "",
+                  "Email": "",
+                  "FirstName": "'",
+                  "LastName": "",
+                  "Phone": "",
+                  "Mobile": "",
+                  "Skype": "",
+                  "Title": "",
+                  "CompanyName": "",
+                  "WebSite": "",
+                  "Twitter": "",
+                  "Team1": "",
+                  "Team2": "",
+                  "Team3": "",
+                  "Team4": "",
+                  "Team5": "",
+                  "Course1": "",
+                  "Course2": "",
+                  "Course3": "",
+                  "Address1": "",
+                  "Address2": "",
+                  "City": "",
+                  "State": "",
+                  "Zip": "",
+                  "Country": "",
+                  "CustomField1": "",
+                  "CustomField2": "",
+                  "CustomField3": "",
+                  "CustomField4": "",
+                  "CustomField5": "",
+                  "CustomField6": "",
+                  "CustomField7": "",
+                  "CustomField8": "",
+                  "CustomField9": "",
+                  "CustomField10": "",
+                  "Active": "",
+                  "Brand": "",
+                  "Culture": "",
+                  "TimeZone": ""
+                }
+              ],
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CreateanewUserBulkImportRequest"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "description": "Retrieves a list of the User Bulk Import files processed for an organization (latest 1000).\n\nAccess Level: Account Owners and Administrators",
+        "summary": "Get a List of Recent Bulk Imports",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "GetaListofRecentBulkImports",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/[Id]": {
+      "get": {
+        "description": "Retrieves a specific User Bulk Import.\n\nAccess Level: Account Owners and Administrators",
+        "summary": "Get a Specific Bulk Import",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "GetaSpecificBulkImport",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "description": "Marks people in your organisation complete for a module in your account.  Only one call can be made at a time.  \r\n\r\nA common use of this API call is to mark a module complete when a user completes a function outside of Litmos.   This call can be used along with and Embeded module and choosing to uncheck the \"Complete the module when opened/ viewed\". \r\n\r\nAccess Level: Account Owners Only\r\n\r\nImportant Note: Attempt values can only be upserted for embed and link module types. Attempt values for other module types are created generically by the system.",
+        "summary": "Mark a Module Complete",
+        "tags": [
+          "Modules"
+        ],
+        "operationId": "MarkaModuleComplete",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/courses": {
+      "get": {
+        "description": "Get a list of all courses within your organisation.\r\n\r\nNote:\r\n\r\nOriginalId can be used as part of a single sign in process to take a user straight into a particular course.\r\n\r\nForSale indicates if the course has been marked for sale via the Litmos UI\r\n\r\nAccess Level: Account Owners Only",
+        "summary": "Get Courses",
+        "tags": [
+          "Courses"
+        ],
+        "operationId": "GetCourses",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/courses/{course_id}": {
+      "get": {
+        "description": "Get a single course's details within your organisation.",
+        "summary": "Get a Course",
+        "tags": [
+          "Courses"
+        ],
+        "operationId": "GetaCourse",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/users/{user_id}/courses": {
+      "post": {
+        "description": "Assign a list of courses to a User. \r\n\r\nIf any courses already exist in the team or if the course ids are invalid they will be ignored. Emails will be sent notifying the user of the course assignment providing they have previously logged into their account. It is possible to disable sending course invitation emails by adding the following querystring parameter to the end of the uri : &sendmessage=false.\r\n\r\nAccess level: Administrators Only",
+        "summary": "Assign Courses to a User",
+        "tags": [
+          "Courses"
+        ],
+        "operationId": "AssignCoursestoaUser",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "sendmessage",
+            "in": "query",
+            "required": true,
+            "type": "boolean",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "example": [
+                {
+                  "Id": "CXpTxdBKCmE1"
+                }
+              ],
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AssignCoursestoaUserRequest"
+              }
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "description": "Get a list of courses currently assigned to a User and the current status of each course.\r\n\r\nThe results fields explained\r\n\r\nComplete Indicates if the user has completed this course.\r\nPercentageComplete The number of modules the user has completed expressed as percentage.\r\nAssignedDate The date the user was assigned the course.\r\nStartDate The date the user started the course.\r\nDateCompleted Indicates the date the user completed this course.\r\nUpToDate Indicates if the course has changed since the user completed it.\r\n\r\n\r\nAccess Level: Account Owners Only",
+        "summary": "List Courses Assigned to a User",
+        "tags": [
+          "Courses"
+        ],
+        "operationId": "ListCoursesAssignedtoaUser",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/courses/{course_id}/users": {
+      "get": {
+        "description": "Get a list of all users assigned to a course.\r\n\r\nAccess Level: Account Owners Only",
+        "summary": "List All Users Assigned to a Course",
+        "tags": [
+          "Courses"
+        ],
+        "operationId": "ListAllUsersAssignedtoaCourse",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/courses/{course_id}/modules": {
+      "get": {
+        "description": "Get a list of all modules under a course.\n\nAccess Level: Account Owners only",
+        "summary": "List Modules for a Course",
+        "tags": [
+          "Courses"
+        ],
+        "operationId": "ListModulesforaCourse",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/users/{user_id}/courses/{course_id}": {
+      "get": {
+        "description": "Get course results and module results for a User.\r\n\r\nAccess level: Administrators only",
+        "summary": "List Course and Module Results for a User",
+        "tags": [
+          "Courses"
+        ],
+        "operationId": "ListCourseandModuleResultsforaUser",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "description": "Unassign courses from a user, one request per course.\r\n\r\nAccess Level: Trainers Only",
+        "summary": "Unassign Courses from a User",
+        "tags": [
+          "Courses"
+        ],
+        "operationId": "UnassignCoursesfromaUser",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/results/details": {
+      "get": {
+        "description": "Get a list of all results for all Users and the current status of each course since a specific date.  In this call, the ‘since’ parameter is required and will fail if it is not present. It will also allow a ‘limit’ parameter of up to 1000 records to keep the record set controlled. The call will fail if the limit parameter is greater than 1000. Use the paging parameters built into the API if there are more than 1000 records returned. \r\n\r\nTo return course results that have changed since a specific date, use the \"&since=YYYY-MM-DD\" parameter on the end of the request.  For example:  \r\n\r\nGET https://api.litmos.com/v1.svc/results/details?source=MY-APP&since=2015-12-09\r\n\r\nAccess level:  Administrators only",
+        "summary": "List All Course Results for All Users Since a Specific Date",
+        "tags": [
+          "Courses"
+        ],
+        "operationId": "ListAllCourseResultsforAllUsersSinceaSpecificDate",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/users/{user_id}/courses/{course_id}/reset": {
+      "put": {
+        "description": "Reset the course results for a specific user\n\nAccess Level: Administrators Only",
+        "summary": "Reset Course Results",
+        "tags": [
+          "Courses"
+        ],
+        "operationId": "ResetCourseResults",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/coursecustomfields": {
+      "get": {
+        "description": "Lists all Course Custom Field Labels.\n\nAccess Level: Administrators Only",
+        "summary": "Get Course Custom Fields",
+        "tags": [
+          "Courses"
+        ],
+        "operationId": "GetCourseCustomFields",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/courses/{course_id}/coursecustomfields": {
+      "get": {
+        "description": "Retrieve the custom field values for a specific Course. \r\n\r\nAccess Level: Account Owners Only",
+        "summary": "Get Course Custom Field Values for a Specific Course",
+        "tags": [
+          "Courses"
+        ],
+        "operationId": "GetCourseCustomFieldValuesforaSpecificCourse",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/learningpaths": {
+      "get": {
+        "description": "Returns a list of learning paths\n\nAccess Level: Account Owners and Administrators",
+        "summary": "Get All Learning Paths",
+        "tags": [
+          "Learning Paths"
+        ],
+        "operationId": "GetAllLearningPaths",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/users/{user_id}/learningpaths": {
+      "post": {
+        "description": "Assigns a list of Users to a Learning Path.\n\nAccess Level: Account Owners & Administrators",
+        "summary": "Assign Users to a Learning Path",
+        "tags": [
+          "Learning Paths"
+        ],
+        "operationId": "AssignUserstoaLearningPath",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "includesubteams",
+            "in": "query",
+            "required": true,
+            "type": "boolean",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "example": [
+                {
+                  "Id": "{{lp_id}}"
+                }
+              ],
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AssignUserstoaLearningPathRequest"
+              }
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "description": "Returns a List of Learning Paths Assigned to a User.\n\nAccess Level: Account Owners & Administrators",
+        "summary": "Get a List of Learning Paths Assigned to a User",
+        "tags": [
+          "Learning Paths"
+        ],
+        "operationId": "GetaListofLearningPathsAssignedtoaUser",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/learningpaths/{lp_id}": {
+      "get": {
+        "description": "Returns a Single Learning Path\n\nAccess Level: Account Owners & Administrators",
+        "summary": "Get a Specific Learning Path",
+        "tags": [
+          "Learning Paths"
+        ],
+        "operationId": "GetaSpecificLearningPath",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "lp_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/learningpaths/{lp_id}/courses": {
+      "get": {
+        "description": "Returns a list of Courses that have been added to a Learning Path.\n\nAccess Level: Account Owners & Administrators",
+        "summary": "Get a List of Courses in a Learning Path",
+        "tags": [
+          "Learning Paths"
+        ],
+        "operationId": "GetaListofCoursesinaLearningPath",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "lp_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/learningpaths/{lp_id}/users": {
+      "get": {
+        "description": "Returns a List of Users Assigned to a Learning Path\n\nAccess Level: Account Owners & Administrators",
+        "summary": "Get a List of Users Assigned to a Learning Path",
+        "tags": [
+          "Learning Paths"
+        ],
+        "operationId": "GetaListofUsersAssignedtoaLearningPath",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "lp_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/teams/{LP_team_id}/learningpaths": {
+      "post": {
+        "description": "Assign a set of Learning Paths to a Team.\n\nAccess Level: Account Owners & Administrators",
+        "summary": "Assign Learning Paths to a Team",
+        "tags": [
+          "Learning Paths"
+        ],
+        "operationId": "AssignLearningPathstoaTeam",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "sendmessage",
+            "in": "query",
+            "required": true,
+            "type": "boolean",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "example": [
+                {
+                  "Id": "{{lp_id}}"
+                }
+              ],
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AssignLearningPathstoaTeamRequest"
+              }
+            }
+          },
+          {
+            "name": "LP_team_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/teams/{team_id}/learningpaths": {
+      "get": {
+        "description": "Returns a list of Learning Paths Assigned to a Team.\n\nAccess Level: Account Owners & Administrators",
+        "summary": "Get Learning Paths Assigned to a Team",
+        "tags": [
+          "Learning Paths"
+        ],
+        "operationId": "GetLearningPathsAssignedtoaTeam",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/users/{user_id}/learningpaths/{lp_id}": {
+      "delete": {
+        "description": "Deletes a set of specific user assignments from a Learning Path.\n\nAccess Level: Account Owners & Administrators",
+        "summary": "Un-Assign Users from a Learning Path",
+        "tags": [
+          "Learning Paths"
+        ],
+        "operationId": "Un-AssignUsersfromaLearningPath",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "example": [
+                {
+                  "Id": "{{lp_id}}"
+                }
+              ],
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Un-AssignUsersfromaLearningPathRequest"
+              }
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "lp_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/teams/{team_id}/courses": {
+      "post": {
+        "description": "Add a list of courses to a Team. If the courses already exist in the team or if the course ids are invalid they will be ignored. \r\n\r\nEmails will be sent notifying the users of the course assignment providing they have previously logged into their account. It is possible to disable sending course invitation emails by adding the following querystring parameter to the end of the uri : &sendmessage=false.\r\n\r\nAccess Level: Account Owners Only",
+        "summary": "Assign a List of Courses to a Team",
+        "tags": [
+          "Teamcourses"
+        ],
+        "operationId": "AssignaListofCoursestoaTeam",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "sendmessage",
+            "in": "query",
+            "required": true,
+            "type": "boolean",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "example": [
+                {
+                  "Id": "{{course_id}}",
+                  "CourseTeamLibrary": true
+                }
+              ],
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AssignaListofCoursestoaTeamRequest"
+              }
+            }
+          },
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete a list of courses to a Team. If the courses do not exist in the team or if the course ids are invalid they will be ignored.\r\n\r\nAccess Level: Trainers Only",
+        "summary": "Un-Assign a List of Courses from a Team",
+        "tags": [
+          "Teamcourses"
+        ],
+        "operationId": "Un-AssignaListofCoursesfromaTeam",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "example": [
+                {
+                  "Id": "{{course_id}}"
+                }
+              ],
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Un-AssignaListofCoursesfromaTeamRequest"
+              }
+            }
+          },
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/teams/{team_id}/leaders/{user_id}": {
+      "put": {
+        "description": "This assumes the user is already assigned to the team. If the user is not a member of the team you will get 404 Not Found status.\r\n\r\nAccess Level: Administrators Only",
+        "summary": "Promote a User to Team Leader for a Team",
+        "tags": [
+          "Leaders"
+        ],
+        "operationId": "PromoteaUsertoTeamLeaderforaTeam",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "description": "This assumes the user is already assigned to the team. If the user is not a member of the team you will get 404 Not Found status.\r\n\r\nAccess Level: Administrators Only",
+        "summary": "Demote a Team Leader on a Team",
+        "tags": [
+          "Leaders"
+        ],
+        "operationId": "DemoteaTeamLeaderonaTeam",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/teams/{team_id}/leaders": {
+      "get": {
+        "description": "Returns a list of users assigned to a Team and marked as Team Leader\r\n\r\nAccess Level: Account Owners Only",
+        "summary": "Get Team Leaders for a Team",
+        "tags": [
+          "Leaders"
+        ],
+        "operationId": "GetTeamLeadersforaTeam",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/teams/{team_id}/admins/{user_id}": {
+      "put": {
+        "description": "This assumes the user is already assigned to the team. If the user is not a member of the team you will get 404 Not Found status.\r\n\r\nAccess Level: Administrators Only",
+        "summary": "Promote a User to Team Admin for a Team",
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "PromoteaUsertoTeamAdminforaTeam",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "description": "This assumes the user is already assigned to the team. If the user is not a member of the team you will get 404 Not Found status.\r\n\r\nAccess Level: Administrators Only",
+        "summary": "Demote a Team Administrator on a Team",
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "DemoteaTeamAdministratoronaTeam",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/teams/{team_id}/admins": {
+      "get": {
+        "description": "Returns a list of users assigned to a Team and marked as Team Admin\r\n\r\nAccess Level: Administrators Only",
+        "summary": "Get Team Administrators for a Team",
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "GetTeamAdministratorsforaTeam",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/teams/{team_id}/users": {
+      "get": {
+        "description": "Returns a list of active users assigned to a Team.\r\n\r\nAccess Level: Account Owners and Administrators Only",
+        "summary": "Get Users in a Team",
+        "tags": [
+          "TeamUsers"
+        ],
+        "operationId": "GetUsersinaTeam",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "post": {
+        "description": "Add a list of users to a Team. If the users already exist in the team or if the user ids are invalid they will be ignored.\r\n\r\nBy default, no emails will be sent when the user is added to a team. To have an email sent to the user when they are added to a team, the following query string parameter needs to be added to the request: &sendmessage=true\r\n\r\nAccess Level: Account Owners and Administrators Only",
+        "summary": "Assign Users to a Team",
+        "tags": [
+          "TeamUsers"
+        ],
+        "operationId": "AssignUserstoaTeam",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "example": [
+                {
+                  "Id": "{{user_id}}"
+                }
+              ],
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AssignUserstoaTeamRequest"
+              }
+            }
+          },
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/teams/{team_id}/users/{user_id}": {
+      "delete": {
+        "description": "Users can only be removed from a Team one per request.\r\n\r\nAccess Level: Account Owners and Administrators Only",
+        "summary": "Un-Assign Users from a Team",
+        "tags": [
+          "TeamUsers"
+        ],
+        "operationId": "Un-AssignUsersfromaTeam",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/users/{user_id}/teams": {
+      "delete": {
+        "description": "Removes a user from all Teams the user is assigned to.\n\nAccess Level: Account Owners and Administrators Only",
+        "summary": "Un-Assign a User from All Teams",
+        "tags": [
+          "TeamUsers"
+        ],
+        "operationId": "Un-AssignaUserfromAllTeams",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "description": "Returns a list of all teams the User belongs to.\n\nAccess Level: Account Owners and Administrators Only",
+        "summary": "Get a list of All Teams a User is Assigned to",
+        "tags": [
+          "TeamUsers"
+        ],
+        "operationId": "GetalistofAllTeamsaUserisAssignedto",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/teams": {
+      "get": {
+        "description": "Returns a list of teams in your organisation. By default only the first 100 teams are returned. The list can be filtered team name and paged using the optional paging parameters.\r\n\r\nAccess Level: Account Owners Only",
+        "summary": "Get a List of All Teams",
+        "tags": [
+          "TeamCRUD"
+        ],
+        "operationId": "GetaListofAllTeams",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a new team or sub-team in your organisation.\r\n\r\nAccessLevel: Trainers Only",
+        "summary": "Create a Team or Sub-Team",
+        "tags": [
+          "TeamCRUD"
+        ],
+        "operationId": "CreateaTeamorSub-Team",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateaTeamorSub-TeamRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/teams/{team_id}": {
+      "get": {
+        "description": "Returns a single team for the given team Id.\r\n\r\nAccessLevel: Trainers Only",
+        "summary": "Get a Team",
+        "tags": [
+          "TeamCRUD"
+        ],
+        "operationId": "GetaTeam",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/teams/{second_team_id}": {
+      "put": {
+        "description": "Update a single team profile in your organisation.  The team Id in the Uri must match the Id specified in the request body.\r\n\r\nAccess Level: Account Owners and Administrators Only",
+        "summary": "Update a Team",
+        "tags": [
+          "TeamCRUD"
+        ],
+        "operationId": "UpdateaTeam",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateaTeamRequest"
+            }
+          },
+          {
+            "name": "second_team_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "summary": "GETTeam/Team_Id",
+        "tags": [
+          "TeamCRUD"
+        ],
+        "operationId": "GETTeam/Team_Id",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "second_team_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete a single team profile in your organisation.  The team Id in the Uri must match the Id specified in the request body.\r\n\r\nAccess Level: Account Owners and Administrators Only",
+        "summary": "Delete a Team or Sub-team",
+        "tags": [
+          "TeamCRUD"
+        ],
+        "operationId": "DeleteaTeamorSub-team",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "second_team_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/courses/{course_id}/modules/{module_id}/sessions": {
+      "post": {
+        "description": "Creates a new session in an ILT module.  Supports Class Room, Webinar, Webex Training, GoToTraining and Zoom Meetings.\r\n\r\nAccessLevel: Super Admins/Account Owners/Administrators/Team Admins/Team Leaders Only",
+        "summary": "Create a New ILT session for a Module",
+        "tags": [
+          "Instructor Led Training (ILT)"
+        ],
+        "operationId": "CreateaNewILTsessionforaModule",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateaNewILTsessionforaModuleRequest"
+            }
+          },
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "module_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "description": "Returns a session list given a module Id.\r\n\r\nAccessLevel: Account Owners/Administrators/Team Admins/Team Leaders Only",
+        "summary": "Get a List of Sessions in an ILT Module",
+        "tags": [
+          "Instructor Led Training (ILT)"
+        ],
+        "operationId": "GetaListofSessionsinanILTModule",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "module_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/sessions/future": {
+      "get": {
+        "description": "Returns a list of future dated sessions for an organisation. \r\n\r\nBy default the first 100 sessions are returned. The list can be filtered on session name and sorted by session’s start date. It can also be paged using the optional paging parameters.\r\n\r\nAccessLevel: Account Owners/Administrators Only",
+        "summary": "Get a List of Future Sessions for an ILT Module",
+        "tags": [
+          "Instructor Led Training (ILT)"
+        ],
+        "operationId": "GetaListofFutureSessionsforanILTModule",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/courses/{course_id}/modules/ilt": {
+      "get": {
+        "description": "Returns a list of ILT Modules given a course Id.\r\n\r\nAccessLevel: Account Owners/Administrators/Team Admins/Team Leaders Only",
+        "summary": "Get a List of all ILT Modules in a Course",
+        "tags": [
+          "Instructor Led Training (ILT)"
+        ],
+        "operationId": "GetaListofallILTModulesinaCourse",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/courses/{course_id}/modules/{module_id}/sessions/{session_id}": {
+      "get": {
+        "description": "Returns a single session in an ILT module for a given session Id and module Id.\r\n\r\nAccessLevel: Super Admins/Account Owners/Administrators Only",
+        "summary": "Get a Specific Session in an ILT Module",
+        "tags": [
+          "Instructor Led Training (ILT)"
+        ],
+        "operationId": "GetaSpecificSessioninanILTModule",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "module_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "put": {
+        "description": "Update a single session in an ILT module. The session Id in the Uri must match the Id specified in the request body. The session Id in the Uri and the session Id in the request body must match.\r\n\r\nAccessLevel: Account Owners/Administrators/Team Admins/Team Leaders Only",
+        "summary": "Update a Session in an ILT Module",
+        "tags": [
+          "Instructor Led Training (ILT)"
+        ],
+        "operationId": "UpdateaSessioninanILTModule",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateaSessioninanILTModuleRequest"
+            }
+          },
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "module_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete a given session.\r\n\r\nAccess Level: Account Owners/Administrators/Team Admins/Team Leaders Only",
+        "summary": "Delete a Session in an ILT Module.",
+        "tags": [
+          "Instructor Led Training (ILT)"
+        ],
+        "operationId": "DeleteaSessioninanILTModule.",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "module_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/instructors": {
+      "get": {
+        "description": "AccessLevel: Account Owners/Administrators/Team Admins/Team Leaders Only\r\n\r\nRequest Uri",
+        "summary": "Get a List of All Instructors",
+        "tags": [
+          "Instructor Led Training (ILT)"
+        ],
+        "operationId": "GetaListofAllInstructors",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/courses/{course_id}/modules/{module_id}/sessions/{session_id}/rollcall": {
+      "get": {
+        "description": "Returns a list of users registered to a session for a given session Id.\r\n\r\nAccess Level: Super Admins/Account Owners/Administrators/Team Admins/Team Leaders Only\r\n\r\nRequest Uri",
+        "summary": "Get Session Roll Call for a Session",
+        "tags": [
+          "Instructor Led Training (ILT)"
+        ],
+        "operationId": "GetSessionRollCallforaSession",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "module_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "post": {
+        "description": "Updates a list of users registered to a session for a given session Id.\r\n\r\nAccess Level: Account Owners/Administrators/Team Admins/Team Leaders Only\r\n\r\nRequest Uri",
+        "summary": "Mark an ILT Session Complete and add Score",
+        "tags": [
+          "Instructor Led Training (ILT)"
+        ],
+        "operationId": "MarkanILTSessionCompleteandaddScore",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "example": [
+                {
+                  "Id": "ljnGtWBa02BagqK4PbJoKw2",
+                  "EventStatus": 1,
+                  "FirstName": "Raman",
+                  "LastName": "TestAPI",
+                  "Email": "rkhenani@calliduscloud.com",
+                  "CompanyName": "",
+                  "Score": 0,
+                  "Completed": false
+                },
+                {
+                  "Id": "2wS0tP6hUjBk5ccH7BOCSQ2",
+                  "EventStatus": 1,
+                  "FirstName": "Test",
+                  "LastName": "User1",
+                  "Email": "rsedighi@calliduscloud.com",
+                  "CompanyName": "CallidusCloud",
+                  "Score": 0,
+                  "Completed": false
+                },
+                {
+                  "Id": "_ylWD8pLP7H3RytsRo8tBA2",
+                  "EventStatus": 1,
+                  "FirstName": "Test",
+                  "LastName": "User2",
+                  "Email": "email_changed@calliduscloud.com",
+                  "CompanyName": "CallidusCloud",
+                  "Score": 0,
+                  "Completed": false
+                }
+              ],
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MarkanILTSessionCompleteandaddScoreRequest"
+              }
+            }
+          },
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "module_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/courses/{course_id}/modules/{module_id}/registration": {
+      "get": {
+        "description": "Returns a list of users assigned to an ILT Module a given module Id.\r\n\r\nAccess Level: Account Owners/Administrators/Team Admins/Team Leaders Only\r\n\r\nRequest Uri",
+        "summary": "Get a list of Users Registered to a Session",
+        "tags": [
+          "Instructor Led Training (ILT)"
+        ],
+        "operationId": "GetalistofUsersRegisteredtoaSession",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "module_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/courses/{course_id}/modules/{module_id}/sessions/{session_id}/attendance": {
+      "get": {
+        "description": "Returns a list of users registered to a session for a given session Id.\r\n\r\nAccess Level: Super Admins/Account Owners/Administrators/Team Admins/Team Leaders Only",
+        "summary": "Get user Attendance for a Session",
+        "tags": [
+          "Instructor Led Training (ILT)"
+        ],
+        "operationId": "GetuserAttendanceforaSession",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "module_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/courses/{course_id}/modules/{module_id}/sessiondays/{session_day_id}/users/{user_id}/attended/{attended}": {
+      "post": {
+        "description": "Mark attendance of session day.\r\n\r\nAccess Level: Super Admins/Account Owners/Administrators/Team Admins/Team Leaders Only",
+        "summary": "Mark Attendance for Users Registered to a Session",
+        "tags": [
+          "Instructor Led Training (ILT)"
+        ],
+        "operationId": "MarkAttendanceforUsersRegisteredtoaSession",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "module_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "session_day_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "attended",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/instructors/{instructor_id}/sessions": {
+      "get": {
+        "description": "AccessLevel: Account Owners/Administrators Only\r\n\r\nRequest Uri",
+        "summary": "Get a List of Sessions for a Specific Instructor",
+        "tags": [
+          "Instructor Led Training (ILT)"
+        ],
+        "operationId": "GetaListofSessionsforaSpecificInstructor",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "instructor_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/courses/{course_id}/modules/{module_id}/sessions/{session_id}/users/{user_id}/register": {
+      "post": {
+        "description": "Register a user to a session given the user’s Id.\r\n\r\nAccessLevel: Account Owners/Administrators/Team Admins/Team Leaders Only",
+        "summary": "Register a User to a Session",
+        "tags": [
+          "Instructor Led Training (ILT)"
+        ],
+        "operationId": "RegisteraUsertoaSession",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "module_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/courses/{course_id}/events": {
+      "post": {
+        "description": "Create an ILT Module given a Course Id.\r\n\r\nAccessLevel: Account Owners/Administrators/Team Admin/Team Leaders Only",
+        "summary": "Create an ILT Module in a Course",
+        "tags": [
+          "Instructor Led Training (ILT)"
+        ],
+        "operationId": "CreateanILTModuleinaCourse",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateanILTModuleinaCourseRequest"
+            }
+          },
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/courses/{course_id}/events/{event_id}": {
+      "post": {
+        "description": "Update an ILT Module given a Course Id.\r\n\r\nAccessLevel: Account Owners/Administrators/Team Admin/Team Leaders Only",
+        "summary": "Update an ILT Module",
+        "tags": [
+          "Instructor Led Training (ILT)"
+        ],
+        "operationId": "UpdateanILTModule",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateanILTModuleRequest"
+            }
+          },
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "event_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete a given ILT Module given a module Id and a course Id.\r\n\r\nAccessLevel: Account Owners/Administrators/Team Admin/Team Leaders Only\r\n\r\nImportant Note: This will delete all of the ILT sessoins within the Module.",
+        "summary": "Delete an ILT Module",
+        "tags": [
+          "Instructor Led Training (ILT)"
+        ],
+        "operationId": "DeleteanILTModule",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "event_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/achievements": {
+      "get": {
+        "description": "When a person completes a course in Litmos, an Achievement record is created and added to the user profile. \n\nThis API request enables you to get a list of achievements in descending order and also provides the ability to filter the achievements by date or user.\n\nFor example, If you wanted to keep track of when users in your organization complete courses you could make a daily request to /achievements and pass in the previous days date in the since parameter to get all of the achievements that have happened since that date.\n\n\nAccess Level: Account Owners Only\n\nOptional query filters:\n\nuserid – return all of the achievements for a given user\nsince – return all achievements since a given date YYYY-MM-DD\npaging – see https://litmos.zendesk.com/entries/20957812-Overview-Developer-API",
+        "summary": "Get Achievements",
+        "tags": [
+          "Achievements"
+        ],
+        "operationId": "GetAchievements",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/users/{user_id}/gamificationsummary": {
+      "get": {
+        "description": "Returns the number of badges and point for a user.\r\n\r\nAccessLevel: Super Admins/Account Owners/Administrators Only",
+        "summary": "Get Total Badges and Points For User",
+        "tags": [
+          "Gamification"
+        ],
+        "operationId": "GetTotalBadgesandPointsForUser",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/users/{user_id}/gamificationdetails": {
+      "get": {
+        "description": "Returns a list of badges, courses/learning paths, date completed, point for a user.\r\n\r\nAccessLevel: Super Admins/Account Owners/Administrators Only",
+        "summary": "Get Badges and Points Earned By User",
+        "tags": [
+          "Gamification"
+        ],
+        "operationId": "GetBadgesandPointsEarnedByUser",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/teams/{team_id}/gamificationdetails": {
+      "get": {
+        "description": "Returns a list of users, badges, courses/learning paths, date completed, points for a team.\r\n\r\nAccessLevel: Super Admins/Account Owners/Administrators Only",
+        "summary": "Get Badges and Points earned by a Team",
+        "tags": [
+          "Gamification"
+        ],
+        "operationId": "GetBadgesandPointsearnedbyaTeam",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/users/{user_id}/gamificationreset": {
+      "put": {
+        "description": "Resets the gamification points and badges for a user.\r\n\r\nAccessLevel: Super Admins/Account Owners/Administrators Only",
+        "summary": "Reset Badges and Points For  a User",
+        "tags": [
+          "Gamification"
+        ],
+        "operationId": "ResetBadgesandPointsForaUser",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/org/users/details": {
+      "get": {
+        "description": "Returns a list of people including 'active' and 'inactive' people that have been created or updated within a given date range.\n\nWhen using the \"since\" and \"to\"  date range parameters in the request URI, the date range format must be 'YYYY-MM-DD HH:MM:SS'. This will return all records that were created/updated between the dates specified. \n\nThe date range must be equal or less than 7 days. \n\nIn an attempt to get results for the current day, the \"to\" date must be set to a future date to return results successfully. \n\nBy default, all API responses will return 100 results. You can return up to 1,000 records by adding the 'limit' query parameter to your URI. Please visit our 'Overview Developer API' documentation and refer to the 'Search & Paging Parameters' section for pagination, and other query parameters you can use. ",
+        "summary": "Get User Details - ST",
+        "tags": [
+          "Date Range API's"
+        ],
+        "operationId": "GetUserDetails-ST",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/org/teams/learningpaths": {
+      "get": {
+        "description": "Returns all team learning-paths that were created or modified within a given date range. \n\nWhen using the \"since\" and \"to\"  date range parameters in the request URI, the date range format must be 'YYYY-MM-DD HH:MM:SS'. This will return all records that were created/updated between the dates specified. \n\nThe date range must be equal or less than 7 days. \n\nIn an attempt to get results for the current day, the \"to\" date must be set to a future date to return results successfully. \n\nBy default, all API responses will return 100 results. You can return up to 1,000 records by adding the 'limit' query parameter to your URI. Please visit our 'Overview Developer API' documentation and refer to the 'Search & Paging Parameters' section for pagination, and other query parameters you can use. ",
+        "summary": "Get  Team Learning Paths - ST",
+        "tags": [
+          "Date Range API's"
+        ],
+        "operationId": "GetTeamLearningPaths-ST",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/org/teams/users": {
+      "get": {
+        "description": "Returns all user team assignments that were created or modified within a given date range. \n\nWhen using the \"since\" and \"to\"  date range parameters in the request URI, the date range format must be 'YYYY-MM-DD HH:MM:SS'. This will return all records that were created/updated between the dates specified. \n\nThe date range must be equal or less than 7 days. \n\nIn an attempt to get results for the current day, the \"to\" date must be set to a future date to return results successfully. \n\nBy default, all API responses will return 100 results. You can return up to 1,000 records by adding the 'limit' query parameter to your URI. Please visit our 'Overview Developer API' documentation and refer to the 'Search & Paging Parameters' section for pagination, and other query parameters you can use. ",
+        "summary": "Get  Team Users - ST",
+        "tags": [
+          "Date Range API's"
+        ],
+        "operationId": "GetTeamUsers-ST",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/org/results/details": {
+      "get": {
+        "description": "Returns a list of all user course results that have changed during the specified interval. You can GET 1000 results using the “limit” parameter.\n\nWhen using the \"since\" and \"to\"  date range parameters in the request URI, the date range format must be 'YYYY-MM-DD HH:MM:SS'. This will return all records that were created/updated between the dates specified. \n\nThe date range must be equal or less than 7 days. \n\nIn an attempt to get results for the current day, the \"to\" date must be set to a future date to return results successfully. \n\nBy default, all API responses will return 100 results. You can return up to 1,000 records by adding the 'limit' query parameter to your URI. Please visit our 'Overview Developer API' documentation and refer to the 'Search & Paging Parameters' section for pagination, and other query parameters you can use. ",
+        "summary": "Get Results - ST",
+        "tags": [
+          "Date Range API's"
+        ],
+        "operationId": "GetResults-ST",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/org/teams": {
+      "get": {
+        "description": "Returns all teams that were created or modified within a given date range.\n\nWhen using the \"since\" and \"to\"  date range parameters in the request URI, the date range format must be 'YYYY-MM-DD HH:MM:SS'. This will return all records that were created/updated between the dates specified. \n\nThe date range must be equal or less than 7 days. \n\nIn an attempt to get results for the current day, the \"to\" date must be set to a future date to return results successfully. \n\nBy default, all API responses will return 100 results. You can return up to 1,000 records by adding the 'limit' query parameter to your URI. Please visit our 'Overview Developer API' documentation and refer to the 'Search & Paging Parameters' section for pagination, and other query parameters you can use. ",
+        "summary": "Get Teams - ST",
+        "tags": [
+          "Date Range API's"
+        ],
+        "operationId": "GetTeams-ST",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/org/courses/modules": {
+      "get": {
+        "description": "Returns all modules under each course within a given date range.\n\nWhen using the \"since\" and \"to\"  date range parameters in the request URI, the date range format must be 'YYYY-MM-DD HH:MM:SS'. This will return all records that were created/updated between the dates specified. \n\nThe date range must be equal or less than 7 days. \n\nIn an attempt to get results for the current day, the \"to\" date must be set to a future date to return results successfully. \n\nBy default, all API responses will return 100 results. You can return up to 1,000 records by adding the 'limit' query parameter to your URI. Please visit our 'Overview Developer API' documentation and refer to the 'Search & Paging Parameters' section for pagination, and other query parameters you can use. ",
+        "summary": "Get Course Modules - ST",
+        "tags": [
+          "Date Range API's"
+        ],
+        "operationId": "GetCourseModules-ST",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/org/achievements": {
+      "get": {
+        "description": "Returns a list of all users that have earned achievements within a given date range.\n\nWhen using the \"since\" and \"to\"  date range parameters in the request URI, the date range format must be 'YYYY-MM-DD HH:MM:SS'. This will return all records that were created/updated between the dates specified. \n\nThe date range must be equal or less than 7 days. \n\nIn an attempt to get results for the current day, the \"to\" date must be set to a future date to return results successfully. \n\nBy default, all API responses will return 100 results. You can return up to 1,000 records by adding the 'limit' query parameter to your URI. Please visit our 'Overview Developer API' documentation and refer to the 'Search & Paging Parameters' section for pagination, and other query parameters you can use. ",
+        "summary": "Get Achievements - ST",
+        "tags": [
+          "Date Range API's"
+        ],
+        "operationId": "GetAchievements-ST",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/org/teams/courses": {
+      "get": {
+        "description": "Returns all team course assignments that were created or modified within a given date range. \n\nWhen using the \"since\" and \"to\"  date range parameters in the request URI, the date range format must be 'YYYY-MM-DD HH:MM:SS'. This will return all records that were created/updated between the dates specified. \n\nThe date range must be equal or less than 7 days. \n\nIn an attempt to get results for the current day, the \"to\" date must be set to a future date to return results successfully. \n\nBy default, all API responses will return 100 results. You can return up to 1,000 records by adding the 'limit' query parameter to your URI. Please visit our 'Overview Developer API' documentation and refer to the 'Search & Paging Parameters' section for pagination, and other query parameters you can use. ",
+        "summary": "Get Team Courses - ST",
+        "tags": [
+          "Date Range API's"
+        ],
+        "operationId": "GetTeamCourses-ST",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/org/learningpaths/courses": {
+      "get": {
+        "description": "Returns all courses that are assigned to a specific learning path within a given date range.\n\nWhen using the \"since\" and \"to\"  date range parameters in the request URI, the date range format must be 'YYYY-MM-DD HH:MM:SS'. This will return all records that were created/updated between the dates specified. \n\nThe date range must be equal or less than 7 days. \n\nIn an attempt to get results for the current day, the \"to\" date must be set to a future date to return results successfully. \n\nBy default, all API responses will return 100 results. You can return up to 1,000 records by adding the 'limit' query parameter to your URI. Please visit our 'Overview Developer API' documentation and refer to the 'Search & Paging Parameters' section for pagination, and other query parameters you can use. ",
+        "summary": "Get Learning Paths Course - ST",
+        "tags": [
+          "Date Range API's"
+        ],
+        "operationId": "GetLearningPathsCourse-ST",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/org/courses": {
+      "get": {
+        "description": "Returns all the courses in your organization that were created or updated within a given date range.\n\nWhen using the \"since\" and \"to\"  date range parameters in the request URI, the date range format must be 'YYYY-MM-DD HH:MM:SS'. This will return all records that were created/updated between the dates specified. \n\nThe date range must be equal or less than 7 days. \n\nIn an attempt to get results for the current day, the \"to\" date must be set to a future date to return results successfully. \n\nBy default, all API responses will return 100 results. You can return up to 1,000 records by adding the 'limit' query parameter to your URI. Please visit our 'Overview Developer API' documentation and refer to the 'Search & Paging Parameters' section for pagination, and other query parameters you can use. ",
+        "summary": "Get Courses - ST",
+        "tags": [
+          "Date Range API's"
+        ],
+        "operationId": "GetCourses-ST",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/org/learningpaths": {
+      "get": {
+        "description": "Returns all learning paths that were created/updated within a given date range.\n\nWhen using the \"since\" and \"to\"  date range parameters in the request URI, the date range format must be 'YYYY-MM-DD HH:MM:SS'. This will return all records that were created/updated between the dates specified. \n\nThe date range must be equal or less than 7 days. \n\nIn an attempt to get results for the current day, the \"to\" date must be set to a future date to return results successfully. \n\nBy default, all API responses will return 100 results. You can return up to 1,000 records by adding the 'limit' query parameter to your URI. Please visit our 'Overview Developer API' documentation and refer to the 'Search & Paging Parameters' section for pagination, and other query parameters you can use. ",
+        "summary": "Get Learning Paths - ST",
+        "tags": [
+          "Date Range API's"
+        ],
+        "operationId": "GetLearningPaths-ST",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/org/users/courses": {
+      "get": {
+        "description": "Returns all courses assigned to users within a given date range.\n\nWhen using the \"since\" and \"to\"  date range parameters in the request URI, the date range format must be 'YYYY-MM-DD HH:MM:SS'. This will return all records that were created/updated between the dates specified. \n\nThe date range must be equal or less than 7 days. \n\nIn an attempt to get results for the current day, the \"to\" date must be set to a future date to return results successfully. \n\nBy default, all API responses will return 100 results. You can return up to 1,000 records by adding the 'limit' query parameter to your URI. Please visit our 'Overview Developer API' documentation and refer to the 'Search & Paging Parameters' section for pagination, and other query parameters you can use. ",
+        "summary": "Get User Courses - ST",
+        "tags": [
+          "Date Range API's"
+        ],
+        "operationId": "GetUserCourses-ST",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/org/learningpaths/users": {
+      "get": {
+        "description": "Returns all learning-paths assigned to users within a given date range.\n\nWhen using the \"since\" and \"to\"  date range parameters in the request URI, the date range format must be 'YYYY-MM-DD HH:MM:SS'. This will return all records that were created/updated between the dates specified. \n\nThe date range must be equal or less than 7 days. \n\nIn an attempt to get results for the current day, the \"to\" date must be set to a future date to return results successfully. \n\nBy default, all API responses will return 100 results. You can return up to 1,000 records by adding the 'limit' query parameter to your URI. Please visit our 'Overview Developer API' documentation and refer to the 'Search & Paging Parameters' section for pagination, and other query parameters you can use. ",
+        "summary": "Get Learning Paths Users - ST",
+        "tags": [
+          "Date Range API's"
+        ],
+        "operationId": "GetLearningPathsUsers-ST",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/org/modules": {
+      "get": {
+        "description": "Returns all the modules in an organization that was created/ updated within a given date range.\n\nWhen using the \"since\" and \"to\"  date range parameters in the request URI, the date range format must be 'YYYY-MM-DD HH:MM:SS'. This will return all records that were created/updated between the dates specified. \n\nThe date range must be equal or less than 7 days. \n\nIn an attempt to get results for the current day, the \"to\" date must be set to a future date to return results successfully. \n\nBy default, all API responses will return 100 results. You can return up to 1,000 records by adding the 'limit' query parameter to your URI. Please visit our 'Overview Developer API' documentation and refer to the 'Search & Paging Parameters' section for pagination, and other query parameters you can use. ",
+        "summary": "Get Modules - ST",
+        "tags": [
+          "Date Range API's"
+        ],
+        "operationId": "GetModules-ST",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/org/modules/results": {
+      "get": {
+        "description": "Module results API will return the list of all user module results that have changed during the specified interval.\n\nWhen using the \"since\" and \"to\"  date range parameters in the request URI, the date range format must be 'YYYY-MM-DD HH:MM:SS'. This will return all records that were created/updated between the dates specified. \n\nThe date range must be equal or less than 7 days. \n\nIn an attempt to get results for the current day, the \"to\" date must be set to a future date to return results successfully. \n\nBy default, all API responses will return 100 results. You can return up to 1,000 records by adding the 'limit' query parameter to your URI. Please visit our 'Overview Developer API' documentation and refer to the 'Search & Paging Parameters' section for pagination, and other query parameters you can use. ",
+        "summary": "Get Modules Results - ST",
+        "tags": [
+          "Date Range API's"
+        ],
+        "operationId": "GetModulesResults-ST",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "apikey",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/org/learningpaths/results": {
+      "get": {
+        "description": "Learning paths results API returns the list of all user learning paths results that have changed during the specified interval.\n\nWhen using the \"since\" and \"to\"  date range parameters in the request URI, the date range format must be 'YYYY-MM-DD HH:MM:SS'. This will return all records that were created/updated between the dates specified. \n\nThe date range must be equal or less than 7 days. \n\nIn an attempt to get results for the current day, the \"to\" date must be set to a future date to return results successfully. \n\nBy default, all API responses will return 100 results. You can return up to 1,000 records by adding the 'limit' query parameter to your URI. Please visit our 'Overview Developer API' documentation and refer to the 'Search & Paging Parameters' section for pagination, and other query parameters you can use. ",
+        "summary": "Get Learning Path Results - ST",
+        "tags": [
+          "Date Range API's"
+        ],
+        "operationId": "GetLearningPathResults-ST",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Source",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Since",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "To",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CreateNewUserRequest": {
+      "title": "CreateNewUserRequest",
+      "example": {
+        "Id": "",
+        "UserName": "testuser122233332",
+        "FirstName": "Test",
+        "LastName": "User1",
+        "FullName": "",
+        "Email": "w@q.com",
+        "AccessLevel": "Learner",
+        "DisableMessages": "false",
+        "Active": "true",
+        "Skype": "TestUser1",
+        "PhoneWork": "925-225-8068",
+        "PhoneMobile": "925-225-8068",
+        "IsCustomUsername": "true",
+        "SkipFirstLogin": "true",
+        "TimeZone": "PacificStandardTime",
+        "Street1": "4140DublinBlvd",
+        "Street2": "Suite400",
+        "City": "Dublin",
+        "State": "California",
+        "PostalCode": "94568",
+        "Country": "UnitedStatedofAmerica",
+        "CompanyName": "CallidusCloud",
+        "JobTitle": "WaterBoy",
+        "CustomField1": "CustomField1",
+        "CustomField2": "CustomField2",
+        "CustomField3": "CustomField3",
+        "CustomField4": "CustomField4",
+        "CustomField5": "CustomField5",
+        "CustomField6": "CustomField6",
+        "CustomField7": "CustomField7",
+        "CustomField8": "CustomField8",
+        "CustomField9": "CustomField9",
+        "CustomField10": "CustomField10",
+        "EnableTextNotification": "false"
+      },
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        },
+        "UserName": {
+          "type": "string"
+        },
+        "FirstName": {
+          "type": "string"
+        },
+        "LastName": {
+          "type": "string"
+        },
+        "FullName": {
+          "type": "string"
+        },
+        "Email": {
+          "type": "string"
+        },
+        "AccessLevel": {
+          "type": "string"
+        },
+        "DisableMessages": {
+          "type": "string"
+        },
+        "Active": {
+          "type": "string"
+        },
+        "Skype": {
+          "type": "string"
+        },
+        "PhoneWork": {
+          "type": "string"
+        },
+        "PhoneMobile": {
+          "type": "string"
+        },
+        "IsCustomUsername": {
+          "type": "string"
+        },
+        "SkipFirstLogin": {
+          "type": "string"
+        },
+        "TimeZone": {
+          "type": "string"
+        },
+        "Street1": {
+          "type": "string"
+        },
+        "Street2": {
+          "type": "string"
+        },
+        "City": {
+          "type": "string"
+        },
+        "State": {
+          "type": "string"
+        },
+        "PostalCode": {
+          "type": "string"
+        },
+        "Country": {
+          "type": "string"
+        },
+        "CompanyName": {
+          "type": "string"
+        },
+        "JobTitle": {
+          "type": "string"
+        },
+        "CustomField1": {
+          "type": "string"
+        },
+        "CustomField2": {
+          "type": "string"
+        },
+        "CustomField3": {
+          "type": "string"
+        },
+        "CustomField4": {
+          "type": "string"
+        },
+        "CustomField5": {
+          "type": "string"
+        },
+        "CustomField6": {
+          "type": "string"
+        },
+        "CustomField7": {
+          "type": "string"
+        },
+        "CustomField8": {
+          "type": "string"
+        },
+        "CustomField9": {
+          "type": "string"
+        },
+        "CustomField10": {
+          "type": "string"
+        },
+        "EnableTextNotification": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Id",
+        "UserName",
+        "FirstName",
+        "LastName",
+        "FullName",
+        "Email",
+        "AccessLevel",
+        "DisableMessages",
+        "Active",
+        "Skype",
+        "PhoneWork",
+        "PhoneMobile",
+        "IsCustomUsername",
+        "SkipFirstLogin",
+        "TimeZone",
+        "Street1",
+        "Street2",
+        "City",
+        "State",
+        "PostalCode",
+        "Country",
+        "CompanyName",
+        "JobTitle",
+        "CustomField1",
+        "CustomField2",
+        "CustomField3",
+        "CustomField4",
+        "CustomField5",
+        "CustomField6",
+        "CustomField7",
+        "CustomField8",
+        "CustomField9",
+        "CustomField10",
+        "EnableTextNotification"
+      ]
+    },
+    "UpdateaUserRequest": {
+      "title": "UpdateaUserRequest",
+      "example": {
+        "Id": "{{user_id}}",
+        "UserName": "testuser204",
+        "FirstName": "Test",
+        "LastName": "User2",
+        "Email": "email_changed@calliduscloud.com",
+        "Active": "true"
+      },
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        },
+        "UserName": {
+          "type": "string"
+        },
+        "FirstName": {
+          "type": "string"
+        },
+        "LastName": {
+          "type": "string"
+        },
+        "Email": {
+          "type": "string"
+        },
+        "Active": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Id",
+        "UserName",
+        "FirstName",
+        "LastName",
+        "Email",
+        "Active"
+      ]
+    },
+    "PostAdvancedCustomFieldsforaUserRequest": {
+      "title": "PostAdvancedCustomFieldsforaUserRequest",
+      "example": {
+        "Custom1": "Helllo",
+        "Custom2": "ByeBye"
+      },
+      "type": "object",
+      "properties": {
+        "Custom1": {
+          "type": "string"
+        },
+        "Custom2": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Custom1",
+        "Custom2"
+      ]
+    },
+    "AssignCoursestoaUserRequest": {
+      "title": "AssignCoursestoaUserRequest",
+      "example": {
+        "Id": "CXpTxdBKCmE1"
+      },
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Id"
+      ]
+    },
+    "AssignUserstoaLearningPathRequest": {
+      "title": "AssignUserstoaLearningPathRequest",
+      "example": {
+        "Id": "{{lp_id}}"
+      },
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Id"
+      ]
+    },
+    "AssignLearningPathstoaTeamRequest": {
+      "title": "AssignLearningPathstoaTeamRequest",
+      "example": {
+        "Id": "{{lp_id}}"
+      },
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Id"
+      ]
+    },
+    "Un-AssignUsersfromaLearningPathRequest": {
+      "title": "Un-AssignUsersfromaLearningPathRequest",
+      "example": {
+        "Id": "{{lp_id}}"
+      },
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Id"
+      ]
+    },
+    "AssignaListofCoursestoaTeamRequest": {
+      "title": "AssignaListofCoursestoaTeamRequest",
+      "example": {
+        "Id": "{{course_id}}",
+        "CourseTeamLibrary": true
+      },
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        },
+        "CourseTeamLibrary": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "Id",
+        "CourseTeamLibrary"
+      ]
+    },
+    "Un-AssignaListofCoursesfromaTeamRequest": {
+      "title": "Un-AssignaListofCoursesfromaTeamRequest",
+      "example": {
+        "Id": "{{course_id}}"
+      },
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Id"
+      ]
+    },
+    "AssignUserstoaTeamRequest": {
+      "title": "AssignUserstoaTeamRequest",
+      "example": {
+        "Id": "{{user_id}}"
+      },
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Id"
+      ]
+    },
+    "CreateaTeamorSub-TeamRequest": {
+      "title": "CreateaTeamorSub-TeamRequest",
+      "example": {
+        "Id": "",
+        "Name": "TestTeam2",
+        "Description": "NothingMuch"
+      },
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Id",
+        "Name",
+        "Description"
+      ]
+    },
+    "UpdateaTeamRequest": {
+      "title": "UpdateaTeamRequest",
+      "example": {
+        "Id": "{{second_team_id}}",
+        "Name": "TestTeam3",
+        "Description": "SoMuch"
+      },
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Id",
+        "Name",
+        "Description"
+      ]
+    },
+    "AddaSub-TeamRequest": {
+      "title": "AddaSub-TeamRequest",
+      "example": {
+        "Id": "",
+        "Name": "TestTeam2",
+        "Description": "NothingMuch"
+      },
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Id",
+        "Name",
+        "Description"
+      ]
+    },
+    "CreateaNewILTsessionforaModuleRequest": {
+      "title": "CreateaNewILTsessionforaModuleRequest",
+      "example": {
+        "Id": "",
+        "Name": "SessionTest1000",
+        "InstructorUserId": "ljnGtWBa02BagqK4PbJoKw2",
+        "InstructorName": "RamanTestAPI",
+        "SessionType": 1,
+        "Days": [
+          {
+            "Id": "",
+            "StartDate": "2019-07-16T09:00:00Z",
+            "EndDate": "2019-07-16T17:00:00Z",
+            "StartTime": "9:00AM",
+            "EndTime": "5:00PM",
+            "SendReminder": false,
+            "ReminderValue": 1,
+            "ReminderMetric": "minutes"
+          },
+          {
+            "Id": "",
+            "StartDate": "2019-07-31T09:00:00Z",
+            "EndDate": "2019-07-31T17:00:00Z",
+            "StartTime": "9:00AM",
+            "EndTime": "5:00PM",
+            "SendReminder": false,
+            "ReminderValue": 0,
+            "ReminderMetric": "minutes"
+          }
+        ],
+        "TimeZone": "UTC",
+        "Location": "TestSession:(Virtual)",
+        "LocationId": 6400,
+        "StartDate": "2019-07-16T09:00:00Z",
+        "EndDate": "2019-07-31T17:00:00Z"
+      },
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "InstructorUserId": {
+          "type": "string"
+        },
+        "InstructorName": {
+          "type": "string"
+        },
+        "SessionType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Days": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Day"
+          }
+        },
+        "TimeZone": {
+          "type": "string"
+        },
+        "Location": {
+          "type": "string"
+        },
+        "LocationId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "StartDate": {
+          "type": "string"
+        },
+        "EndDate": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Id",
+        "Name",
+        "InstructorUserId",
+        "InstructorName",
+        "SessionType",
+        "Days",
+        "TimeZone",
+        "Location",
+        "LocationId",
+        "StartDate",
+        "EndDate"
+      ]
+    },
+    "Day": {
+      "title": "Day",
+      "example": {
+        "Id": "",
+        "StartDate": "2019-07-16T09:00:00Z",
+        "EndDate": "2019-07-16T17:00:00Z",
+        "StartTime": "9:00AM",
+        "EndTime": "5:00PM",
+        "SendReminder": false,
+        "ReminderValue": 1,
+        "ReminderMetric": "minutes"
+      },
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        },
+        "StartDate": {
+          "type": "string"
+        },
+        "EndDate": {
+          "type": "string"
+        },
+        "StartTime": {
+          "type": "string"
+        },
+        "EndTime": {
+          "type": "string"
+        },
+        "SendReminder": {
+          "type": "boolean"
+        },
+        "ReminderValue": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ReminderMetric": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Id",
+        "StartDate",
+        "EndDate",
+        "StartTime",
+        "EndTime",
+        "SendReminder",
+        "ReminderValue",
+        "ReminderMetric"
+      ]
+    },
+    "UpdateaSessioninanILTModuleRequest": {
+      "title": "UpdateaSessioninanILTModuleRequest",
+      "example": {
+        "Id": "{{session_id}}",
+        "Name": "SessionTest3updated",
+        "InstructorUserId": "ljnGtWBa02BagqK4PbJoKw2",
+        "InstructorName": "RamanTestAPI",
+        "SessionType": 1,
+        "Days": [
+          {
+            "Id": "",
+            "StartDate": "2019-07-16T09:00:00Z",
+            "EndDate": "2019-07-16T17:00:00Z",
+            "StartTime": "9:00AM",
+            "EndTime": "5:00PM",
+            "SendReminder": false,
+            "ReminderValue": 1,
+            "ReminderMetric": "minutes"
+          },
+          {
+            "Id": "",
+            "StartDate": "2019-07-31T09:00:00Z",
+            "EndDate": "2019-07-31T17:00:00Z",
+            "StartTime": "9:00AM",
+            "EndTime": "5:00PM",
+            "SendReminder": false,
+            "ReminderValue": 0,
+            "ReminderMetric": "minutes"
+          }
+        ],
+        "TimeZone": "UTC",
+        "Location": "TestSession:(Virtual)",
+        "LocationId": 6400,
+        "StartDate": "2019-07-16T09:00:00Z",
+        "EndDate": "2019-07-31T17:00:00Z"
+      },
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "InstructorUserId": {
+          "type": "string"
+        },
+        "InstructorName": {
+          "type": "string"
+        },
+        "SessionType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Days": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Day"
+          }
+        },
+        "TimeZone": {
+          "type": "string"
+        },
+        "Location": {
+          "type": "string"
+        },
+        "LocationId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "StartDate": {
+          "type": "string"
+        },
+        "EndDate": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Id",
+        "Name",
+        "InstructorUserId",
+        "InstructorName",
+        "SessionType",
+        "Days",
+        "TimeZone",
+        "Location",
+        "LocationId",
+        "StartDate",
+        "EndDate"
+      ]
+    },
+    "MarkAttendanceforaSpecificsetofUsersRegisteredtoaSessionRequest": {
+      "title": "MarkAttendanceforaSpecificsetofUsersRegisteredtoaSessionRequest",
+      "example": {
+        "id": "",
+        "UserName": "",
+        "FirstName": "",
+        "LastName": ""
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "UserName": {
+          "type": "string"
+        },
+        "FirstName": {
+          "type": "string"
+        },
+        "LastName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "UserName",
+        "FirstName",
+        "LastName"
+      ]
+    },
+    "MarkanILTSessionCompleteandaddScoreRequest": {
+      "title": "MarkanILTSessionCompleteandaddScoreRequest",
+      "example": {
+        "Id": "ljnGtWBa02BagqK4PbJoKw2",
+        "EventStatus": 1,
+        "FirstName": "Raman",
+        "LastName": "TestAPI",
+        "Email": "rkhenani@calliduscloud.com",
+        "CompanyName": "",
+        "Score": 0,
+        "Completed": false
+      },
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        },
+        "EventStatus": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "FirstName": {
+          "type": "string"
+        },
+        "LastName": {
+          "type": "string"
+        },
+        "Email": {
+          "type": "string"
+        },
+        "CompanyName": {
+          "type": "string"
+        },
+        "Score": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Completed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "Id",
+        "EventStatus",
+        "FirstName",
+        "LastName",
+        "Email",
+        "CompanyName",
+        "Score",
+        "Completed"
+      ]
+    },
+    "CreateanILTModuleinaCourseRequest": {
+      "title": "CreateanILTModuleinaCourseRequest",
+      "example": {
+        "Id": "",
+        "Code": "",
+        "Name": "ILTforAPITESTCourse",
+        "Description": "",
+        "Sessions": [
+          {
+            "Id": "",
+            "Name": "SessionTest",
+            "InstructorUserId": "ljnGtWBa02BagqK4PbJoKw2",
+            "SessionType": 1,
+            "TimeZone": "UTC",
+            "Location": "TestSession:(Virtual)",
+            "LocationId": 6400,
+            "Days": [
+              {
+                "Id": "",
+                "StartDate": "2019-07-16T09:00:00Z",
+                "EndDate": "2019-07-31T17:00:00Z",
+                "StartTime": "9:00AM",
+                "EndTime": "5:00PM",
+                "SendReminder": false,
+                "ReminderValue": 1,
+                "ReminderMetric": "minutes"
+              },
+              {
+                "Id": "06Mv8VHl7FM1",
+                "StartDate": "2019-07-16T09:00:00Z",
+                "EndDate": "2019-07-31T17:00:00Z",
+                "StartTime": "9:00AM",
+                "EndTime": "5:00PM",
+                "SendReminder": false,
+                "ReminderValue": 0,
+                "ReminderMetric": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        },
+        "Code": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "Sessions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Session"
+          }
+        }
+      },
+      "required": [
+        "Id",
+        "Code",
+        "Name",
+        "Description",
+        "Sessions"
+      ]
+    },
+    "Session": {
+      "title": "Session",
+      "example": {
+        "Id": "",
+        "Name": "SessionTest",
+        "InstructorUserId": "ljnGtWBa02BagqK4PbJoKw2",
+        "SessionType": 1,
+        "TimeZone": "UTC",
+        "Location": "TestSession:(Virtual)",
+        "LocationId": 6400,
+        "Days": [
+          {
+            "Id": "",
+            "StartDate": "2019-07-16T09:00:00Z",
+            "EndDate": "2019-07-31T17:00:00Z",
+            "StartTime": "9:00AM",
+            "EndTime": "5:00PM",
+            "SendReminder": false,
+            "ReminderValue": 1,
+            "ReminderMetric": "minutes"
+          },
+          {
+            "Id": "06Mv8VHl7FM1",
+            "StartDate": "2019-07-16T09:00:00Z",
+            "EndDate": "2019-07-31T17:00:00Z",
+            "StartTime": "9:00AM",
+            "EndTime": "5:00PM",
+            "SendReminder": false,
+            "ReminderValue": 0,
+            "ReminderMetric": "minutes"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "InstructorUserId": {
+          "type": "string"
+        },
+        "SessionType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "TimeZone": {
+          "type": "string"
+        },
+        "Location": {
+          "type": "string"
+        },
+        "LocationId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Days": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Day"
+          }
+        }
+      },
+      "required": [
+        "Id",
+        "Name",
+        "InstructorUserId",
+        "SessionType",
+        "TimeZone",
+        "Location",
+        "LocationId",
+        "Days"
+      ]
+    },
+    "UpdateanILTModuleRequest": {
+      "title": "UpdateanILTModuleRequest",
+      "example": {
+        "Id": "",
+        "Code": "",
+        "Name": "ILTforAPITESTCourse",
+        "Description": ""
+      },
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        },
+        "Code": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Id",
+        "Code",
+        "Name",
+        "Description"
+      ]
+    },
+    "CreateanewUserBulkImportRequest": {
+      "title": "CreateanewUserBulkImportRequest",
+      "example": {
+        "Username": "",
+        "Email": "",
+        "FirstName": "'",
+        "LastName": "",
+        "Phone": "",
+        "Mobile": "",
+        "Skype": "",
+        "Title": "",
+        "CompanyName": "",
+        "WebSite": "",
+        "Twitter": "",
+        "Team1": "",
+        "Team2": "",
+        "Team3": "",
+        "Team4": "",
+        "Team5": "",
+        "Course1": "",
+        "Course2": "",
+        "Course3": "",
+        "Address1": "",
+        "Address2": "",
+        "City": "",
+        "State": "",
+        "Zip": "",
+        "Country": "",
+        "CustomField1": "",
+        "CustomField2": "",
+        "CustomField3": "",
+        "CustomField4": "",
+        "CustomField5": "",
+        "CustomField6": "",
+        "CustomField7": "",
+        "CustomField8": "",
+        "CustomField9": "",
+        "CustomField10": "",
+        "Active": "",
+        "Brand": "",
+        "Culture": "",
+        "TimeZone": ""
+      },
+      "type": "object",
+      "properties": {
+        "Username": {
+          "type": "string"
+        },
+        "Email": {
+          "type": "string"
+        },
+        "FirstName": {
+          "type": "string"
+        },
+        "LastName": {
+          "type": "string"
+        },
+        "Phone": {
+          "type": "string"
+        },
+        "Mobile": {
+          "type": "string"
+        },
+        "Skype": {
+          "type": "string"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "CompanyName": {
+          "type": "string"
+        },
+        "WebSite": {
+          "type": "string"
+        },
+        "Twitter": {
+          "type": "string"
+        },
+        "Team1": {
+          "type": "string"
+        },
+        "Team2": {
+          "type": "string"
+        },
+        "Team3": {
+          "type": "string"
+        },
+        "Team4": {
+          "type": "string"
+        },
+        "Team5": {
+          "type": "string"
+        },
+        "Course1": {
+          "type": "string"
+        },
+        "Course2": {
+          "type": "string"
+        },
+        "Course3": {
+          "type": "string"
+        },
+        "Address1": {
+          "type": "string"
+        },
+        "Address2": {
+          "type": "string"
+        },
+        "City": {
+          "type": "string"
+        },
+        "State": {
+          "type": "string"
+        },
+        "Zip": {
+          "type": "string"
+        },
+        "Country": {
+          "type": "string"
+        },
+        "CustomField1": {
+          "type": "string"
+        },
+        "CustomField2": {
+          "type": "string"
+        },
+        "CustomField3": {
+          "type": "string"
+        },
+        "CustomField4": {
+          "type": "string"
+        },
+        "CustomField5": {
+          "type": "string"
+        },
+        "CustomField6": {
+          "type": "string"
+        },
+        "CustomField7": {
+          "type": "string"
+        },
+        "CustomField8": {
+          "type": "string"
+        },
+        "CustomField9": {
+          "type": "string"
+        },
+        "CustomField10": {
+          "type": "string"
+        },
+        "Active": {
+          "type": "string"
+        },
+        "Brand": {
+          "type": "string"
+        },
+        "Culture": {
+          "type": "string"
+        },
+        "TimeZone": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Username",
+        "Email",
+        "FirstName",
+        "LastName",
+        "Phone",
+        "Mobile",
+        "Skype",
+        "Title",
+        "CompanyName",
+        "WebSite",
+        "Twitter",
+        "Team1",
+        "Team2",
+        "Team3",
+        "Team4",
+        "Team5",
+        "Course1",
+        "Course2",
+        "Course3",
+        "Address1",
+        "Address2",
+        "City",
+        "State",
+        "Zip",
+        "Country",
+        "CustomField1",
+        "CustomField2",
+        "CustomField3",
+        "CustomField4",
+        "CustomField5",
+        "CustomField6",
+        "CustomField7",
+        "CustomField8",
+        "CustomField9",
+        "CustomField10",
+        "Active",
+        "Brand",
+        "Culture",
+        "TimeZone"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "Users"
+    },
+    {
+      "name": "Modules"
+    },
+    {
+      "name": "Courses"
+    },
+    {
+      "name": "Learning Paths"
+    },
+    {
+      "name": "Teamcourses"
+    },
+    {
+      "name": "Leaders"
+    },
+    {
+      "name": "Admin"
+    },
+    {
+      "name": "TeamUsers"
+    },
+    {
+      "name": "TeamCRUD"
+    },
+    {
+      "name": "Sub-Teams"
+    },
+    {
+      "name": "Instructor Led Training (ILT)"
+    },
+    {
+      "name": "Achievements"
+    },
+    {
+      "name": "Gamification"
+    },
+    {
+      "name": "Date Range API's"
+    }
+  ]
+}
