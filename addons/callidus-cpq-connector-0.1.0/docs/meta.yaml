@@ -1,0 +1,9 @@
+docs:
+  - template:
+      displayName: "callidus-cpq-connector-0.1.0"
+      description: "SAP Callidus CPQ Connector documentation"
+      sources:
+        - type: markdown
+          name: docs
+          mode: package
+          filter: (docs/(.*?)\.md$)

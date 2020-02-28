@@ -1,0 +1,101 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
+data:
+  APPLICATION_NAME: {{ .Values.application_name | quote }}
+  PROVIDER_NAME: "SAP"
+  PRODUCT_NAME: "SAP Callidus CPQ"
+  SYSTEM_URL: {{ .Values.system_url | quote }}
+  APP_KIND: rest-with-apikey
+  API_SPECIFICATION_URL: https://raw.githubusercontent.com/jcawley5/xf-addons/master/addons/callidus-cpq-connector-0.1.0/docs/cpq-apis.json
+  API_DESCRIPTION: "APIs for SAP Callidus CPQ" 
+  OAUTH_URL: {{ template "oauth_proxy_service" . }}
+  CLIENT_ID: "dummy"
+  CLIENT_SECRET: "dummy"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}-api
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
+data:
+  events.json: |-
+    {
+      "name": "SAP Callidus Cloud CPQ Business Events",
+      "provider": "SAP Callidus Cloud",
+      "description": "SAP Callidus Cloud CPQ Business Events",
+      "events": {
+        "spec": {
+          "asyncapi": "1.0.0",
+          "info": {
+            "title": "SAP  Callidus Cloud CPQ Business Events",
+            "version": "1.0.0",
+            "description": "SAP  Callidus Cloud CPQ Business Events"
+          },
+          "topics": {
+            "ProductAdded.v1": {
+              "subscribe": {
+                "summary": "Triggered when a product is added to SAP CPQ",
+                "payload": {
+                  "type": "object",
+                   "example": { "Domain": "CPQKYMA",
+                        "Environment": "devstable.webcomcpq.com",
+                        "EventType": "ProductAdded",
+                        "FilterData": { "isSb": "false" },
+                        "Id": "226",
+                        "Name": "Consulting",
+                        "SystemId": "Consulting_1_cpq",
+                        "TimeStamp": "2020-02-28T17:01:33.4589837Z" }
+                }
+              }
+            },
+            "ProductUpdated.v1": {
+              "subscribe": {
+                "summary": "Triggered when a product is updated in SAP CPQ",
+                "payload": {
+                  "type": "object",
+                  "example": { "Domain": "CPQKYMA",
+                        "Environment": "devstable.webcomcpq.com",
+                        "EventType": "ProductUpdated",
+                        "FilterData": { "isSb": "false" },
+                        "Id": "226",
+                        "Name": "Consulting",
+                        "SystemId": "Consulting_1_cpq",
+                        "TimeStamp": "2020-02-28T17:01:33.4589837Z" }
+                }
+              }
+            },
+            "ProductRemoved.v1": {
+              "subscribe": {
+                "summary": "Triggered when a product is removed from SAP CPQ",
+                "payload": {
+                  "type": "object",
+                  "example": { "Domain": "CPQKYMA",
+                        "Environment": "devstable.webcomcpq.com",
+                        "EventType": "ProductRemoved",
+                        "FilterData": { "isSb": "false" },
+                        "Id": "226",
+                        "Name": "Consulting",
+                        "SystemId": "Consulting_1_cpq",
+                        "TimeStamp": "2020-02-28T17:01:33.4589837Z" }
+                }
+              }
+            },
+            "QuoteProvisioned.v1": {
+              "subscribe": {
+                "summary": "Triggered when the Place Order action is taken on Quote 2.0",
+                "payload": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
