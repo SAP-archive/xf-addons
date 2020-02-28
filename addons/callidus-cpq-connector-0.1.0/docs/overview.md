@@ -15,13 +15,13 @@ The SAP Callidus CPQ Connector allows you to integrate a SAP Callidus CPQ tenant
 4. In the Console, choose the Namespace, go to **Catalog** and select **[Preview] SAP Callidus CPQ - Connector**.
 5. Click **Add once** to install and configure the SAP Callidus CPQ Connector:
 
-   | Parameter            | Description                                                                      |
-   | -------------------- | -------------------------------------------------------------------------------- |
-   | **Application Name** | The name of the registered system from step 2.                                   |
-   | **Cluster Domain**   | The domain of the Kyma cluster. For example, `demo.cluster.extend.cx.cloud.sap`  |
-   | **Password**         | The password for API authentication                                              |
-   | **System URL**       | The URL of your SAP Callidus CPQ tenant. For example `https://dev.webcomcpq.com` |
-   | **Username**         | The username for API authentication                                              |
+| Parameter            | Description                                                                      |
+| -------------------- | -------------------------------------------------------------------------------- |
+| **Application Name** | The name of the registered system from step 2.                                   |
+| **Cluster Domain**   | The domain of the Kyma cluster. For example, `demo.cluster.extend.cx.cloud.sap`  |
+| **Password**         | The password for API authentication                                              |
+| **System URL**       | The URL of your SAP Callidus CPQ tenant. For example `https://dev.webcomcpq.com` |
+| **Username**         | The username for API authentication                                              |
 
 ## Set up the SAP Callidus CPQ Events
 
