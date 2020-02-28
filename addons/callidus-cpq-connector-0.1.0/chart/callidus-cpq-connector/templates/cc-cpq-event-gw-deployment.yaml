@@ -11,7 +11,7 @@ data:
   password: {{ .Values.password | b64enc }}
   eventTypeQuery: {{ .Values.eventTypeQuery | b64enc }}
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "bundle.fullname" . }}-{{ .Values.eventGatewayName }}
@@ -19,6 +19,10 @@ metadata:
     app: {{ template "bundle.fullname" . }}
     component: {{ template "bundle.fullname" . }}-{{ .Values.eventGatewayName }}
 spec:
+  selector:
+    matchLabels:
+      app: {{ template "bundle.fullname" . }}
+      component: {{ template "bundle.fullname" . }}-{{ .Values.eventGatewayName }}
   replicas: 1
   template:
     metadata:
