@@ -39,6 +39,7 @@ entries:
   callidus-cpq-connector:
     - name: callidus-cpq-connector
       description: "SAP Callidus CPQ Connector"
+      version: 0.1.0
   cds-connector:
     - name: cds-connector
       description: "cds connector"
