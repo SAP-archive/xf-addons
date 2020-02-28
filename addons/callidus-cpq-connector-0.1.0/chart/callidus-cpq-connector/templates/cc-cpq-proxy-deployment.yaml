@@ -11,7 +11,7 @@ data:
   formparameters: {{ template "formparameters_csv" . }}
   oauthURL: {{ template "oauthURL" . }}
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "bundle.fullname" . }}-{{ .Values.apiProxyName }}
@@ -19,6 +19,10 @@ metadata:
     app: {{ template "bundle.fullname" . }}
     component: {{ template "bundle.fullname" . }}-{{ .Values.apiProxyName }}
 spec:
+  selector:
+    matchLabels:
+      app: {{ template "bundle.fullname" . }}
+      component: {{ template "bundle.fullname" . }}-{{ .Values.apiProxyName }}
   replicas: 1
   template:
     metadata:
