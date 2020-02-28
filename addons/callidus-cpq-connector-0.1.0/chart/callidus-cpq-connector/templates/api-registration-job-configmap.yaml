@@ -44,14 +44,14 @@ data:
                 "summary": "Triggered when a product is added to SAP CPQ",
                 "payload": {
                   "type": "object",
-                   "example": { Domain: "CPQKYMA",
-                        Environment: "devstable.webcomcpq.com",
-                        EventType: "ProductAdded",
-                        FilterData: { isSb: false },
-                        Id: "226",
-                        Name: "Consulting",
-                        SystemId: "Consulting_1_cpq",
-                        TimeStamp: "2020-02-28T17:01:33.4589837Z" }
+                   "example": { "Domain": "CPQKYMA",
+                        "Environment": "devstable.webcomcpq.com",
+                        "EventType": "ProductAdded",
+                        "FilterData": { "isSb": false },
+                        "Id": "226",
+                        "Name": "Consulting",
+                        "SystemId": "Consulting_1_cpq",
+                        "TimeStamp": "2020-02-28T17:01:33.4589837Z" }
                 }
               }
             },
@@ -60,14 +60,14 @@ data:
                 "summary": "Triggered when a product is updated in SAP CPQ",
                 "payload": {
                   "type": "object",
-                  "example": { Domain: "CPQKYMA",
-                        Environment: "devstable.webcomcpq.com",
-                        EventType: "ProductUpdated",
-                        FilterData: { isSb: false },
-                        Id: "226",
-                        Name: "Consulting",
-                        SystemId: "Consulting_1_cpq",
-                        TimeStamp: "2020-02-28T17:01:33.4589837Z" }
+                  "example": { "Domain": "CPQKYMA",
+                        "Environment": "devstable.webcomcpq.com",
+                        "EventType": "ProductUpdated",
+                        "FilterData": { "isSb": false },
+                        "Id": "226",
+                        "Name": "Consulting",
+                        "SystemId": "Consulting_1_cpq",
+                        "TimeStamp": "2020-02-28T17:01:33.4589837Z" }
                 }
               }
             },
@@ -76,14 +76,14 @@ data:
                 "summary": "Triggered when a product is removed from SAP CPQ",
                 "payload": {
                   "type": "object",
-                  "example": { Domain: "CPQKYMA",
-                        Environment: "devstable.webcomcpq.com",
-                        EventType: "ProductRemoved",
-                        FilterData: { isSb: false },
-                        Id: "226",
-                        Name: "Consulting",
-                        SystemId: "Consulting_1_cpq",
-                        TimeStamp: "2020-02-28T17:01:33.4589837Z" }
+                  "example": { "Domain": "CPQKYMA",
+                        "Environment": "devstable.webcomcpq.com",
+                        "EventType": "ProductRemoved",
+                        "FilterData": { "isSb": false },
+                        "Id": "226",
+                        "Name": "Consulting",
+                        "SystemId": "Consulting_1_cpq",
+                        "TimeStamp": "2020-02-28T17:01:33.4589837Z" }
                 }
               }
             },
