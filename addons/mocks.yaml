@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  marketing-mock:
+    - name: marketing-mock
+      description: Lightweight substitute of SAP Marketing Cloud based on APIs only
+      version: 0.1.0
+  c4c-mock:
+    - name: c4c-mock
+      description: Lightweight substitute of SAP Cloud for Customer based on APIs only
+      version: 0.1.0
+  commerce-mock:
+    - name: commerce-mock
+      description: Lightweight substitute of SAP Commerce Cloud based on APIs only
+      version: 0.1.0

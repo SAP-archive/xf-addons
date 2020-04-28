@@ -1,0 +1,19 @@
+{{- if .Values.domain }}
+apiVersion: gateway.kyma-project.io/v1alpha1
+kind: APIRule
+metadata:
+  labels:
+    app: {{ template "bundle.fullname" . }}
+  name: {{ template "bundle.fullname" . }}
+spec:
+  gateway: kyma-gateway.kyma-system.svc.cluster.local
+  service:
+    name: {{ template "bundle.fullname" . }}
+    port: 10000
+    host: {{ .Values.api.prefix }}-{{ .Release.Namespace }}
+  rules:
+    - path: /.*
+      methods: ["GET","POST","PUT","DELETE","HEAD"]
+      accessStrategies:
+        - handler: noop
+{{- end }}
