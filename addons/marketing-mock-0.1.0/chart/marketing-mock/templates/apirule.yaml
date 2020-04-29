@@ -1,4 +1,4 @@
-{{- if .Values.domain }}
+
 apiVersion: gateway.kyma-project.io/v1alpha1
 kind: APIRule
 metadata:
@@ -16,4 +16,3 @@ spec:
       methods: ["GET","POST","PUT","DELETE","HEAD"]
       accessStrategies:
         - handler: noop
-{{- end }}
