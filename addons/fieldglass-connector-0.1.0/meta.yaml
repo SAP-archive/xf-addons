@@ -11,4 +11,4 @@ longDescription: "Integrates SAP Fieldglass in preview mode by registering its A
 documentationURL: https://www.fieldglass.com/
 bindable: false
 provisionOnlyOnce: true
-imageUrl: https://raw.githubusercontent.com/SAP/xf-addons/master/icons/fieldglass.jpg
+imageUrl: https://raw.githubusercontent.com/SAP/xf-addons/latest/icons/fieldglass.jpg

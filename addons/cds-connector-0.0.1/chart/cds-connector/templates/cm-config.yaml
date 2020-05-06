@@ -12,7 +12,7 @@ data:
   PRODUCT_NAME: CDS
   APP_KIND: rest-with-apikey
   API_DESCRIPTION: "APIs for SAP CDS"
-  API_SPECIFICATION_URL: https://raw.githubusercontent.com/SAP-samples/xf-addons/master/addons/cds-connector-0.0.1/docs/api-specfication.json
+  API_SPECIFICATION_URL: https://raw.githubusercontent.com/SAP/xf-addons/latest/addons/cds-connector-0.0.1/docs/api-specfication.json
   OAUTH_URL: {{ template "oauth_proxy_service" . }}
   CLIENT_ID: "dummy"
   CLIENT_SECRET: "dummy"

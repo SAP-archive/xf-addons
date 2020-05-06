@@ -2474,7 +2474,7 @@
                         },
                         "fileUrl": {
                           "type": "string",
-                          "description": "e.g.  https://raw.githubusercontent.com/werowe/qualtrics/master/responses.csv"
+                          "description": "e.g.  https://raw.githubusercontent.com/werowe/qualtrics/latest/responses.csv"
                         }
                       }
                     }

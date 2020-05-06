@@ -12,7 +12,7 @@ data:
   APP_KIND: rest-with-apikey
   API_DESCRIPTION: "APIs for SAP Fieldglass"
   SYSTEM_URL: {{ .Values.system_url | quote }}
-  API_SPECIFICATION_URL: https://raw.githubusercontent.com/SAP/xf-addons/master/addons/fieldglass-connector-0.1.0/docs/assets/fieldglass.json
+  API_SPECIFICATION_URL: https://raw.githubusercontent.com/SAP/xf-addons/latest/addons/fieldglass-connector-0.1.0/docs/assets/fieldglass.json
   CLIENT_ID: {{ .Values.username }}
   CLIENT_SECRET: {{ .Values.password }}
   OAUTH_URL: {{ template "oauth_proxy_service" . }}

@@ -11,4 +11,4 @@ longDescription: "Integrates SAP Callidus CPQ in preview mode by registering its
 documentationURL: https://docs.calliduscloud.com/
 bindable: false
 provisionOnlyOnce: true
-imageUrl: https://raw.githubusercontent.com/SAP/xf-addons/master/icons/calliduscloud.png
+imageUrl: https://raw.githubusercontent.com/SAP/xf-addons/latest/icons/calliduscloud.png

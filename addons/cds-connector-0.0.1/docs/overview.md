@@ -45,6 +45,6 @@ The SAP Context-Driven Services(CDS) Connector allows you to integrate a CDS ten
 3. In the **Enricher configuration**, as depicted in the image- choose the right schemas.
 ![schema](./assets/cds-lambda-schema.png)
 
-4. Copy the lambda code from [link](https://raw.githubusercontent.com/SAP-samples/xf-addons/master/addons/cds-connector-0.0.1/lambda/cds-lambda.js) and use it as code for lambda created in step 2.
+4. Copy the lambda code from [link](https://raw.githubusercontent.com//xf-addons/latest/addons/cds-connector-0.0.1/lambda/cds-lambda.js) and use it as code for lambda created in step 2.
 
 5. In the lambda code, search for variable **endpointURL** and give the value of the url of lambda copied earlier.

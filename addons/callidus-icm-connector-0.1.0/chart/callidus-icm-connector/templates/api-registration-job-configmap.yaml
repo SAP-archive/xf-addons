@@ -11,7 +11,7 @@ data:
   PRODUCT_NAME: "SAP Callidus ICM"
   SYSTEM_URL: {{ template "cc_proxy_service" . }}
   APP_KIND: rest-with-apikey
-  API_SPECIFICATION_URL: https://raw.githubusercontent.com/SAP/xf-addons/master/addons/callidus-icm-connector-0.1.0/docs/assets/callidusicm.json
+  API_SPECIFICATION_URL: https://raw.githubusercontent.com/SAP/xf-addons/latest/addons/callidus-icm-connector-0.1.0/docs/assets/callidusicm.json
   API_DESCRIPTION: "APIs for SAP Callidus ICM" 
 ---
 apiVersion: v1
