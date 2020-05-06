@@ -5,7 +5,7 @@
     "domain": {
       "type": "string",
       "title": "(Optional) Domain of cluster, if integration to Kyma console is wanted",
-      "description": "Available with Kyma 1.8: When configured, the UI of the mock will be available with a new navigation node in the Kyma Console. The value needs to bbe the domain of the cluster without any additions, like in 'myCluster.kyma.io'"
+      "description": "When configured, the UI of the mock will be available with a new navigation node in the Kyma Console. The value needs to be the domain of the cluster without any additions, like in 'myCluster.kyma.io'"
     }
   },
   "required": [
