@@ -19,7 +19,7 @@ metadata:
   name: xf-addons
 spec:
   repositories:
-    - url: "github.com/sap/xf-addons//addons/mocks.yaml?ref=0.11"
+    - url: "github.com/sap/xf-addons//addons/index.yaml?ref=0.11"
 ```
 
 With that, all addons of this repository will be available in your Service Catalog.
