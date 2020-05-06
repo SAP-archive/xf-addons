@@ -10,7 +10,7 @@ The SAP CP Extension Factory (XF) is designed to easily extend and mash up diffe
 
 This add-ons repository as defined by [index.yaml](addons/index.yaml) is installed to XF by default.
 
-If you need to install it manually, you need to create a `ClusterAddonsConfiguration` or `AddonsConfiguration` resource in your XF or Kyma cluster using URL `github.com/sap/xf-addons//addons/index.yaml?ref=latest`:
+If you need to install it manually, you need to create a `ClusterAddonsConfiguration` or `AddonsConfiguration` resource in your XF or Kyma cluster using URL `github.com/sap/xf-addons//addons/index.yaml?ref=0.11`:
 
 ```yaml
 apiVersion: addons.kyma-project.io/v1alpha1
