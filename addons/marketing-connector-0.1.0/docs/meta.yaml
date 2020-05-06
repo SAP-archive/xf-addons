@@ -1,9 +1,0 @@
-docs:
-  - template:
-      displayName: "Documentation for Marketing-0.1.0"
-      description: "Overall documentation"
-      sources:
-        - type: markdown
-          name: docs
-          mode: package
-          filter: (docs/(.*?)\.md$)|(docs/assets)

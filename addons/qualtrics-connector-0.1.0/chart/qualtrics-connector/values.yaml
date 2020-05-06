@@ -1,6 +1,0 @@
-# Default values for qualtrics-connector.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-apiRegistrationJobName: api-registration-job
-api_path: /API/v3

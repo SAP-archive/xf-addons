@@ -1,6 +1,0 @@
-oauthServerName: oauth2server
-oauthServerHost: auth
-mqttServerHost: mqtt
-apiRegistrationJobName: api-registration-job
-mqttEventBridgeName: mqtt-event-bridge
-namespace: kyma-integration
