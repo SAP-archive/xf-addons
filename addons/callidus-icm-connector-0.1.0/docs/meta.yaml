@@ -1,9 +1,0 @@
-docs:
-  - template:
-      displayName: "callidus-icm-connector-0.1.0"
-      description: "SAP Callidus ICM Connector documentation"
-      sources:
-        - type: markdown
-          name: docs
-          mode: package
-          filter: (docs/(.*?)\.md$)
