@@ -9,5 +9,5 @@ api:
 domain:
 
 image:
-    name: eu.gcr.io/kyma-project/xf-application-mocks/marketing-mock:0.4.2
+    name: eu.gcr.io/kyma-project/xf-application-mocks/marketing-mock:0.4.3
     pullPolicy: Always
