@@ -37,5 +37,5 @@ In case you find a bug or have ideas please open a [Github Issue](https://github
 
 ## License
 
-Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
 This file is licensed under the `SAP SAMPLE CODE LICENSE` except as noted otherwise in the [LICENSE](LICENSE) file.
