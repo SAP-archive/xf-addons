@@ -1,6 +1,6 @@
 # XF Add-ons
 
-[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/xf-addons/)](https://api.reuse.software/info/github.com/SAP-samples/xf-addons/)
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/xf-addons)](https://api.reuse.software/info/github.com/SAP-samples/xf-addons)
 
 Kyma Add-ons for the SAP Cloud Platform Extension Factory (XF) installable via the Service Catalog.
 
