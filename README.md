@@ -1,5 +1,7 @@
 # XF Add-ons
 
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/xf-addons/)](https://api.reuse.software/info/github.com/SAP-samples/xf-addons/)
+
 Kyma Add-ons for the SAP Cloud Platform Extension Factory (XF) installable via the Service Catalog.
 
 ## Description
@@ -38,4 +40,4 @@ In case you find a bug or have ideas please open a [Github Issue](https://github
 ## License
 
 Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
-This file is licensed under the `SAP SAMPLE CODE LICENSE` except as noted otherwise in the [LICENSE](LICENSE) file.
+This file is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSES/Apache-2.0.txt) file.
