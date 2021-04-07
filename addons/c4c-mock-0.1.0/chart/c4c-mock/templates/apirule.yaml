@@ -10,11 +10,7 @@ spec:
   service:
     name: {{ template "bundle.fullname" . }}
     port: 10000
-{{- if .Values.domain }}
-    host: {{ .Values.api.prefix }}-{{ .Release.Namespace }}.{{ .Values.domain }}
-{{- else }}
     host: {{ .Values.api.prefix }}-{{ .Release.Namespace }}
-{{- end}}
   rules:
     - path: /.*
       methods: ["GET","POST","PUT","DELETE","HEAD"]

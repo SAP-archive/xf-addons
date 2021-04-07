@@ -6,7 +6,6 @@ console:
 
 api:
     prefix: commerce
-domain:
 
 image:
     name: eu.gcr.io/kyma-project/xf-application-mocks/commerce-mock:0.4.5

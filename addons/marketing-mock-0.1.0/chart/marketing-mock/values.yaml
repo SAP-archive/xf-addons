@@ -6,7 +6,6 @@ console:
 
 api:
     prefix: marketing
-domain:
 
 image:
     name: eu.gcr.io/kyma-project/xf-application-mocks/marketing-mock:0.4.5
