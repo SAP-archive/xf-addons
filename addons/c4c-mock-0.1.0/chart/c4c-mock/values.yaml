@@ -6,8 +6,7 @@ console:
 
 api:
     prefix: c4c
-domain:
-
+    
 image:
     name: eu.gcr.io/kyma-project/xf-application-mocks/c4c-mock:0.4.5
     pullPolicy: Always
